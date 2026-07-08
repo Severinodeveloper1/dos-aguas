@@ -59,3 +59,4 @@ auth.json
 .agent/skills/ui-ux-pro-max/data/icons.csv
 .agent/skills/ui-ux-pro-max/data/colors.csv
 .agent/skills/ui-ux-pro-max/data/charts.csv
+.vscode/settings.json
