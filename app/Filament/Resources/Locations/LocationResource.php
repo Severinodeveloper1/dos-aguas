@@ -26,9 +26,9 @@ class LocationResource extends Resource
     
     protected static ?string $pluralModelLabel = 'Sedes y Acopio';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Gestión de Contenido';
+    protected static string|\UnitEnum|null $navigationGroup = 'Contenido Web';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Schema $schema): Schema
     {

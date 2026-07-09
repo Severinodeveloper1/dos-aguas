@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dos Aguas — Colección Bean to Bar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Oswald:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brown:   #3A2018;
+    --gold:    #D98E3E;
+    --cream:   #F3E6D3;
+    --line:    rgba(243,230,211,0.18);
+    --bg:      #3A2018;
+    --accent:  #D98E3E;
+    --ink:     #F3E6D3;
+    --transition-bg: background-color 0.7s ease, color 0.7s ease;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{
+    background:var(--brown);
+    color:var(--cream);
+    font-family:'Inter', sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  body{ background:var(--bg); transition:var(--transition-bg); }
+  ::selection{ background:var(--gold); color:var(--brown); }
+
+  a{ color:inherit; }
+  .eyebrow{
+    font-family:'Oswald', sans-serif;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    font-size:11px;
+    font-weight:500;
+  }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em; }
+  .script{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+  }
+
+  /* ---------- diamond divider, brand motif ---------- */
+  .divider{
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    margin:18px 0;
+  }
+  .divider span{ height:1px; width:34px; background:currentColor; opacity:0.5; }
+  .divider i{
+    width:6px; height:6px; background:currentColor; transform:rotate(45deg); opacity:0.85;
+  }
+
+  /* ================= HERO ================= */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:40px 24px;
+    overflow:hidden;
+  }
+  .hero-rays{
+    position:absolute; top:50%; left:50%; width:1px; height:1px;
+    pointer-events:none;
+  }
+  .hero-rays svg{
+    position:absolute; top:50%; left:50%;
+    width:min(900px, 140vw); height:min(900px,140vw);
+    transform:translate(-50%,-50%);
+    opacity:0.07;
+    animation:spin 90s linear infinite;
+  }
+  @keyframes spin{ to{ transform:translate(-50%,-50%) rotate(360deg); } }
+
+  .hero-mark{ width:64px; height:64px; margin-bottom:28px; opacity:0; animation:riseIn 1s ease 0.2s forwards; }
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 5rem);
+    line-height:0.95;
+    opacity:0; animation:riseIn 1s ease 0.4s forwards;
+  }
+  .hero .tagline{
+    margin-top:18px;
+    font-size:clamp(0.95rem,1.6vw,1.15rem);
+    color:var(--gold);
+    max-width:520px;
+    opacity:0; animation:riseIn 1s ease 0.6s forwards;
+  }
+  .hero .eyebrow{ opacity:0; animation:riseIn 1s ease 0.1s forwards; color:var(--gold); }
+
+  @keyframes riseIn{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .scroll-cue{
+    position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    font-family:'Oswald',sans-serif; font-size:10px; letter-spacing:0.25em;
+    text-transform:uppercase; color:var(--cream); opacity:0.65;
+  }
+  .scroll-cue .line{ width:1px; height:34px; background:currentColor; position:relative; overflow:hidden; }
+  .scroll-cue .line::after{
+    content:''; position:absolute; left:0; top:-100%; width:100%; height:100%;
+    background:var(--gold);
+    animation:drip 1.8s ease-in-out infinite;
+  }
+  @keyframes drip{ 0%{top:-100%;} 60%{top:100%;} 100%{top:100%;} }
+
+  /* ================= STAGE / SCROLL TRACK ================= */
+  .scroll-track{ position:relative; }
+  .stage{
+    position:relative;
+    height:100vh;
+    width:100%;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .stage-inner{
+    position:relative;
+    width:min(1100px, 92vw);
+    height:100%;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    align-items:center;
+    gap:6vw;
+    perspective:1400px;
+  }
+
+  .counter{
+    position:absolute;
+    top:42px; left:0;
+    font-family:'Oswald',sans-serif;
+    letter-spacing:0.2em;
+    font-size:12px;
+    opacity:0.7;
+  }
+  .counter b{ font-size:15px; letter-spacing:0.05em; opacity:1; }
+
+  .figure-zone{
+    position:relative;
+    height:78vh;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .product-slot{
+    position:absolute;
+    width:min(280px, 52vw);
+    will-change: transform, opacity;
+    transform-style:preserve-3d;
+    filter:drop-shadow(0 30px 50px rgba(0,0,0,0.35));
+  }
+  .product-slot img{
+    width:100%; display:block; pointer-events:none; user-select:none;
+  }
+
+  .info-zone{
+    position:relative;
+    height:78vh;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .info-slot{
+    position:absolute;
+    width:100%;
+    will-change: transform, opacity;
+  }
+  .info-slot .eyebrow{ color:var(--accent); }
+  .info-slot h2{
+    font-size:clamp(2rem,4.4vw,3.4rem);
+    margin-top:10px;
+    text-transform:capitalize;
+  }
+  .info-slot .script{
+    display:block;
+    font-size:clamp(1.1rem,1.8vw,1.4rem);
+    color:var(--accent);
+    margin-top:6px;
+  }
+  .info-slot p.desc{
+    margin-top:18px;
+    font-size:0.97rem;
+    line-height:1.7;
+    max-width:46ch;
+    color:var(--ink);
+    opacity:0.92;
+  }
+  .stat-row{
+    display:flex; gap:28px; margin-top:28px; flex-wrap:wrap;
+  }
+  .stat-row div{ min-width:90px; }
+  .stat-row .num{ font-family:'Fraunces',serif; font-size:1.5rem; font-weight:600; }
+  .stat-row .lab{
+    font-family:'Oswald',sans-serif; font-size:9.5px; letter-spacing:0.18em;
+    text-transform:uppercase; opacity:0.7; margin-top:2px;
+  }
+
+  /* progress rail */
+  .rail{
+    position:fixed; right:26px; top:50%; transform:translateY(-50%);
+    z-index:40; display:flex; flex-direction:column; gap:14px;
+    opacity:0; transition:opacity 0.4s ease;
+  }
+  .rail.visible{ opacity:1; }
+  .rail button{
+    width:9px; height:9px; border-radius:50%; border:1px solid currentColor;
+    background:transparent; cursor:pointer; padding:0; opacity:0.5;
+    transition:opacity 0.3s, background 0.3s, transform 0.3s;
+    color:var(--ink);
+  }
+  .rail button:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+  .rail button.active{ background:var(--gold); border-color:var(--gold); opacity:1; transform:scale(1.25); }
+
+  /* ================= OUTRO ================= */
+  .outro{
+    min-height:80vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:80px 24px; gap:18px;
+    background:var(--brown);
+  }
+  .outro h2{ font-size:clamp(1.8rem,4vw,2.6rem); }
+  .outro p{ max-width:50ch; color:var(--cream); opacity:0.8; line-height:1.6; }
+  .cta{
+    margin-top:18px;
+    font-family:'Oswald',sans-serif;
+    letter-spacing:0.18em; text-transform:uppercase; font-size:12px;
+    border:1px solid var(--gold); color:var(--gold);
+    padding:16px 34px; background:transparent; cursor:pointer;
+    transition:background 0.3s, color 0.3s;
+  }
+  .cta:hover{ background:var(--gold); color:var(--brown); }
+  .cta:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; }
+
+  footer{
+    text-align:center; padding:30px; font-family:'Oswald',sans-serif;
+    font-size:10px; letter-spacing:0.2em; opacity:0.45; background:var(--brown);
+  }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 860px){
+    .stage-inner{
+      grid-template-columns:1fr;
+      grid-template-rows: 46% 54%;
+      gap:0;
+    }
+    .figure-zone{ height:38vh; }
+    .info-zone{ height:42vh; }
+    .info-slot p.desc{ max-width:32ch; font-size:0.9rem; }
+    .info-slot h2{ font-size:clamp(1.6rem,7vw,2.4rem); }
+    .stat-row{ gap:18px; }
+    .rail{ right:12px; gap:10px; }
+    .product-slot{ width:min(180px, 40vw); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero-rays svg{ animation:none; }
+    .hero-mark, .hero h1, .hero .tagline, .hero .eyebrow{ animation:none; opacity:1; transform:none; }
+    .scroll-cue .line::after{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ progress rail ============ -->
+<nav class="rail" id="rail" aria-label="Progreso de la colección"></nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-rays" aria-hidden="true">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="currentColor" stroke-width="2" fill="none" color="#F3E6D3">
+        <circle cx="100" cy="100" r="95"/>
+        <line x1="100" y1="5" x2="100" y2="35"/>
+        <line x1="170" y1="30" x2="150" y2="50"/>
+        <line x1="30" y1="30" x2="50" y2="50"/>
+        <line x1="195" y1="100" x2="165" y2="100"/>
+        <line x1="5" y1="100" x2="35" y2="100"/>
+      </g>
+    </svg>
+  </div>
+  <p class="eyebrow">Hacienda Dos Aguas · Curimaná, Ucayali</p>
+  <h1>Esencia de cacao,<br>en seis versiones</h1>
+  <p class="tagline script">Bean to bar, 70% cacao, hecho a mano en cada lote.</p>
+  <div class="scroll-cue"><span>Desliza</span><div class="line"></div></div>
+</section>
+
+<!-- ============ SCROLL STAGE ============ -->
+<div class="scroll-track" id="scrollTrack">
+  <div class="stage" id="stage">
+    <div class="stage-inner">
+      <div class="counter"><b id="counterNow">01</b> / 06 — <span id="counterName">Eucalipto</span></div>
+
+      <div class="figure-zone" id="figureZone"></div>
+      <div class="info-zone" id="infoZone"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ OUTRO ============ -->
+<section class="outro">
+  <p class="eyebrow" style="color:var(--gold)">La colección completa</p>
+  <h2>Seis sabores, una sola hacienda.</h2>
+  <p>Cada barra se elabora a mano en pequeños lotes, con esencias e infusiones extraídas artesanalmente. Pídelas individuales o en set de cata.</p>
+  <button class="cta">Ver tienda</button>
+</section>
+
+<footer>DOS AGUAS — ESENCIA DE CACAO PARA TI</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------------- product data ---------------- */
+const products = [
+  {
+    img: 'chocolate_eucalipto.png',
+    name: 'Eucalipto',
+    tag: 'Fresco y vigorizante',
+    bg:'#5C7A36', accent:'#D9E3B0', ink:'#F4F4E8',
+    desc:'El cacao oscuro se une al aroma fresco del eucalipto, extraído artesanalmente por destilación. Ayuda a la respiración y refresca cada bocado.',
+    stats:[['70%','Cacao'],['283','Kcal/porción'],['Natural','Aceite destilado']]
+  },
+  {
+    img: 'chocolate_hierbaluisa.png',
+    name: 'Hierba Luisa',
+    tag: 'Cítrica y calmante',
+    bg:'#C7B82E', accent:'#3A330C', ink:'#2B2408',
+    desc:'Notas cítricas y herbales sobre cacao intenso. La hierba luisa, destilada a mano, aporta calma y bienestar en cada tableta.',
+    stats:[['70%','Cacao'],['277','Kcal/porción'],['Calma','Beneficio clave']]
+  },
+  {
+    img: 'chocolate_muna.png',
+    name: 'Muña',
+    tag: 'Herbal y digestiva',
+    bg:'#7E9758', accent:'#EFEFD8', ink:'#F4F4E8',
+    desc:'Aroma herbal y fresco que despierta los sentidos. El aceite de muña, destilado artesanalmente, favorece la digestión y refresca el paladar.',
+    stats:[['70%','Cacao'],['270','Kcal/porción'],['Digestiva','Beneficio clave']]
+  },
+  {
+    img: 'chocolate_maracumango.png',
+    name: 'Maracumango',
+    tag: 'Exótico y afrutado',
+    bg:'#D99A33', accent:'#3A2410', ink:'#2E1B0B',
+    desc:'Mango y maracuyá deshidratados a mano se integran al cacao oscuro, logrando un chocolate exótico, dulce y ligeramente ácido.',
+    stats:[['70%','Cacao'],['285','Kcal/porción'],['Antioxidante','Beneficio clave']]
+  },
+  {
+    img: 'chocolate_naranja.png',
+    name: 'Naranja',
+    tag: 'Cítrico y aromático',
+    bg:'#D9692A', accent:'#FCE9D6', ink:'#FFF3E4',
+    desc:'Aceite de naranja extraído manualmente por destilación, sobre cacao oscuro. Aromático, equilibrado y rico en antioxidantes naturales.',
+    stats:[['70%','Cacao'],['280','Kcal/porción'],['Vitamina C','Beneficio clave']]
+  },
+  {
+    img: 'chocolate_oscuro.png',
+    name: 'Oscuro',
+    tag: 'Intenso y elegante',
+    bg:'#3A2018', accent:'#D98E3E', ink:'#F3E6D3',
+    desc:'El cacao en su máxima expresión: intenso, profundo y puro. Ideal solo, como ingrediente gourmet o en tu momento de placer auténtico.',
+    stats:[['70%','Cacao'],['279','Kcal/porción'],['Puro','Sin mezclas']]
+  }
+];
+
+const N = products.length;
+
+/* ---------------- build DOM nodes (figures + info) ---------------- */
+const figureZone = document.getElementById('figureZone');
+const infoZone   = document.getElementById('infoZone');
+
+const slots = products.map((p, i) => {
+  const fig = document.createElement('div');
+  fig.className = 'product-slot';
+  fig.innerHTML = `<img src="${p.img}" alt="Chocolate Dos Aguas sabor ${p.name}, 70% cacao">`;
+  figureZone.appendChild(fig);
+
+  const info = document.createElement('div');
+  info.className = 'info-slot';
+  info.innerHTML = `
+    <p class="eyebrow">Sabor ${String(i+1).padStart(2,'0')} / 0${N}</p>
+    <h2>Chocolate con ${p.name}<span class="script">${p.tag}</span></h2>
+    <p class="desc">${p.desc}</p>
+    <div class="stat-row">
+      ${p.stats.map(s=>`<div><div class="num">${s[0]}</div><div class="lab">${s[1]}</div></div>`).join('')}
+    </div>`;
+  infoZone.appendChild(info);
+  return { fig, info };
+});
+
+/* ---------------- progress rail ---------------- */
+const rail = document.getElementById('rail');
+products.forEach((p,i)=>{
+  const b = document.createElement('button');
+  b.setAttribute('aria-label', 'Ir a '+p.name);
+  b.addEventListener('click', ()=>{
+    const track = document.getElementById('scrollTrack');
+    const total = track.offsetHeight - window.innerHeight;
+    const target = track.offsetTop + (i/(N)) * total + 10;
+    window.scrollTo({ top: target, behavior:'smooth' });
+  });
+  rail.appendChild(b);
+});
+const railButtons = [...rail.children];
+
+/* ---------------- helpers ---------------- */
+function hexToRgb(hex){
+  const m = hex.replace('#','').match(/.{1,2}/g).map(x=>parseInt(x,16));
+  return {r:m[0], g:m[1], b:m[2]};
+}
+function lerpColor(a,b,t){
+  const c1=hexToRgb(a), c2=hexToRgb(b);
+  const r=Math.round(c1.r+(c2.r-c1.r)*t);
+  const g=Math.round(c1.g+(c2.g-c1.g)*t);
+  const bl=Math.round(c1.b+(c2.b-c1.b)*t);
+  return `rgb(${r},${g},${bl})`;
+}
+const root = document.documentElement;
+
+/* ---------------- main scroll-driven animation ---------------- */
+const track = document.getElementById('scrollTrack');
+const stage = document.getElementById('stage');
+track.style.height = (N * 100) + 'vh';
+
+const counterNow = document.getElementById('counterNow');
+const counterName = document.getElementById('counterName');
+
+let lastIdx = -1;
+
+ScrollTrigger.create({
+  trigger: track,
+  start: 'top top',
+  end: 'bottom bottom',
+  pin: stage,
+  onUpdate: (self)=>{
+    const p = self.progress;                 // 0..1 across whole track
+    const cont = p * N;                       // 0..N continuous
+    let idx = Math.floor(cont);
+    if (idx >= N) idx = N - 1;
+    let local = cont - idx;                   // 0..1 within current product
+
+    // amplitude killed for reduced motion (still moves, just less)
+    const swing = reduceMotion ? 28 : 64;       // vh travel distance
+    const rot   = reduceMotion ? 18 : 78;       // deg rotation
+
+    products.forEach((prod, i)=>{
+      const fig = slots[i].fig;
+      const info = slots[i].info;
+      let t; // -1 (below/enter) .. 0 (centered) .. 1 (above/exit)
+      if (i === idx) t = (local - 0.5) * 2;
+      else if (i === idx - 1) t = (local - 0.5) * 2 - 2; // just exited above
+      else if (i === idx + 1) t = (local - 0.5) * 2 + 2; // about to enter below
+      else t = i < idx ? -3 : 3; // fully offscreen
+
+      const clampedT = Math.max(-1.6, Math.min(1.6, t));
+      const yFig  = clampedT * swing;
+      const yInfo = clampedT * (swing*0.6);
+      const rotY  = clampedT * rot;
+      const opacity = Math.max(0, 1 - Math.abs(clampedT)*1.15);
+      const scale = 1 - Math.min(Math.abs(clampedT),1)*0.16;
+
+      fig.style.transform = `translateY(${yFig}vh) rotateY(${rotY}deg) rotateX(${clampedT*-6}deg) scale(${scale})`;
+      fig.style.opacity = opacity;
+      info.style.transform = `translateY(${yInfo}vh)`;
+      info.style.opacity = opacity;
+    });
+
+    if (idx !== lastIdx){
+      lastIdx = idx;
+      const prod = products[idx];
+      // manual color tween for reliable cross-browser CSS custom-property animation
+      const fromBg = getComputedStyle(root).getPropertyValue('--bg').trim() || prod.bg;
+      gsap.to({t:0}, {
+        t:1, duration:0.7, ease:'power2.out',
+        onUpdate(){
+          const tt = this.targets()[0].t;
+          root.style.setProperty('--bg', lerpColor(fromBg.startsWith('#')?fromBg:prod.bg, prod.bg, tt));
+        }
+      });
+      root.style.setProperty('--accent', prod.accent);
+      root.style.setProperty('--ink', prod.ink);
+
+      counterNow.textContent = String(idx+1).padStart(2,'0');
+      counterName.textContent = prod.name;
+      railButtons.forEach((b,i)=> b.classList.toggle('active', i===idx));
+    }
+  },
+  onToggle: (self)=>{
+    rail.classList.toggle('visible', self.isActive);
+  }
+});
+
+// init first colors
+root.style.setProperty('--bg', products[0].bg);
+root.style.setProperty('--accent', products[0].accent);
+root.style.setProperty('--ink', products[0].ink);
+railButtons[0]?.classList.add('active');
+
+window.addEventListener('load', ()=> ScrollTrigger.refresh());
+</script>
+</body>
+</html>

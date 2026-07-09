@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dos Aguas - Colecciones de Cacao</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Archivo+Narrow:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary-fixed-dim": "#eabcb8",
+                "on-error": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed-variant": "#5f3e3c",
+                "on-tertiary-fixed-variant": "#4e4638",
+                "on-secondary-fixed-variant": "#6a3b00",
+                "surface-container-highest": "#f2dfd1",
+                "secondary-fixed-dim": "#ffb872",
+                "surface-bright": "#fff8f5",
+                "primary-container": "#4a2c2a",
+                "on-surface": "#231a11",
+                "surface-container-low": "#fff1e8",
+                "surface-container-high": "#f8e5d6",
+                "on-secondary-container": "#734100",
+                "primary-fixed": "#ffdad7",
+                "parchment-cream": "#F3E6D3",
+                "inverse-on-surface": "#ffeee1",
+                "background": "#fff8f5",
+                "on-tertiary-container": "#a69b8a",
+                "surface-tint": "#795553",
+                "secondary-container": "#fead5a",
+                "on-tertiary": "#ffffff",
+                "outline-variant": "#d4c3c1",
+                "tertiary-fixed-dim": "#d1c5b3",
+                "surface-dim": "#ead7c9",
+                "error-container": "#ffdad6",
+                "surface-variant": "#f2dfd1",
+                "tertiary-container": "#3a3326",
+                "on-error-container": "#93000a",
+                "surface-container": "#feeadc",
+                "outline": "#827472",
+                "on-background": "#231a11",
+                "inverse-surface": "#392e25",
+                "on-surface-variant": "#504443",
+                "tertiary": "#241e12",
+                "error": "#ba1a1a",
+                "on-primary-container": "#bd928f",
+                "secondary": "#8b5000",
+                "on-tertiary-fixed": "#211b0f",
+                "secondary-fixed": "#ffdcbf",
+                "surface": "#fff8f5",
+                "terracotta-sun": "#D98E3E",
+                "cacao-deep": "#4A2C2A",
+                "tertiary-fixed": "#eee1ce",
+                "primary": "#321716",
+                "leaf-green": "#748C43",
+                "on-secondary-fixed": "#2d1600",
+                "coast-sand": "#E3BC9A",
+                "on-primary": "#ffffff",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed": "#2e1413",
+                "inverse-primary": "#eabcb8"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "margin-desktop": "64px",
+                "container-max": "1280px",
+                "unit": "8px",
+                "margin-mobile": "16px",
+                "gutter": "24px"
+            },
+            "fontFamily": {
+                "headline-lg": ["Libre Caslon Text"],
+                "subhead-caps": ["Archivo Narrow"],
+                "headline-xl": ["Libre Caslon Text"],
+                "body-lg": ["Archivo Narrow"],
+                "body-md": ["Archivo Narrow"],
+                "label-sm": ["Archivo Narrow"],
+                "headline-lg-mobile": ["Libre Caslon Text"]
+            },
+            "fontSize": {
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "subhead-caps": ["14px", {"lineHeight": "20px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .rhomboid-mask {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F3E6D3;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #4A2C2A;
+        }
+        .hero-pattern {
+            background-image: radial-gradient(#D98E3E 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-terracotta-sun selection:text-white">
+<!-- TopNavBar -->
+<nav class="bg-parchment-cream/95 dark:bg-primary/95 font-body-md text-body-md border-b border-cacao-deep/10 dark:border-parchment-cream/10 shadow-sm dark:shadow-none docked full-width top-0 sticky backdrop-blur-md z-50">
+<div class="flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="flex items-center gap-12">
+<a class="font-headline-lg text-headline-lg font-bold tracking-tighter text-cacao-deep dark:text-parchment-cream" href="#">Dos Aguas</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-terracotta-sun transition-all duration-300" href="#">Origen</a>
+<a class="text-terracotta-sun font-bold border-b-2 border-terracotta-sun pb-1" href="#">Colecciones</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-terracotta-sun transition-all duration-300" href="#">Nuestra Historia</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-terracotta-sun transition-all duration-300" href="#">Contacto</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-white/50 px-4 py-2 border border-cacao-deep/10">
+<span class="material-symbols-outlined text-cacao-deep/40 text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-sm font-label-sm w-40" placeholder="Buscar esencia..." type="text"/>
+</div>
+<button class="scale-95 active:scale-90 transition-transform text-cacao-deep">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+<button class="scale-95 active:scale-90 transition-transform text-cacao-deep relative">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-terracotta-sun text-white text-[10px] w-4 h-4 flex items-center justify-center font-bold">2</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Collection Header -->
+<header class="relative pt-20 pb-16 overflow-hidden">
+<div class="absolute inset-0 hero-pattern pointer-events-none"></div>
+<div class="max-w-container-max mx-auto px-margin-desktop relative z-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-2xl">
+<span class="font-subhead-caps text-subhead-caps text-terracotta-sun mb-4 block">CATÁLOGO EXCLUSIVO</span>
+<h1 class="font-headline-xl text-headline-xl text-cacao-deep mb-6">Colecciones de Origen</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        Explora nuestra curaduría de chocolates artesanales, donde el cacao fino de aroma se entrelaza con la biodiversidad peruana: desde la mística Muña de los Andes hasta los cítricos vibrantes de la selva.
+                    </p>
+</div>
+<div class="flex items-center gap-4 border-l border-cacao-deep/20 pl-8 h-fit">
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant">MOSTRANDO</p>
+<p class="font-headline-lg text-headline-lg text-cacao-deep">12 <span class="text-body-md font-normal opacity-50">Variedades</span></p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Catalog Section -->
+<main class="max-w-container-max mx-auto px-margin-desktop pb-32">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Filters Sidebar -->
+<aside class="lg:col-span-3">
+<div class="sticky top-28 space-y-10">
+<div>
+<h3 class="font-subhead-caps text-subhead-caps text-cacao-deep mb-6 flex items-center gap-2">
+<span class="w-2 h-2 bg-terracotta-sun rotate-45"></span>
+                            INTENSIDAD CACAO
+                        </h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 border-cacao-deep/20 rounded-none text-cacao-deep focus:ring-terracotta-sun" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-cacao-deep transition-colors">40% - 55% (Suave)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-4 h-4 border-cacao-deep/20 rounded-none text-cacao-deep focus:ring-terracotta-sun" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-cacao-deep transition-colors">60% - 75% (Equilibrado)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 border-cacao-deep/20 rounded-none text-cacao-deep focus:ring-terracotta-sun" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-cacao-deep transition-colors">80% - 100% (Intenso)</span>
+</label>
+</div>
+</div>
+<div class="h-px bg-cacao-deep/10"></div>
+<div>
+<h3 class="font-subhead-caps text-subhead-caps text-cacao-deep mb-6 flex items-center gap-2">
+<span class="w-2 h-2 bg-terracotta-sun rotate-45"></span>
+                            NOTAS DE SABOR
+                        </h3>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 bg-surface-container-low border border-cacao-deep/5 text-label-sm font-label-sm hover:bg-terracotta-sun hover:text-white transition-all">Herbales</button>
+<button class="px-4 py-2 bg-terracotta-sun text-white text-label-sm font-label-sm">Cítricos</button>
+<button class="px-4 py-2 bg-surface-container-low border border-cacao-deep/5 text-label-sm font-label-sm hover:bg-terracotta-sun hover:text-white transition-all">Florales</button>
+<button class="px-4 py-2 bg-surface-container-low border border-cacao-deep/5 text-label-sm font-label-sm hover:bg-terracotta-sun hover:text-white transition-all">Especia</button>
+<button class="px-4 py-2 bg-surface-container-low border border-cacao-deep/5 text-label-sm font-label-sm hover:bg-terracotta-sun hover:text-white transition-all">Frutos Secos</button>
+</div>
+</div>
+<div>
+<h3 class="font-subhead-caps text-subhead-caps text-cacao-deep mb-6 flex items-center gap-2">
+<span class="w-2 h-2 bg-terracotta-sun rotate-45"></span>
+                            PRECIO
+                        </h3>
+<input class="w-full h-1 bg-cacao-deep/10 accent-terracotta-sun appearance-none cursor-pointer" type="range"/>
+<div class="flex justify-between mt-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant">S/ 15</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">S/ 80</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Products Grid -->
+<div class="lg:col-span-9">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-12 gap-x-8">
+<!-- Product Card 1: Muña -->
+<div class="group relative flex flex-col h-full">
+<div class="aspect-[0.8] mb-6 overflow-hidden bg-parchment-cream relative">
+<img alt="Chocolate packaging Muña" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyf3aZv-vX0ScHPGkoDOIX6qTYFoINpFWvnBdgfeu-p0QY2pv9_23Y0PCigwvJgzJr4A5rkXqfnMWyIzyxaiqyirp3ungcL-sBye4TVLy7BkzjO2YwpKVx5wmWRCQagn3YDkrkD_YV8I99CYiyf2UP9oLIKsCeC4n3TLUitV9Y6XtV86MMZLzElhKS_x5dO0Hr5E4CMeWRt9lFHI583hnGRfGvWcBa9QtdKOuehYSnEgkrrUfQT30dUP6fOW5Mmxu-xSmTLG-RpGA"/>
+<div class="absolute top-4 right-4 z-10">
+<div class="w-12 h-12 bg-white flex items-center justify-center rotate-45 border border-terracotta-sun/30">
+<span class="material-symbols-outlined text-terracotta-sun -rotate-45" style="font-variation-settings: 'FILL' 1">eco</span>
+</div>
+</div>
+<!-- Slide up button -->
+<div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-cacao-deep/90 backdrop-blur-sm">
+<button class="w-full bg-terracotta-sun text-white py-3 font-subhead-caps text-subhead-caps flex items-center justify-center gap-2 hover:bg-white hover:text-cacao-deep transition-colors">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+                                    AÑADIR A BOLSA
+                                </button>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<span class="font-subhead-caps text-subhead-caps text-terracotta-sun">COLECCIÓN ANDINA</span>
+<span class="font-label-sm text-label-sm bg-leaf-green/10 text-leaf-green px-2 py-0.5">Orgánico</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-cacao-deep mb-2 group-hover:text-terracotta-sun transition-colors">70% Cacao con Muña</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Frescura herbal persistente recolectada a 3,500 metros sobre el nivel del mar.</p>
+<div class="mt-auto flex items-center justify-between border-t border-cacao-deep/5 pt-4">
+<span class="font-headline-lg text-headline-lg text-cacao-deep">S/ 24.00</span>
+<button class="text-cacao-deep/40 hover:text-terracotta-sun transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2: Naranja -->
+<div class="group relative flex flex-col h-full">
+<div class="aspect-[0.8] mb-6 overflow-hidden bg-parchment-cream relative">
+<img alt="Chocolate packaging Naranja" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEz7kGk994ogIVJlWb1gFlgATdGjBgBxq298c6F71Bvh1_ch09LewQPjzGthh3pmEkCyvne-sUgnQn5f2yRpgBO_50XcSt1TEgyVd1mGl55YYaqNC6ItqaqQWLjWUWeNOcXVAam30jwoh-5UyI8tfnp8KkQVhtx8NUdSflKQosfsutKyUm-gtnC3miyZzDTr8zorUNaLaIoiaGdKk4KtErvrB2NLy4NKQDOUt3DbzPqh9owG4axb7pdK9KBA8dEwUGXb93-JhJrJ8"/>
+<div class="absolute top-4 left-4 z-10">
+<span class="font-label-sm text-label-sm bg-terracotta-sun text-white px-3 py-1">BEST SELLER</span>
+</div>
+<div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-cacao-deep/90 backdrop-blur-sm">
+<button class="w-full bg-terracotta-sun text-white py-3 font-subhead-caps text-subhead-caps flex items-center justify-center gap-2 hover:bg-white hover:text-cacao-deep transition-colors">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+                                    AÑADIR A BOLSA
+                                </button>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<span class="font-subhead-caps text-subhead-caps text-terracotta-sun">CÍTRICOS DE JUNÍN</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-cacao-deep mb-2 group-hover:text-terracotta-sun transition-colors">65% Cacao con Naranja</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Cáscara de naranja confitada artesanalmente para un equilibrio dulce y amargo.</p>
+<div class="mt-auto flex items-center justify-between border-t border-cacao-deep/5 pt-4">
+<span class="font-headline-lg text-headline-lg text-cacao-deep">S/ 22.00</span>
+<button class="text-cacao-deep/40 hover:text-terracotta-sun transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3: Maracumango -->
+<div class="group relative flex flex-col h-full">
+<div class="aspect-[0.8] mb-6 overflow-hidden bg-parchment-cream relative">
+<img alt="Chocolate packaging Maracumango" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYrgSHHTdmaNQJhaKaBUXu0RihTLeAJ1FWBjDz2GOUtNHzXTR-KE91FFXobvg2nIk8sO1CdUtqGfSqI2yayxHN0PDbYykAuDU4VPldTvV_5hS4jHr6O_oEjaW1wop4_4BnPvDbmYoST2Nj_G_2EUu8M_Val96kWTi68lG_P0qYma3uRh2W72jYRXJrwyZlwSU9w_OBQISqgGR_jCc6E722jUiN9BVxP1pDleNSM2oikjfurWxvtAZKw7NADheNatBy7AYFLtW5hg0"/>
+<div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-cacao-deep/90 backdrop-blur-sm">
+<button class="w-full bg-terracotta-sun text-white py-3 font-subhead-caps text-subhead-caps flex items-center justify-center gap-2 hover:bg-white hover:text-cacao-deep transition-colors">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+                                    AÑADIR A BOLSA
+                                </button>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<span class="font-subhead-caps text-subhead-caps text-terracotta-sun">EDICIÓN VERANO</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-cacao-deep mb-2 group-hover:text-terracotta-sun transition-colors">Maracumango 55%</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Una explosión tropical de maracuyá y mango liofilizado en chocolate de leche.</p>
+<div class="mt-auto flex items-center justify-between border-t border-cacao-deep/5 pt-4">
+<span class="font-headline-lg text-headline-lg text-cacao-deep">S/ 26.00</span>
+<button class="text-cacao-deep/40 hover:text-terracotta-sun transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Additional Product Placeholder (Stylized Card) -->
+<div class="group relative flex flex-col h-full">
+<div class="aspect-[0.8] mb-6 overflow-hidden bg-surface-container-low flex items-center justify-center relative p-8 border border-cacao-deep/5">
+<div class="rhomboid-mask w-48 h-48 bg-coast-sand opacity-40 group-hover:scale-110 transition-transform duration-1000"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+<span class="material-symbols-outlined text-4xl text-cacao-deep/20 mb-4">forest</span>
+<p class="font-subhead-caps text-subhead-caps text-cacao-deep/40">EUCALIPTO DEL VALLE</p>
+</div>
+<div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-cacao-deep/90 backdrop-blur-sm">
+<button class="w-full bg-terracotta-sun text-white py-3 font-subhead-caps text-subhead-caps flex items-center justify-center gap-2 hover:bg-white hover:text-cacao-deep transition-colors">
+                                    PRÓXIMAMENTE
+                                </button>
+</div>
+</div>
+<div class="flex flex-col flex-grow opacity-60">
+<span class="font-subhead-caps text-subhead-caps text-terracotta-sun mb-2">EDICIÓN LIMITADA</span>
+<h3 class="font-headline-lg text-headline-lg text-cacao-deep mb-2">75% Eucalipto</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Notas balsámicas y refrescantes que despejan los sentidos.</p>
+</div>
+</div>
+</div>
+<!-- Pagination / Divider Decorator -->
+<div class="mt-24 flex items-center justify-center gap-12">
+<div class="flex-grow h-px bg-cacao-deep/10"></div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center text-cacao-deep border border-cacao-deep/20 hover:border-terracotta-sun hover:text-terracotta-sun transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<span class="font-headline-lg text-headline-lg text-cacao-deep">01 <span class="text-body-md text-on-surface-variant font-normal">/ 04</span></span>
+<button class="w-10 h-10 flex items-center justify-center text-cacao-deep border border-cacao-deep/20 hover:border-terracotta-sun hover:text-terracotta-sun transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<div class="flex-grow h-px bg-cacao-deep/10"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-tertiary-container text-parchment-cream dark:text-surface-variant py-24 border-t border-cacao-deep dark:border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<a class="font-headline-lg text-headline-lg text-terracotta-sun mb-6 block" href="#">Dos Aguas</a>
+<p class="font-body-md text-body-md text-parchment-cream/70 mb-8 max-w-xs">
+                    Artesanía en chocolate que celebra el encuentro entre los ríos de montaña y la brisa del mar.
+                </p>
+<div class="flex gap-4">
+<a class="opacity-80 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="opacity-80 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined">public</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-subhead-caps text-subhead-caps text-terracotta-sun mb-6">EXPLORA</h4>
+<ul class="space-y-4">
+<li><a class="text-parchment-cream/70 hover:text-terracotta-sun transition-colors font-body-md text-body-md" href="#">Sostenibilidad</a></li>
+<li><a class="text-parchment-cream/70 hover:text-terracotta-sun transition-colors font-body-md text-body-md" href="#">Puntos de Venta</a></li>
+<li><a class="text-parchment-cream/70 hover:text-terracotta-sun transition-colors font-body-md text-body-md" href="#">Eventos &amp; Catas</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-subhead-caps text-subhead-caps text-terracotta-sun mb-6">SERVICIO</h4>
+<ul class="space-y-4">
+<li><a class="text-parchment-cream/70 hover:text-terracotta-sun transition-colors font-body-md text-body-md" href="#">Envíos y Devoluciones</a></li>
+<li><a class="text-parchment-cream/70 hover:text-terracotta-sun transition-colors font-body-md text-body-md" href="#">Términos de Servicio</a></li>
+<li><a class="text-parchment-cream/70 hover:text-terracotta-sun transition-colors font-body-md text-body-md" href="#">Políticas de Privacidad</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-subhead-caps text-subhead-caps text-terracotta-sun mb-6">BOLETÍN</h4>
+<p class="font-body-md text-body-md text-parchment-cream/70 mb-4">Recibe noticias de nuestras cosechas limitadas.</p>
+<div class="relative">
+<input class="w-full bg-transparent border-b border-parchment-cream/30 py-3 focus:outline-none focus:border-terracotta-sun transition-colors placeholder:text-parchment-cream/30" placeholder="Email" type="email"/>
+<button class="absolute right-0 bottom-3 text-terracotta-sun">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-20 pt-10 border-t border-parchment-cream/10">
+<p class="font-label-sm text-label-sm text-parchment-cream/50 text-center">
+                © 2024 Dos Aguas - Esencia de Cacao. Artesanía Peruana.
+            </p>
+</div>
+</footer>
+<script>
+        // Simple Interaction: Smooth Scroll to Top on Brand Click
+        document.querySelector('a.font-headline-lg').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Filter Logic Micro-interaction
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(box => {
+            box.addEventListener('change', () => {
+                box.parentElement.classList.toggle('text-terracotta-sun');
+            });
+        });
+    </script>
+</body></html>

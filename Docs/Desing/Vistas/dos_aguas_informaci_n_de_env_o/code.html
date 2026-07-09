@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dos Aguas | Checkout - Information</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus {
+            -webkit-text-fill-color: #e5e2e1;
+            -webkit-box-shadow: 0 0 0px 1000px #131313 inset;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+        .diamond-divider::after {
+            content: "◆";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #131313;
+            padding: 0 10px;
+            font-size: 10px;
+            color: #504443;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#353535",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed": "#ffdbd0",
+                        "on-secondary-fixed": "#3a0b00",
+                        "outline": "#9d8d8c",
+                        "on-primary-container": "#bd928f",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-bright": "#393939",
+                        "on-surface-variant": "#d4c3c1",
+                        "tertiary-container": "#37342d",
+                        "on-primary": "#462827",
+                        "on-secondary-container": "#ffa083",
+                        "secondary": "#ffb59e",
+                        "on-tertiary-fixed": "#1e1b15",
+                        "on-secondary": "#5e1700",
+                        "on-primary-fixed": "#2e1413",
+                        "on-tertiary": "#333029",
+                        "surface-container": "#20201f",
+                        "on-surface": "#e5e2e1",
+                        "on-primary-fixed-variant": "#5f3e3c",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "primary": "#eabcb8",
+                        "primary-container": "#4a2c2a",
+                        "surface": "#131313",
+                        "primary-fixed": "#ffdad7",
+                        "surface-dim": "#131313",
+                        "secondary-fixed-dim": "#ffb59e",
+                        "surface-variant": "#353535",
+                        "on-tertiary-fixed-variant": "#4a463f",
+                        "inverse-primary": "#795553",
+                        "on-tertiary-container": "#a29c93",
+                        "outline-variant": "#504443",
+                        "background": "#131313",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#ccc6bc",
+                        "secondary-container": "#832c0d",
+                        "on-background": "#e5e2e1",
+                        "surface-tint": "#eabcb8",
+                        "tertiary": "#ccc6bc",
+                        "on-secondary-fixed-variant": "#802a0b",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#eabcb8",
+                        "tertiary-fixed": "#e8e2d8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "unit": "8px",
+                        "margin-edge": "40px",
+                        "container-max": "1280px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Libre Caslon Text"],
+                        "label-caps": ["DM Sans"],
+                        "headline-xl": ["Libre Caslon Text"],
+                        "body-md": ["DM Sans"],
+                        "body-lg": ["DM Sans"],
+                        "headline-sm": ["Libre Caslon Text"],
+                        "headline-md": ["Libre Caslon Text"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.15em", "fontWeight": "700"}],
+                        "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen selection:bg-primary/30">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface dark:bg-surface border-b border-outline-variant/20 docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-edge py-unit h-20 max-w-container-max mx-auto">
+<div class="flex items-center gap-12">
+<a class="font-headline-md text-headline-md text-on-surface dark:text-on-surface tracking-tighter" href="#">Dos Aguas</a>
+<nav class="hidden md:flex gap-8">
+<a class="text-on-surface-variant font-label-caps hover:text-primary transition-colors duration-300" href="#">Shop</a>
+<a class="text-on-surface-variant font-label-caps hover:text-primary transition-colors duration-300" href="#">Heritage</a>
+<a class="text-on-surface-variant font-label-caps hover:text-primary transition-colors duration-300" href="#">Stockists</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-on-surface hover:text-primary transition-colors">shopping_bag</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-edge py-16">
+<!-- Progress Indicator -->
+<nav class="mb-12 flex items-center justify-start gap-4">
+<span class="font-label-caps text-on-surface-variant opacity-50">1. Cart</span>
+<span class="material-symbols-outlined text-[12px] opacity-30">chevron_right</span>
+<span class="font-label-caps text-primary border-b border-primary">2. Information</span>
+<span class="material-symbols-outlined text-[12px] opacity-30">chevron_right</span>
+<span class="font-label-caps text-on-surface-variant opacity-50">3. Shipping</span>
+<span class="material-symbols-outlined text-[12px] opacity-30">chevron_right</span>
+<span class="font-label-caps text-on-surface-variant opacity-50">4. Payment</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+<!-- Left Column: Shipping Form -->
+<div class="lg:col-span-7">
+<section class="space-y-12">
+<header>
+<h1 class="font-headline-lg text-headline-lg mb-2">Shipping Information</h1>
+<p class="font-body-md text-on-surface-variant">Complete your artisanal cacao journey.</p>
+</header>
+<form class="space-y-10">
+<!-- Contact Section -->
+<div class="space-y-6">
+<h2 class="font-label-caps text-on-surface-variant pb-2 border-b border-outline-variant/10">Contact</h2>
+<div class="group relative">
+<label class="font-label-caps text-on-surface-variant absolute -top-4 left-0 transition-all duration-300 group-focus-within:text-primary" for="email">Email Address</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary font-body-md placeholder:text-surface-container-highest transition-colors" id="email" name="email" placeholder="cacao.enthusiast@domain.com" type="email"/>
+</div>
+</div>
+<!-- Shipping Address Section -->
+<div class="space-y-10 pt-4">
+<h2 class="font-label-caps text-on-surface-variant pb-2 border-b border-outline-variant/10">Shipping Address</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+<div class="group relative">
+<label class="font-label-caps text-on-surface-variant absolute -top-4 left-0 group-focus-within:text-primary" for="first_name">First Name</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary font-body-md transition-colors" id="first_name" name="first_name" type="text"/>
+</div>
+<div class="group relative">
+<label class="font-label-caps text-on-surface-variant absolute -top-4 left-0 group-focus-within:text-primary" for="last_name">Last Name</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary font-body-md transition-colors" id="last_name" name="last_name" type="text"/>
+</div>
+</div>
+<div class="group relative">
+<label class="font-label-caps text-on-surface-variant absolute -top-4 left-0 group-focus-within:text-primary" for="address">Address</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary font-body-md placeholder:text-surface-container-highest transition-colors" id="address" name="address" placeholder="Apartment, suite, etc. (optional)" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+<div class="group relative">
+<label class="font-label-caps text-on-surface-variant absolute -top-4 left-0 group-focus-within:text-primary" for="city">City</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary font-body-md transition-colors" id="city" name="city" type="text"/>
+</div>
+<div class="group relative">
+<label class="font-label-caps text-on-surface-variant absolute -top-4 left-0 group-focus-within:text-primary" for="postal_code">Postal Code</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary font-body-md transition-colors" id="postal_code" name="postal_code" type="text"/>
+</div>
+</div>
+</div>
+<!-- CTA Area -->
+<div class="pt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+<a class="flex items-center gap-2 font-label-caps text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[16px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                                Return to Cart
+                            </a>
+<button class="bg-secondary text-on-secondary px-10 py-5 font-label-caps hover:bg-secondary-fixed transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background active:scale-95" type="submit">
+                                Continue to Shipping
+                            </button>
+</div>
+</form>
+</section>
+</div>
+<!-- Right Column: Sidebar Summary -->
+<div class="lg:col-span-5 bg-surface-container-low p-8 md:p-12 h-fit border border-outline-variant/10">
+<h2 class="font-headline-sm text-headline-sm mb-8">Order Summary</h2>
+<!-- Product List -->
+<div class="space-y-6 mb-10">
+<div class="flex items-center gap-4">
+<div class="relative w-20 h-20 bg-surface-container-high overflow-hidden border border-outline-variant/20">
+<img class="w-full h-full object-cover" data-alt="High-contrast close-up shot of a minimalist dark chocolate bar packaging on a reflective black marble surface. The lighting is moody and editorial, highlighting the texture of the artisanal paper and the golden embossed logo of Dos Aguas." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoLk3PFjsBOykE3UXASlTsmSwC1G51M9mwkhgACCpwElr7njfwF0BMrAYe1yu2O3RqsJR79PIx0Q8Bp76VG5yh-mXhRdLh9b5bJSFZc24HLjTWZFGuaP07mTLbl3VpKSLEGSzi43aC5pwkHlq8icGCwDGrM9VbEm7pooc3V5sqztm8LgB6WeiSMQ0zHxH2DiVEhtyiUwodb5i2bjlv5vyv0JHZDL7pNoA84ZUeEpii2MemWO-CoNCXN6NxfZu3hoV24C8AzpFC10g"/>
+<span class="absolute -top-1 -right-1 bg-primary text-on-primary font-label-caps text-[10px] w-5 h-5 flex items-center justify-center rounded-full">1</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-on-surface font-bold">Maras Sea Salt 70%</p>
+<p class="font-label-caps text-on-surface-variant text-[10px]">Cusco, Peru | 80g</p>
+</div>
+<p class="font-body-md text-on-surface">$14.00</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative w-20 h-20 bg-surface-container-high overflow-hidden border border-outline-variant/20">
+<img class="w-full h-full object-cover" data-alt="Overhead macro photograph of raw organic cacao nibs spilled artfully next to a dark, matte chocolate bar. The scene is set in a dark, atmospheric kitchen with natural side lighting casting soft shadows, emphasizing the craft and heritage of the cacao process." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPnrNGGf4G4VncloTAnl-jJht2la5e_mmYl3PLH-HyH84AtztA6XJ4BzUZxnjfKTPdqqSciHmECJaUx2MqmuUDtQWU9KIjOtQJ94T1TrLLZGFmiARm1nRY4YdoTQs9w59RQu1v74ekfJxkziNHoWUkKz-xVSuavhn7-qsoxGdgW4F8t2AmFBhBAGcganx0KXUEH5no_1MX1F2uu3iY-kPM1U7i10jrTBb2KeVy439a2-hDcwcxMillJ3IzIgPmOgzDUDOnBKVRVXM"/>
+<span class="absolute -top-1 -right-1 bg-primary text-on-primary font-label-caps text-[10px] w-5 h-5 flex items-center justify-center rounded-full">2</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-on-surface font-bold">Gran Nativo Blanco</p>
+<p class="font-label-caps text-on-surface-variant text-[10px]">Piura, Peru | 80g</p>
+</div>
+<p class="font-body-md text-on-surface">$32.00</p>
+</div>
+</div>
+<div class="relative py-4 diamond-divider mb-8">
+<hr class="border-outline-variant/20"/>
+</div>
+<!-- Calculations -->
+<div class="space-y-3 font-body-md">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Subtotal</span>
+<span class="text-on-surface">$46.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Shipping</span>
+<span class="text-on-surface-variant italic">Calculated at next step</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Estimated Taxes</span>
+<span class="text-on-surface">$3.68</span>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-outline-variant/20">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-caps text-on-surface-variant mb-1">Total</p>
+<p class="font-headline-sm text-headline-sm text-primary">USD $49.68</p>
+</div>
+<span class="font-label-caps text-[10px] text-on-surface-variant/40">Including VAT</span>
+</div>
+</div>
+<!-- Minimalist Perks/Trust Marks -->
+<div class="mt-12 space-y-4">
+<div class="flex gap-4 items-center opacity-60">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+<p class="font-label-caps text-[10px]">Compostable Packaging</p>
+</div>
+<div class="flex gap-4 items-center opacity-60">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<p class="font-label-caps text-[10px]">Secure Encrypted Checkout</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-edge py-16 max-w-container-max mx-auto">
+<div class="mb-8 md:mb-0">
+<span class="font-headline-sm text-headline-sm text-on-surface">Dos Aguas</span>
+<p class="font-body-md text-on-surface-variant mt-2 max-w-xs">© 2024 Dos Aguas Artisanal Cacao. Crafted in Peru.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
+<a class="font-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a>
+<a class="font-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Sustainability</a>
+<a class="font-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interactions for input fields
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('label')?.classList.add('text-primary');
+            });
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    input.parentElement.querySelector('label')?.classList.remove('text-primary');
+                }
+            });
+        });
+    </script>
+</body></html>

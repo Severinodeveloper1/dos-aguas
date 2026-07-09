@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nuestra Historia | Dos Aguas - Esencia de Cacao</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Archivo+Narrow:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary-fixed-dim": "#eabcb8",
+                "on-error": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed-variant": "#5f3e3c",
+                "on-tertiary-fixed-variant": "#4e4638",
+                "on-secondary-fixed-variant": "#6a3b00",
+                "surface-container-highest": "#f2dfd1",
+                "secondary-fixed-dim": "#ffb872",
+                "surface-bright": "#fff8f5",
+                "primary-container": "#4a2c2a",
+                "on-surface": "#231a11",
+                "surface-container-low": "#fff1e8",
+                "surface-container-high": "#f8e5d6",
+                "on-secondary-container": "#734100",
+                "primary-fixed": "#ffdad7",
+                "parchment-cream": "#F3E6D3",
+                "inverse-on-surface": "#ffeee1",
+                "background": "#fff8f5",
+                "on-tertiary-container": "#a69b8a",
+                "surface-tint": "#795553",
+                "secondary-container": "#fead5a",
+                "on-tertiary": "#ffffff",
+                "outline-variant": "#d4c3c1",
+                "tertiary-fixed-dim": "#d1c5b3",
+                "surface-dim": "#ead7c9",
+                "error-container": "#ffdad6",
+                "surface-variant": "#f2dfd1",
+                "tertiary-container": "#3a3326",
+                "on-error-container": "#93000a",
+                "surface-container": "#feeadc",
+                "outline": "#827472",
+                "on-background": "#231a11",
+                "inverse-surface": "#392e25",
+                "on-surface-variant": "#504443",
+                "tertiary": "#241e12",
+                "error": "#ba1a1a",
+                "on-primary-container": "#bd928f",
+                "secondary": "#8b5000",
+                "on-tertiary-fixed": "#211b0f",
+                "secondary-fixed": "#ffdcbf",
+                "surface": "#fff8f5",
+                "terracotta-sun": "#D98E3E",
+                "cacao-deep": "#4A2C2A",
+                "tertiary-fixed": "#eee1ce",
+                "primary": "#321716",
+                "leaf-green": "#748C43",
+                "on-secondary-fixed": "#2d1600",
+                "coast-sand": "#E3BC9A",
+                "on-primary": "#ffffff",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed": "#2e1413",
+                "inverse-primary": "#eabcb8"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "margin-desktop": "64px",
+                "container-max": "1280px",
+                "unit": "8px",
+                "margin-mobile": "16px",
+                "gutter": "24px"
+            },
+            "fontFamily": {
+                "headline-lg": ["Libre Caslon Text"],
+                "subhead-caps": ["Archivo Narrow"],
+                "headline-xl": ["Libre Caslon Text"],
+                "body-lg": ["Archivo Narrow"],
+                "body-md": ["Archivo Narrow"],
+                "label-sm": ["Archivo Narrow"],
+                "headline-lg-mobile": ["Libre Caslon Text"]
+            },
+            "fontSize": {
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "subhead-caps": ["14px", {"lineHeight": "20px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .rhomboid-mask {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+        .timeline-line {
+            background: linear-gradient(to bottom, transparent, #4A2C2A 10%, #4A2C2A 90%, transparent);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="bg-parchment-cream text-cacao-deep selection:bg-terracotta-sun selection:text-white overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-parchment-cream/95 dark:bg-primary/95 font-headline-lg text-headline-lg docked full-width top-0 sticky backdrop-blur-md border-b border-cacao-deep/10 dark:border-parchment-cream/10 shadow-sm dark:shadow-none z-50">
+<nav class="flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="font-headline-lg text-headline-lg font-bold tracking-tighter text-cacao-deep dark:text-parchment-cream">Dos Aguas</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-terracotta-sun transition-all duration-300" href="#">Origen</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-terracotta-sun transition-all duration-300" href="#">Colecciones</a>
+<a class="font-body-md text-body-md text-terracotta-sun font-bold border-b-2 border-terracotta-sun pb-1" href="#">Nuestra Historia</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-terracotta-sun transition-all duration-300" href="#">Contacto</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-cacao-deep dark:text-parchment-cream">person</span>
+</button>
+<button class="scale-95 active:scale-90 transition-transform relative">
+<span class="material-symbols-outlined text-cacao-deep dark:text-parchment-cream">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-terracotta-sun text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+</button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[716px] flex items-center justify-center overflow-hidden bg-primary">
+<div class="absolute inset-0 opacity-40 parallax-bg bg-cover bg-center" data-alt="A cinematic, high-resolution shot of a lush Peruvian cacao plantation at dawn, with soft golden light filtering through heavy tropical leaves. The atmosphere is misty and ethereal, capturing the raw natural beauty of the Amazon basin. Deep earthy browns and vibrant jungle greens dominate the palette, creating a sense of ancient origin and artisanal mystery." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDzztNuXcm3TGURXVNpqnprcrjmlwKco7ksbJrlDCxZB3TnMwY0QHckWOIc3Y_Fz3Ee1_4css8xHxcP6D1pc_Ir6iH0bZsLSnD1limgaZDsURu_jFSlrNOZmLtB8MwIMJx02f2miXTLf-LjZJnUmG7lptv01xOX0Aa_cUl6nDMEM39nIEMpZVHeHbjH9Ra8J85kFf_8bUpLsLWHJNXUMIC3_qm-8xYoDsawU498hOQYD6SmJqaKXnB_tXJp7lCt-FtMguYZU81uwHM')"></div>
+<div class="relative z-10 text-center px-6">
+<span class="font-subhead-caps text-subhead-caps text-terracotta-sun mb-4 block">DESDE EL CORAZÓN DEL PERÚ</span>
+<h1 class="font-headline-xl text-headline-xl text-parchment-cream mb-6 max-w-4xl mx-auto">Donde el río se encuentra con el mar.</h1>
+<div class="w-16 h-[2px] bg-terracotta-sun mx-auto"></div>
+</div>
+</section>
+<!-- Intro Content -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div class="space-y-6">
+<h2 class="font-headline-lg text-headline-lg">Una travesía entre dos mundos.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                    Dos Aguas nace de la inquietud por rescatar la pureza del cacao nativo peruano y elevarlo a una joya gastronómica. Nuestra historia es un diálogo constante entre la tradición ancestral de los agricultores de Piura y San Martín, y la precisión contemporánea de la chocolatería fina.
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant italic">
+                    "No solo fabricamos chocolate; curamos fragmentos de nuestra tierra para que el mundo los descubra."
+                </p>
+</div>
+<div class="relative">
+<div class="absolute -top-4 -left-4 w-full h-full border border-terracotta-sun/30"></div>
+<img class="relative z-10 w-full h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A professional, warm-toned portrait of a diverse team of Peruvian chocolatiers and farmers standing together in an artisanal workshop. They are dressed in clean, professional linen aprons, holding raw cacao pods and finished chocolate bars. The lighting is soft and editorial, emphasizing the human connection and the pride in their craftsmanship within a rustic yet modern setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjvi6xBGxbJgxtk_ehnK8EWwAEe_k-nKjHZ97QlT4-O73pZdMm_3p4pW7fAw_tdzo87YiAMo6J0-QsG2VrSWV-CVlU5plxXXVv1Cy7ZwiQeF8mECl8Zi7HaHcHVrvJH3XCEBTAA8NWed4qA00BKkbtlsk4VLyYrvgVIZNan_V0p9gD0QSMnTac2TEUywJ0c9U6JYxG5iGPQIFahtlPWJLPEhP5FPM9PFpySJWRl6jHszQ74JSjMNI2kYQSJjb7Gty7VEg4xfLMMXQ"/>
+</div>
+</section>
+<!-- Vertical Timeline Section -->
+<section class="py-24 bg-cacao-deep text-parchment-cream relative overflow-hidden">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-full timeline-line z-0"></div>
+<div class="max-w-container-max mx-auto px-margin-desktop relative z-10">
+<div class="text-center mb-24">
+<h2 class="font-headline-lg text-headline-lg text-terracotta-sun">Nuestros Hitos</h2>
+<p class="font-subhead-caps text-subhead-caps mt-2 opacity-70">LA EVOLUCIÓN DE UN LEGADO</p>
+</div>
+<div class="space-y-32">
+<!-- Milestone 1 -->
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 md:text-right order-2 md:order-1">
+<span class="font-subhead-caps text-subhead-caps text-terracotta-sun">2018</span>
+<h3 class="font-headline-lg text-headline-lg mb-4">El Primer Brote</h3>
+<p class="font-body-md text-body-md opacity-80">Dos amigos recorren las cuencas de los ríos peruanos buscando el cacao 'Blanco de Piura'. Comienza la alianza con las primeras 5 familias productoras.</p>
+</div>
+<div class="relative z-20 w-16 h-16 bg-cacao-deep border-4 border-terracotta-sun flex items-center justify-center rotate-45 order-1 md:order-2">
+<span class="material-symbols-outlined text-terracotta-sun -rotate-45" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div class="flex-1 order-3">
+<img class="w-full aspect-square object-cover border border-parchment-cream/20 grayscale" data-alt="Vintage-style black and white photography of hands holding a cracked open white cacao pod, revealing the pearlescent beans inside. The lighting is dramatic and moody, highlighting the texture of the fruit and the rugged skin of the farmer's hands. Part of a sophisticated luxury brand storytelling aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBgjdKGqp0MyvtJyjf6jVQCZ3n9PV9iNpCj7Mlfp9FLFBzSigHpCU73vGSPpI2x3k3V3HJKmVQppSdCjE6WxXNIXEjNpvx2aFrs9UcSJzyjByDzze_MMJbWIEcN6JYxSl4CP5ymJPbFxd-74bXILp6zcJfxzxCZ1MpzXBtlgC9QviUu-0njDhQN543ezuEBdsVgK896zFj6OlNyqyq1N2q5bN6h38mPP358mqyktOUSzu_NHJQnQSCXItYBFOu4sA53RLVDYQIspM"/>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 order-3 md:order-1">
+<img class="w-full aspect-square object-cover border border-parchment-cream/20 grayscale" data-alt="A modern, high-end chocolate production facility where liquid dark chocolate is being poured into geometric diamond-shaped molds. The scene is clean, reflecting a professional laboratory standard with warm ambient lighting. Stainless steel surfaces catch soft reflections of amber and chocolate brown, emphasizing the fusion of tech and craft." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_KSRrFaKO4S8RpY9QHD4dtDP2vuSUq2pGnv8ZFjtsVLUAGxD21qN0aJhSZje846HVVmFZWHzzSPj3V5Ys4IK1xIV2nojg9rCLCEqS1EF6uv7e9arn-tIhXDuPLhXu5ZhPnfAQgVLPCnfklhrQUVo4s0wJiD8QpC76fXbXxrkScAsfqRERWIHaHpNFvBWR8TNMugmHH-QOUpZhdjzdSojfQ4llfXRBXsAVpJv9bMMQ0pyy3gDA4gjmakoZIEKi1PdiLse7SWkTBOA"/>
+</div>
+<div class="relative z-20 w-16 h-16 bg-cacao-deep border-4 border-terracotta-sun flex items-center justify-center rotate-45 order-1 md:order-2">
+<span class="material-symbols-outlined text-terracotta-sun -rotate-45" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+</div>
+<div class="flex-1 order-2 md:order-3">
+<span class="font-subhead-caps text-subhead-caps text-terracotta-sun">2020</span>
+<h3 class="font-headline-lg text-headline-lg mb-4">Maestría Técnica</h3>
+<p class="font-body-md text-body-md opacity-80">Inauguramos nuestro taller en Lima. Implementamos procesos de fermentación controlada que revelan notas frutales y cítricas nunca antes exploradas.</p>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 md:text-right order-2 md:order-1">
+<span class="font-subhead-caps text-subhead-caps text-terracotta-sun">2023</span>
+<h3 class="font-headline-lg text-headline-lg mb-4">Reconocimiento Global</h3>
+<p class="font-body-md text-body-md opacity-80">Dos Aguas cruza fronteras. Nuestra barra de Cacao 75% es galardonada en París, consolidando nuestra posición en el mercado gourmet internacional.</p>
+</div>
+<div class="relative z-20 w-16 h-16 bg-cacao-deep border-4 border-terracotta-sun flex items-center justify-center rotate-45 order-1 md:order-2">
+<span class="material-symbols-outlined text-terracotta-sun -rotate-45" style="font-variation-settings: 'FILL' 1;">public</span>
+</div>
+<div class="flex-1 order-3">
+<img class="w-full aspect-square object-cover border border-parchment-cream/20 grayscale" data-alt="A sophisticated scene of an international food award ceremony in a prestigious European hall. A gold medal for chocolate excellence is displayed on a velvet cushion next to a bar of Dos Aguas chocolate. The background is softly blurred with elegant guests and warm chandeliers, evoking a sense of achievement and luxury validation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOy81QDS3VmBzbjBsD_GVVGe9eKM4eViQWypSY0ovqS9tpglrN5uhFzCCpW0BfnZmqPGHr309lYgzEowxGVbhnWMeWGmtD0h3VDW9XhjJMdI1J2StNeehI5pTBcvRjcGmXp0zL3LJwgIyJxlbZ97_C0RQwHXoZBT0qmQiiPQ56Bw7hDJMi4rOS6z0ebDz9fE2pcVdbRNAKp5xzz-a4T1Ud3ThqlxrT5FTTTzlelGfqnk6l-tL0DIzJSyH_KniD00DyJww3dEUiGXM"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Awards and Recognition Section -->
+<section class="py-32 px-margin-desktop bg-parchment-cream overflow-hidden">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg">Premios y Reconocimientos</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mt-4">Nuestra búsqueda incansable de la perfección ha sido validada por los paladares más exigentes del mundo.</p>
+</div>
+<div class="h-[1px] flex-1 bg-cacao-deep/10 mx-8 hidden md:block"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-gutter">
+<!-- Award Card 1 -->
+<div class="tilt-card p-8 bg-white border border-cacao-deep/5 flex flex-col items-center text-center group cursor-default hover:shadow-xl hover:-translate-y-2 transition-all duration-500" onmouseleave="resetTilt(this)" onmousemove="handleTilt(event, this)">
+<div class="w-24 h-24 rhomboid-mask border-2 border-terracotta-sun mb-6 flex items-center justify-center group-hover:bg-terracotta-sun/5 transition-colors">
+<span class="material-symbols-outlined text-4xl text-terracotta-sun" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<span class="font-subhead-caps text-subhead-caps text-cacao-deep/60">INTERNATIONAL CHOCOLATE AWARDS</span>
+<h4 class="font-headline-lg text-[20px] leading-tight my-2">Medalla de Oro 2023</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Categoría: Micro-batch Single Origin Dark Chocolate Bars.</p>
+</div>
+<!-- Award Card 2 -->
+<div class="tilt-card p-8 bg-white border border-cacao-deep/5 flex flex-col items-center text-center group cursor-default hover:shadow-xl hover:-translate-y-2 transition-all duration-500" onmouseleave="resetTilt(this)" onmousemove="handleTilt(event, this)">
+<div class="w-24 h-24 rhomboid-mask border-2 border-terracotta-sun mb-6 flex items-center justify-center group-hover:bg-terracotta-sun/5 transition-colors">
+<span class="material-symbols-outlined text-4xl text-terracotta-sun" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-subhead-caps text-subhead-caps text-cacao-deep/60">ACADEMY OF CHOCOLATE</span>
+<h4 class="font-headline-lg text-[20px] leading-tight my-2">Silver Winner 2022</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Reconocimiento a la excelencia en sostenibilidad y sabor.</p>
+</div>
+<!-- Award Card 3 -->
+<div class="tilt-card p-8 bg-white border border-cacao-deep/5 flex flex-col items-center text-center group cursor-default hover:shadow-xl hover:-translate-y-2 transition-all duration-500" onmouseleave="resetTilt(this)" onmousemove="handleTilt(event, this)">
+<div class="w-24 h-24 rhomboid-mask border-2 border-terracotta-sun mb-6 flex items-center justify-center group-hover:bg-terracotta-sun/5 transition-colors">
+<span class="material-symbols-outlined text-4xl text-terracotta-sun" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<span class="font-subhead-caps text-subhead-caps text-cacao-deep/60">PERÚ ORIGEN RECONOCIDO</span>
+<h4 class="font-headline-lg text-[20px] leading-tight my-2">Sello Denominación 2021</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Garantía de pureza y comercio justo con comunidades nativas.</p>
+</div>
+<!-- Award Card 4 -->
+<div class="tilt-card p-8 bg-white border border-cacao-deep/5 flex flex-col items-center text-center group cursor-default hover:shadow-xl hover:-translate-y-2 transition-all duration-500" onmouseleave="resetTilt(this)" onmousemove="handleTilt(event, this)">
+<div class="w-24 h-24 rhomboid-mask border-2 border-terracotta-sun mb-6 flex items-center justify-center group-hover:bg-terracotta-sun/5 transition-colors">
+<span class="material-symbols-outlined text-4xl text-terracotta-sun" style="font-variation-settings: 'FILL' 1;">award_star</span>
+</div>
+<span class="font-subhead-caps text-subhead-caps text-cacao-deep/60">GRI INTERNATIONAL</span>
+<h4 class="font-headline-lg text-[20px] leading-tight my-2">Sostenibilidad 360º</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Premio al impacto positivo en el ecosistema amazónico.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Team Quote / Philosphy -->
+<section class="py-24 bg-surface-container-low text-center overflow-hidden relative">
+<div class="absolute top-0 left-0 w-32 h-32 opacity-10">
+<div class="w-full h-full rhomboid-mask bg-cacao-deep"></div>
+</div>
+<div class="absolute bottom-0 right-0 w-48 h-48 opacity-10">
+<div class="w-full h-full rhomboid-mask bg-terracotta-sun"></div>
+</div>
+<div class="max-w-2xl mx-auto px-6 relative z-10">
+<span class="material-symbols-outlined text-5xl text-terracotta-sun mb-8">format_quote</span>
+<h2 class="font-headline-lg text-headline-lg mb-8 italic">"El chocolate es el lenguaje en el que hablamos sobre el Perú cuando no hay palabras."</h2>
+<div class="flex items-center justify-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-terracotta-sun">
+<img class="w-full h-full object-cover" data-alt="Close-up editorial headshot of a female head chocolatier, aged in her 40s, with a warm and knowledgeable expression. She is Peruvian with subtle jewelry that reflects Andean patterns. The lighting is soft and flattering, with a shallow depth of field against a blurred chocolate studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxh2mNR-8Z-lWTJYGc-LhfrGyeOhS2FVxzYJ09kOmK5l_cbPmUjGLgbV9ELDc9bh_S4jC3cNusiaL6pagV893LnP05MyTgc9BKktYzs383JQ6H_jwPqYJqych7AyCmHjhGR3k5gtQ6rrxXCTXrKySKZ9izl_-I1VmjRAO7YKIyABdB2xaTccYKaTC_R_YiCYBR6OrrEUZZqBXFNa0wuLFh09mHkgx9lqaQu4U7DQd8lFdX3ZlNMN7lyHJPe_3_XrITuJP1qZ089K8"/>
+</div>
+<div class="text-left">
+<p class="font-subhead-caps text-[12px] text-terracotta-sun m-0">ELENA VARGAS</p>
+<p class="font-body-md text-body-md opacity-70 m-0 leading-tight">Fundadora y Maestra Chocolatera</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-tertiary-container border-t border-cacao-deep dark:border-outline-variant py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-lg text-headline-lg text-terracotta-sun mb-6">Dos Aguas</div>
+<p class="text-parchment-cream/70 font-body-md text-body-md">Artesanía en chocolate que conecta los Andes con el mundo.</p>
+</div>
+<div>
+<h4 class="font-subhead-caps text-subhead-caps text-parchment-cream mb-6">EXPLORAR</h4>
+<ul class="space-y-4">
+<li><a class="text-parchment-cream/70 hover:text-terracotta-sun transition-colors font-body-md" href="#">Sostenibilidad</a></li>
+<li><a class="text-parchment-cream/70 hover:text-terracotta-sun transition-colors font-body-md" href="#">Puntos de Venta</a></li>
+<li><a class="text-parchment-cream/70 hover:text-terracotta-sun transition-colors font-body-md" href="#">Blog de Cacao</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-subhead-caps text-subhead-caps text-parchment-cream mb-6">SOPORTE</h4>
+<ul class="space-y-4">
+<li><a class="text-parchment-cream/70 hover:text-terracotta-sun transition-colors font-body-md" href="#">Envíos y Devoluciones</a></li>
+<li><a class="text-parchment-cream/70 hover:text-terracotta-sun transition-colors font-body-md" href="#">Términos de Servicio</a></li>
+<li><a class="text-parchment-cream/70 hover:text-terracotta-sun transition-colors font-body-md" href="#">Contacto</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-subhead-caps text-subhead-caps text-parchment-cream mb-6">BOLETÍN</h4>
+<p class="text-parchment-cream/70 font-body-md text-body-md mb-4">Recibe noticias de nuestras nuevas colecciones.</p>
+<div class="flex border-b border-parchment-cream/30 pb-2">
+<input class="bg-transparent border-none focus:ring-0 text-parchment-cream w-full placeholder:text-parchment-cream/40" placeholder="Tu email" type="email"/>
+<button class="text-terracotta-sun"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="mt-16 text-center border-t border-parchment-cream/10 pt-8 px-margin-desktop max-w-container-max mx-auto">
+<p class="text-parchment-cream/50 font-label-sm text-label-sm">© 2024 Dos Aguas - Esencia de Cacao. Artesanía Peruana.</p>
+</div>
+</footer>
+<script>
+        // 3D Tilt Effect for Award Cards
+        function handleTilt(e, card) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        }
+
+        function resetTilt(card) {
+            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+        }
+
+        // Simple Intersection Observer for Fade-in effects
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.space-y-32 > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+</body></html>

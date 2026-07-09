@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Categories\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -44,6 +45,12 @@ class CategoryForm
                         Toggle::make('is_active')
                             ->label('Activa')
                             ->default(true),
+                        FileUpload::make('photo_path')
+                            ->label('Foto de la Categoría')
+                            ->image()
+                            ->disk('public')
+                            ->directory('categories')
+                            ->required(),
                     ])->columns(2),
 
                 Section::make('Optimización SEO')

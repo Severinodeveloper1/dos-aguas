@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>70% Cacao con Muña | Dos Aguas</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;600;700&amp;family=Archivo+Narrow:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#321716",
+                        "on-primary": "#ffffff",
+                        "cacao-deep": "#4A2C2A",
+                        "parchment-cream": "#F3E6D3",
+                        "terracotta-sun": "#D98E3E",
+                        "surface": "#fff8f5",
+                        "surface-variant": "#f2dfd1",
+                        "on-surface": "#231a11",
+                        "on-surface-variant": "#504443",
+                        "outline": "#827472",
+                        "outline-variant": "#d4c3c1",
+                        "leaf-green": "#748C43",
+                        "coast-sand": "#E3BC9A"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Libre Caslon Text"],
+                        "headline-xl": ["Libre Caslon Text"],
+                        "body-md": ["Archivo Narrow"],
+                        "label-sm": ["Archivo Narrow"],
+                        "subhead-caps": ["Archivo Narrow"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "subhead-caps": ["14px", {"lineHeight": "20px", "letterSpacing": "0.15em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .rhomboid-bg { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+        .diamond-divider::after {
+            content: '◆';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #F3E6D3;
+            padding: 0 10px;
+            color: #D98E3E;
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body class="bg-parchment-cream text-cacao-deep font-body-md">
+<!-- TopNavBar -->
+<header class="bg-parchment-cream/95 sticky top-0 z-50 backdrop-blur-md border-b border-cacao-deep/10 shadow-sm">
+<nav class="flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="font-headline-lg text-headline-lg font-bold tracking-tighter text-cacao-deep">Dos Aguas</div>
+<div class="hidden md:flex gap-8">
+<a class="text-on-surface-variant hover:text-terracotta-sun transition-all duration-300 font-label-sm text-label-sm" href="#">Origen</a>
+<a class="text-terracotta-sun font-bold border-b-2 border-terracotta-sun pb-1 font-label-sm text-label-sm" href="#">Colecciones</a>
+<a class="text-on-surface-variant hover:text-terracotta-sun transition-all duration-300 font-label-sm text-label-sm" href="#">Nuestra Historia</a>
+<a class="text-on-surface-variant hover:text-terracotta-sun transition-all duration-300 font-label-sm text-label-sm" href="#">Contacto</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-cacao-deep hover:text-terracotta-sun transition-colors">person</button>
+<div class="relative">
+<button class="material-symbols-outlined text-cacao-deep hover:text-terracotta-sun transition-colors">shopping_bag</button>
+<span class="absolute -top-2 -right-2 bg-terracotta-sun text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">1</span>
+</div>
+</div>
+</nav>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+<!-- Breadcrumbs -->
+<nav class="mb-12 flex items-center gap-2 font-subhead-caps text-subhead-caps text-on-surface-variant opacity-70">
+<a class="hover:text-terracotta-sun transition-colors" href="#">Colecciones</a>
+<span class="text-[10px]">/</span>
+<a class="hover:text-terracotta-sun transition-colors" href="#">Colección Andina</a>
+<span class="text-[10px]">/</span>
+<span class="text-cacao-deep font-bold">70% Cacao con Muña</span>
+</nav>
+<!-- Product Hero -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Hero Images -->
+<div class="lg:col-span-7 flex flex-col gap-4">
+<div class="relative aspect-[4/5] bg-surface-variant/30 overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A premium chocolate bar packaging of Dos Aguas 70% Cacao con Muña, set against a vibrant green background with fresh mint leaves and cacao beans scattered around. The lighting is soft and professional, highlighting the rich textures of the paper and the natural ingredients. The aesthetic is editorial and luxurious, reflecting a high-end bean-to-bar chocolate brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDypIXtYdivzdl3u9hG95NSQPK3FdvWiO5oxkKY2Gaj-Hzpe8ND-Hu6YOAsxvs9ny5QeHk02pVmQVZES9lElDnGTlOTQQiPtYimjPfRoy4_KsTf0XY-u2h_04QUvlf78ilKb2kP3wAXoH6GDPmEDlu7aDZNwwnGZE0-NpQbOGBUyBL5UfilpqTvtXTdDlESVQPfJwmRqXWIE6sCazFfAnSFHddsnyX7AEuIY4GYpHfxQ2ubWn9e0cnut5dg4Bl2sMifI2NwbnUU4nI"/>
+<!-- 3D Viewer Toggle -->
+<button class="absolute bottom-6 right-6 bg-parchment-cream/90 backdrop-blur-md px-4 py-2 flex items-center gap-2 border border-cacao-deep/10 shadow-lg hover:bg-cacao-deep hover:text-white transition-all group/3d">
+<span class="material-symbols-outlined text-sm">view_in_ar</span>
+<span class="font-subhead-caps text-[10px] tracking-widest">VER EN 3D</span>
+</button>
+</div>
+<!-- Thumbnails / Alt Views -->
+<div class="grid grid-cols-4 gap-4">
+<div class="aspect-square bg-white p-2 border border-terracotta-sun/30 overflow-hidden">
+<img class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDypIXtYdivzdl3u9hG95NSQPK3FdvWiO5oxkKY2Gaj-Hzpe8ND-Hu6YOAsxvs9ny5QeHk02pVmQVZES9lElDnGTlOTQQiPtYimjPfRoy4_KsTf0XY-u2h_04QUvlf78ilKb2kP3wAXoH6GDPmEDlu7aDZNwwnGZE0-NpQbOGBUyBL5UfilpqTvtXTdDlESVQPfJwmRqXWIE6sCazFfAnSFHddsnyX7AEuIY4GYpHfxQ2ubWn9e0cnut5dg4Bl2sMifI2NwbnUU4nI"/>
+</div>
+</div>
+</div>
+<!-- Product Info -->
+<div class="lg:col-span-5 lg:pl-12 flex flex-col gap-8">
+<div class="space-y-4">
+<span class="font-subhead-caps text-subhead-caps text-terracotta-sun tracking-[0.2em]">COLECCIÓN ANDINA</span>
+<h1 class="font-headline-xl text-headline-xl text-cacao-deep">70% Cacao con Muña</h1>
+<p class="font-headline-lg text-headline-lg text-terracotta-sun">S/ 24.00</p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Una barra que captura la frescura de los Andes. El cacao nativo de Ucayali se encuentra con la muña silvestre para crear una experiencia balsámica y equilibrada.
+                </p>
+<!-- Interactive Attributes -->
+<div class="grid grid-cols-2 gap-4">
+<div class="border-b border-cacao-deep/10 py-4">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant opacity-60">Peso</span>
+<p class="font-body-md font-bold">50g</p>
+</div>
+<div class="border-b border-cacao-deep/10 py-4">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant opacity-60">Stock</span>
+<p class="font-body-md font-bold text-leaf-green">Disponible</p>
+</div>
+</div>
+<!-- Add to Cart -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center h-14 w-full">
+<div class="flex border border-cacao-deep h-full items-center px-4 gap-8">
+<button class="hover:text-terracotta-sun">-</button>
+<span class="font-bold w-4 text-center">1</span>
+<button class="hover:text-terracotta-sun">+</button>
+</div>
+<button class="flex-1 bg-cacao-deep text-parchment-cream h-full font-subhead-caps text-subhead-caps hover:bg-terracotta-sun transition-colors flex items-center justify-center gap-2 active:scale-[0.98]">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+                            AGREGAR AL CARRITO
+                        </button>
+</div>
+<button class="w-full border border-cacao-deep py-4 font-subhead-caps text-subhead-caps text-cacao-deep hover:bg-cacao-deep/5 transition-colors">
+                        COMPRA RÁPIDA
+                    </button>
+</div>
+<!-- Features Grid -->
+<div class="grid grid-cols-2 gap-8 pt-8">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-terracotta-sun">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+<span class="font-subhead-caps text-[12px]">ORIGEN</span>
+</div>
+<p class="font-body-md text-on-surface-variant">Ucayali, Perú</p>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-terracotta-sun">
+<span class="material-symbols-outlined text-[20px]">eco</span>
+<span class="font-subhead-caps text-[12px]">INTENSIDAD</span>
+</div>
+<p class="font-body-md text-on-surface-variant">70% Cacao Nativo</p>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-terracotta-sun">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+<span class="font-subhead-caps text-[12px]">NOTAS</span>
+</div>
+<p class="font-body-md text-on-surface-variant">Herbal, Fresco, Terroso</p>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-terracotta-sun">
+<span class="material-symbols-outlined text-[20px]">precision_manufacturing</span>
+<span class="font-subhead-caps text-[12px]">PROCESO</span>
+</div>
+<p class="font-body-md text-on-surface-variant">Bean to Bar</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Tasting Experience Section -->
+<section class="mt-32 py-24 bg-white/50 border-y border-cacao-deep/5 relative overflow-hidden">
+<div class="absolute top-1/2 left-0 w-64 h-64 bg-terracotta-sun/5 rhomboid-bg -translate-y-1/2 -translate-x-1/2 rotate-12"></div>
+<div class="relative z-10 max-w-4xl mx-auto text-center px-margin-mobile">
+<span class="font-subhead-caps text-subhead-caps text-terracotta-sun mb-4 block">SENSORIAL</span>
+<h2 class="font-headline-lg text-headline-lg mb-8">Experiencia de Cata</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-16">
+<div class="flex flex-col items-center gap-4">
+<div class="w-16 h-16 border border-terracotta-sun/30 flex items-center justify-center rotate-45 group hover:bg-terracotta-sun transition-all duration-500">
+<span class="material-symbols-outlined -rotate-45 text-terracotta-sun group-hover:text-white transition-colors" style="font-size: 32px;">forest</span>
+</div>
+<p class="font-subhead-caps text-[12px] mt-2">AROMA HERBAL</p>
+<p class="text-sm opacity-70">Notas de muña silvestre que limpian el paladar.</p>
+</div>
+<div class="flex flex-col items-center gap-4">
+<div class="w-16 h-16 border border-terracotta-sun/30 flex items-center justify-center rotate-45 group hover:bg-terracotta-sun transition-all duration-500">
+<span class="material-symbols-outlined -rotate-45 text-terracotta-sun group-hover:text-white transition-colors" style="font-size: 32px;">texture</span>
+</div>
+<p class="font-subhead-caps text-[12px] mt-2">TEXTURA SEDOSA</p>
+<p class="text-sm opacity-70">Un fundido lento que revela el terroir amazónico.</p>
+</div>
+<div class="flex flex-col items-center gap-4">
+<div class="w-16 h-16 border border-terracotta-sun/30 flex items-center justify-center rotate-45 group hover:bg-terracotta-sun transition-all duration-500">
+<span class="material-symbols-outlined -rotate-45 text-terracotta-sun group-hover:text-white transition-colors" style="font-size: 32px;">water_drop</span>
+</div>
+<p class="font-subhead-caps text-[12px] mt-2">FINAL BALSÁMICO</p>
+<p class="text-sm opacity-70">Frescura persistente y equilibrada.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Nuestro Proceso Section -->
+<section class="mt-32 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+<div class="order-2 md:order-1">
+<h3 class="font-headline-lg text-headline-lg mb-6">Nuestro Proceso</h3>
+<div class="relative w-full h-px bg-cacao-deep/20 my-8 diamond-divider"></div>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                    Todo comienza en nuestra Hacienda Dos Aguas en Curimaná, Ucayali. Seleccionamos cuidadosamente granos de cacao nativo, sometiéndolos a una fermentación controlada que realza sus perfiles aromáticos únicos. El arte del "Bean to Bar" se completa con un tostado preciso y la integración de botánicos silvestres como la muña, logrando una armonía perfecta entre tierra y aire.
+                </p>
+<button class="mt-8 flex items-center gap-2 font-subhead-caps text-[12px] text-terracotta-sun hover:translate-x-2 transition-transform">
+                    CONOCE LA HISTORIA <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+<div class="order-1 md:order-2 aspect-video bg-cacao-deep overflow-hidden relative shadow-2xl">
+<div class="absolute inset-0 bg-gradient-to-t from-cacao-deep/60 to-transparent z-10"></div>
+<div class="w-full h-full bg-cover bg-center hover:scale-110 transition-transform duration-[2000ms]" data-alt="Close up shots of artisanal chocolate making process, showing fermented cacao beans on wooden trays and the final smooth texture of molten chocolate. High contrast warm lighting on a dark workshop background, emphasizing the premium craft and textures." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB9ZS7SCDKA8J86wmR610kL3HhTQ1zXUjKkIejbXdP5aJZfNBAmQL_du8_rGYo-qcTV2jhScVUOSwVVw4pjGlbWVw2EOWv2UGKfLTnHw5SziyjCdZeL80hBeQE7yawWRxqOvl90pTzxFcywPTJuwM8xojKlUk7-whTNtn3YjeWOQzAT_KHpRkDQXFq653lzWk7t3qoiLzgv65W9VjgSqJbw80S26mQEiHJwGlR_aYS8BljDcxmRLcabwvdeBp--xJYbbgcZpCJozCo')"></div>
+</div>
+</section>
+<!-- Related Products -->
+<section class="mt-40 mb-20">
+<div class="flex justify-between items-end mb-12">
+<div>
+<span class="font-subhead-caps text-terracotta-sun mb-2 block">COLECCIÓN</span>
+<h2 class="font-headline-lg text-headline-lg">También te puede interesar</h2>
+</div>
+<a class="font-subhead-caps text-[12px] border-b border-cacao-deep pb-1 hover:text-terracotta-sun transition-colors" href="#">VER TODO</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-gutter">
+<!-- Product Card: Naranja -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-variant overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Product packaging for Dos Aguas chocolate with Orange, featuring warm citrus tones and fresh orange slices nearby. Soft studio lighting, cream background, premium editorial chocolate photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdJ6g04ZeDrY6dysG2vVoqpmHX0px1daPe9vofYN6t6VrhsBOyr-b-0c7AY2Ewug0IersANVDAUBRLzLHzPw_LZIl9dw69nc5f7gt3iO13PeuDAU-RDacwHzUqq9LcLumSKkePWO5IOA1Bp0aBZlfKzAsJkFvRKLz2zuxm_53i4Iu2xnUdPIHdeMFQLhFY36mE9OagR56sKIGbuUVUVRK3drgZngEOTC2-DKQUaayCqxBuwVn7uPqsCylTy2xHOpH_c-IgLqjm26g"/>
+<div class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full bg-cacao-deep text-parchment-cream py-3 font-subhead-caps text-[10px]">AÑADIR AL CARRITO</button>
+</div>
+</div>
+<span class="font-subhead-caps text-[10px] text-on-surface-variant opacity-60">COLECCIÓN CÍTRICA</span>
+<h4 class="font-headline-lg text-[18px] mt-1 group-hover:text-terracotta-sun transition-colors">70% Cacao con Naranja</h4>
+<p class="font-body-md mt-2 text-terracotta-sun font-bold">S/ 24.00</p>
+</div>
+<!-- Product Card: Eucalipto -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-variant overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Product packaging for Dos Aguas chocolate with Eucalyptus, highlighting fresh green elements and crisp photography. Luxury chocolate brand aesthetic, parchment cream atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC2qo-IN0la7B6zYvwx-TMLb9JqN8L1aw_jW90SOkYU4TqB9vC1_7_S-yZvxeyhyQL1OB2BaBjBBsQ04MPyBxbl6e-W2fRO0ph9C5o5InNVM1Pipelysi4WpQ3FNJltiJuDh44a2JS9by9hnrfvQSm2qO6InxQUXfgU3OPDueK3-0sEIO5SW7Trr77TxkWza8ZFfIfB98vC8gNjxftD1SYP27Qkhs32zp-_Hqubf52TgPDQbm7iQtjXJZI2aLITeLn9tcB2RcWPgQ"/>
+<div class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full bg-cacao-deep text-parchment-cream py-3 font-subhead-caps text-[10px]">AÑADIR AL CARRITO</button>
+</div>
+</div>
+<span class="font-subhead-caps text-[10px] text-on-surface-variant opacity-60">COLECCIÓN ANDINA</span>
+<h4 class="font-headline-lg text-[18px] mt-1 group-hover:text-terracotta-sun transition-colors">70% Cacao con Eucalipto</h4>
+<p class="font-body-md mt-2 text-terracotta-sun font-bold">S/ 24.00</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary text-parchment-cream py-20">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="space-y-6">
+<div class="font-headline-lg text-headline-lg text-terracotta-sun font-bold">Dos Aguas</div>
+<p class="text-sm opacity-70 leading-relaxed max-w-[200px]">
+                    El cacao más fino del Perú, transformado en arte bajo la técnica Bean to Bar.
+                </p>
+</div>
+<div class="space-y-4">
+<h5 class="font-subhead-caps text-[12px] tracking-widest text-terracotta-sun">EXPLORAR</h5>
+<ul class="space-y-2 text-sm opacity-70">
+<li><a class="hover:text-terracotta-sun transition-colors" href="#">Sostenibilidad</a></li>
+<li><a class="hover:text-terracotta-sun transition-colors" href="#">Puntos de Venta</a></li>
+<li><a class="hover:text-terracotta-sun transition-colors" href="#">Blog de Cacao</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-subhead-caps text-[12px] tracking-widest text-terracotta-sun">AYUDA</h5>
+<ul class="space-y-2 text-sm opacity-70">
+<li><a class="hover:text-terracotta-sun transition-colors" href="#">Términos de Servicio</a></li>
+<li><a class="hover:text-terracotta-sun transition-colors" href="#">Envíos y Devoluciones</a></li>
+<li><a class="hover:text-terracotta-sun transition-colors" href="#">Privacidad</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-subhead-caps text-[12px] tracking-widest text-terracotta-sun">NEWSLETTER</h5>
+<p class="text-xs opacity-70 mb-4">Recibe noticias sobre nuevos lanzamientos.</p>
+<div class="flex border-b border-parchment-cream/30 pb-2">
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-parchment-cream/40" placeholder="Tu email" type="email"/>
+<button class="material-symbols-outlined">east</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-20 pt-8 border-t border-parchment-cream/10 text-[10px] text-center opacity-40 uppercase tracking-widest">
+            © 2024 Dos Aguas - Esencia de Cacao. Artesanía Peruana.
+        </div>
+</footer>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const addToCartBtn = document.querySelector('button.bg-cacao-deep');
+            addToCartBtn?.addEventListener('click', () => {
+                const icon = addToCartBtn.querySelector('.material-symbols-outlined');
+                icon.textContent = 'check';
+                addToCartBtn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> PRODUCTO AÑADIDO';
+                addToCartBtn.classList.remove('bg-cacao-deep');
+                addToCartBtn.classList.add('bg-leaf-green');
+                
+                setTimeout(() => {
+                    addToCartBtn.innerHTML = '<span class="material-symbols-outlined text-sm">shopping_bag</span> AGREGAR AL CARRITO';
+                    addToCartBtn.classList.add('bg-cacao-deep');
+                    addToCartBtn.classList.remove('bg-leaf-green');
+                }, 3000);
+            });
+        });
+    </script>
+</body></html>

@@ -52,18 +52,18 @@ class TestDataSeeder extends Seeder
         $allPermissions = Permission::all();
         $superAdminRole->syncPermissions($allPermissions);
 
-        $editorPermissions = Permission::where(function($query) {
+        $editorPermissions = Permission::where(function ($query) {
             $query->where('name', 'like', '%:Banner')
-                  ->orWhere('name', 'like', '%:Post')
-                  ->orWhere('name', 'like', '%:Category')
-                  ->orWhere('name', 'like', '%:Product')
-                  ->orWhere('name', 'like', '%:Location')
-                  ->orWhere('name', 'View:ManageCompanyInfo')
-                  ->orWhere('name', 'View:StatsOverview');
-        })->orWhere(function($query) {
+                ->orWhere('name', 'like', '%:Post')
+                ->orWhere('name', 'like', '%:Category')
+                ->orWhere('name', 'like', '%:Product')
+                ->orWhere('name', 'like', '%:Location')
+                ->orWhere('name', 'View:ManageCompanyInfo')
+                ->orWhere('name', 'View:StatsOverview');
+        })->orWhere(function ($query) {
             $query->where('name', 'like', '%:Order')
-                  ->where('name', 'not like', 'Delete%')
-                  ->where('name', 'not like', 'ForceDelete%');
+                ->where('name', 'not like', 'Delete%')
+                ->where('name', 'not like', 'ForceDelete%');
         })->get();
         $editorRole->syncPermissions($editorPermissions);
 
@@ -205,9 +205,18 @@ class TestDataSeeder extends Seeder
         CompanyInfo::firstOrCreate(
             ['id' => 1],
             [
+                'name' => 'Dos Aguas',
+                'phone' => '+51 961 889 112',
+                'email' => 'contacto@dosaguas.com',
+                'address' => 'Av. Javier Prado Este 1234, San Isidro, Lima, Perú',
                 'mission' => '<p>Producir y comercializar chocolate artesanal de la más alta calidad bajo el modelo Bean to Bar, impulsando la biodiversidad de Ucayali y garantizando un comercio justo con las comunidades de agricultores locales.</p>',
                 'vision' => '<p>Ser reconocidos a nivel internacional como la marca líder en chocolates finos de aroma de origen amazónico peruano, preservando el legado familiar y respetando el ecosistema.</p>',
                 'short_history' => '<p>Dos Aguas nace en la Hacienda familiar de Ucayali, inspirados en la labor y el legado de Doña Felícitas. El ritual familiar de cuidar cada planta de cacao, cosechar con esmero y secar los granos bajo el cálido sol de la selva se convirtió en el cimiento de nuestra chocolatería fina.</p>',
+                'facebook_url' => 'https://facebook.com/chocolatesdosaguas',
+                'instagram_url' => 'https://instagram.com/chocolatesdosaguas',
+                'tiktok_url' => 'https://tiktok.com/@chocolatesdosaguas',
+                'youtube_url' => 'https://youtube.com/c/chocolatesdosaguas',
+                'whatsapp_phone' => '51961889112',
             ]
         );
 
@@ -282,6 +291,43 @@ class TestDataSeeder extends Seeder
                 'is_active' => true,
                 'meta_title' => 'Biodiversidad y Vida Silvestre en Hacienda Dos Aguas',
                 'meta_description' => 'Conoce cómo los añujes, osos perezosos y el ecosistema de Ucayali influyen en la calidad del cacao artesanal de Dos Aguas.',
+            ]
+        );
+
+        // 9. Seed Timeline Events
+        \App\Models\TimelineEvent::firstOrCreate(
+            ['year' => '2018'],
+            [
+                'title' => 'Fundación de Hacienda',
+                'title_en' => 'Hacienda Founding',
+                'description' => 'Se adquieren los linderos en Ucayali flanqueados por los dos ríos, iniciando el cultivo agroecológico bajo sombra natural.',
+                'description_en' => 'Lands in Ucayali flanked by two rivers are acquired, starting agroecological cultivation under natural shade.',
+                'order' => 1,
+                'is_active' => true,
+            ]
+        );
+
+        \App\Models\TimelineEvent::firstOrCreate(
+            ['year' => '2020'],
+            [
+                'title' => 'Primera Cosecha Selectiva',
+                'title_en' => 'First Selective Harvest',
+                'description' => 'Tras años de cuidado artesanal de la tierra, cosechamos la primera producción selecta de cacao fino de aroma.',
+                'description_en' => 'After years of artisanal care of the soil, we harvested the first select yield of fine aroma cacao.',
+                'order' => 2,
+                'is_active' => true,
+            ]
+        );
+
+        \App\Models\TimelineEvent::firstOrCreate(
+            ['year' => '2023'],
+            [
+                'title' => 'Reconocimiento Internacional',
+                'title_en' => 'International Recognition',
+                'description' => 'Nuestra barra Naranja 70% es galardonada con la Medalla de Oro en los International Chocolate Awards.',
+                'description_en' => 'Our Naranja 70% bar is awarded the Gold Medal at the International Chocolate Awards.',
+                'order' => 3,
+                'is_active' => true,
             ]
         );
     }

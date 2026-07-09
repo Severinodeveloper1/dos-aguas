@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Libro de Reclamaciones | CACAO EDITORIAL</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border-color: #eabcb8 !important;
+        }
+        /* Custom scrollbar for dark mode */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #131313; }
+        ::-webkit-scrollbar-thumb { background: #353535; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #eabcb8; }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#93000a",
+                    "primary-fixed-dim": "#eabcb8",
+                    "background": "#131313",
+                    "on-background": "#e5e2e1",
+                    "outline": "#9d8d8c",
+                    "surface-dim": "#131313",
+                    "error": "#ffb4ab",
+                    "secondary-fixed-dim": "#ffb59e",
+                    "secondary-fixed": "#ffdbd0",
+                    "secondary-container": "#832c0d",
+                    "surface-tint": "#eabcb8",
+                    "on-secondary": "#5e1700",
+                    "surface-variant": "#353535",
+                    "surface-container": "#20201f",
+                    "on-surface": "#e5e2e1",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-secondary-fixed-variant": "#802a0b",
+                    "on-surface-variant": "#d4c3c1",
+                    "tertiary-fixed": "#e8e2d8",
+                    "on-primary-fixed": "#2e1413",
+                    "tertiary": "#ccc6bc",
+                    "secondary": "#ffb59e",
+                    "surface-container-highest": "#353535",
+                    "primary-fixed": "#ffdad7",
+                    "primary-container": "#4a2c2a",
+                    "outline-variant": "#504443",
+                    "inverse-on-surface": "#313030",
+                    "surface-bright": "#393939",
+                    "on-tertiary": "#333029",
+                    "inverse-primary": "#795553",
+                    "surface": "#131313",
+                    "on-primary-container": "#bd928f",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-container-low": "#1c1b1b",
+                    "primary": "#eabcb8",
+                    "on-secondary-fixed": "#3a0b00",
+                    "on-tertiary-container": "#a29c93",
+                    "on-primary-fixed-variant": "#5f3e3c",
+                    "on-primary": "#462827",
+                    "tertiary-fixed-dim": "#ccc6bc",
+                    "surface-container-high": "#2a2a2a",
+                    "on-secondary-container": "#ffa083",
+                    "on-error": "#690005",
+                    "tertiary-container": "#37342d",
+                    "on-error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-edge": "40px",
+                    "gutter": "24px",
+                    "section-gap": "120px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Libre Caslon Text"],
+                    "headline-lg": ["Libre Caslon Text"],
+                    "headline-xl": ["Libre Caslon Text"],
+                    "headline-md": ["Libre Caslon Text"],
+                    "headline-lg-mobile": ["Libre Caslon Text"],
+                    "body-md": ["DM Sans"],
+                    "body-lg": ["DM Sans"],
+                    "label-caps": ["DM Sans"]
+            },
+            "fontSize": {
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.15em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant/10">
+<nav class="flex justify-between items-center h-20 px-margin-edge max-w-container-max mx-auto">
+<a class="font-headline-md text-headline-md text-on-background tracking-tight" href="/">CACAO EDITORIAL</a>
+<div class="hidden md:flex gap-10">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Collections</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Origin</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Artistry</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors" href="#">Sustainability</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="shopping_bag">shopping_bag</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="person">person</span>
+</div>
+</nav>
+</header>
+<main class="pt-32 pb-section-gap">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-edge mb-20 text-center md:text-left">
+<div class="flex flex-col md:flex-row gap-gutter items-end border-b border-outline-variant/20 pb-12">
+<div class="flex-1">
+<span class="font-label-caps text-label-caps text-primary mb-4 block">COMPLIANCE &amp; TRANSPARENCY</span>
+<h1 class="font-headline-xl text-headline-xl mb-6">Libro de Reclamaciones</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                        En cumplimiento de lo dispuesto por el Código de Protección y Defensa del Consumidor (Ley N° 29571) y el Reglamento del Libro de Reclamaciones (D.S. N° 011-2011-PCM), ponemos a su disposición este registro virtual para cualquier queja o reclamo respecto a nuestros productos y servicios.
+                    </p>
+</div>
+<div class="text-right pb-2">
+<div class="text-on-surface-variant font-label-caps text-label-caps mb-1">CLAIM CODE</div>
+<div class="font-headline-sm text-headline-sm text-primary tracking-widest" id="claimCodeDisplay">CACAO-2024-0892</div>
+</div>
+</div>
+</section>
+<!-- Form Section -->
+<section class="max-w-4xl mx-auto px-margin-edge">
+<form class="space-y-20" id="complaintForm">
+<!-- Section 1: Identification -->
+<div class="space-y-8">
+<div class="flex items-center gap-4 mb-4">
+<span class="font-headline-sm text-headline-sm text-primary">01</span>
+<h2 class="font-headline-sm text-headline-sm uppercase tracking-wider">Identificación del Consumidor</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-gutter gap-y-10">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Nombre Completo</label>
+<input class="bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:border-primary transition-colors text-on-background placeholder:text-outline/50" name="full_name" placeholder="p. ej. Alessandro Rossi" required="" type="text"/>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<div class="col-span-1 flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Doc.</label>
+<select class="bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:border-primary transition-colors text-on-background appearance-none cursor-pointer" name="document_type">
+<option class="bg-surface-container-high" value="DNI">DNI</option>
+<option class="bg-surface-container-high" value="CE">CE</option>
+<option class="bg-surface-container-high" value="Pasaporte">PAS</option>
+</select>
+</div>
+<div class="col-span-2 flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Número</label>
+<input class="bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:border-primary transition-colors text-on-background placeholder:text-outline/50" name="document_number" placeholder="00000000" required="" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Correo Electrónico</label>
+<input class="bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:border-primary transition-colors text-on-background placeholder:text-outline/50" name="email" placeholder="editorial@cacao.com" required="" type="email"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Teléfono</label>
+<input class="bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:border-primary transition-colors text-on-background placeholder:text-outline/50" name="phone" placeholder="+51 999 000 000" required="" type="tel"/>
+</div>
+<div class="md:col-span-2 flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Dirección de Domicilio</label>
+<input class="bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:border-primary transition-colors text-on-background placeholder:text-outline/50" name="address" placeholder="Calle Los Almendros 123, Miraflores, Lima" required="" type="text"/>
+</div>
+</div>
+<!-- Minor Toggle -->
+<div class="pt-6">
+<label class="flex items-center gap-3 group cursor-pointer">
+<div class="relative flex items-center justify-center">
+<input class="peer h-5 w-5 opacity-0 absolute" id="isMinorCheckbox" type="checkbox"/>
+<div class="h-5 w-5 border border-outline group-hover:border-primary peer-checked:bg-primary transition-all rounded-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-sm hidden peer-checked:block" data-icon="check">check</span>
+</div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant group-hover:text-on-surface transition-colors">Soy menor de edad (Requiere datos del representante)</span>
+</label>
+</div>
+<!-- Representative Fields (Conditional) -->
+<div class="hidden space-y-8 pt-6 border-t border-outline-variant/10 animate-fade-in" id="representativeSection">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-gutter gap-y-10">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Nombre del Representante</label>
+<input class="bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:border-primary transition-colors text-on-background placeholder:text-outline/50" name="representative_name" placeholder="Nombre completo" type="text"/>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<div class="col-span-1 flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Doc.</label>
+<select class="bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:border-primary transition-colors text-on-background appearance-none cursor-pointer" name="representative_document_type">
+<option class="bg-surface-container-high" value="DNI">DNI</option>
+<option class="bg-surface-container-high" value="CE">CE</option>
+</select>
+</div>
+<div class="col-span-2 flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Número</label>
+<input class="bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:border-primary transition-colors text-on-background placeholder:text-outline/50" name="representative_document_number" placeholder="00000000" type="text"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Divider -->
+<div class="flex items-center justify-center py-4">
+<div class="h-[1px] flex-1 bg-outline-variant/30"></div>
+<span class="mx-6 text-primary material-symbols-outlined" data-icon="pentagon" style="font-variation-settings: 'opsz' 20;">pentagon</span>
+<div class="h-[1px] flex-1 bg-outline-variant/30"></div>
+</div>
+<!-- Section 2: Complaint Details -->
+<div class="space-y-8">
+<div class="flex items-center gap-4 mb-4">
+<span class="font-headline-sm text-headline-sm text-primary">02</span>
+<h2 class="font-headline-sm text-headline-sm uppercase tracking-wider">Detalle de la Reclamación</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-gutter gap-y-10">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Tipo de Incidencia</label>
+<div class="flex gap-8 mt-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="peer hidden" name="claim_type" type="radio" value="Reclamo"/>
+<div class="h-4 w-4 border border-outline rounded-full flex items-center justify-center peer-checked:border-primary group-hover:border-primary transition-all">
+<div class="h-2 w-2 bg-primary rounded-full hidden peer-checked:block"></div>
+</div>
+<span class="font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Reclamo</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="peer hidden" name="claim_type" type="radio" value="Queja"/>
+<div class="h-4 w-4 border border-outline rounded-full flex items-center justify-center peer-checked:border-primary group-hover:border-primary transition-all">
+<div class="h-2 w-2 bg-primary rounded-full hidden peer-checked:block"></div>
+</div>
+<span class="font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Queja</span>
+</label>
+</div>
+<p class="text-[11px] text-outline mt-2 leading-tight">
+                                * Reclamo: Disconformidad relacionada a los productos o servicios.<br/>
+                                * Queja: Malestar o descontento respecto a la atención al público.
+                            </p>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Monto Reclamado (Opcional)</label>
+<div class="relative">
+<span class="absolute left-0 bottom-3 text-outline">S/</span>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 pl-6 pr-0 focus:border-primary transition-colors text-on-background placeholder:text-outline/50" name="claimed_amount" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div class="md:col-span-2 flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Descripción del Producto o Servicio</label>
+<input class="bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:border-primary transition-colors text-on-background placeholder:text-outline/50" name="product_service_description" placeholder="p. ej. Barra de chocolate Origin 70% - Lote #442" required="" type="text"/>
+</div>
+<div class="md:col-span-2 flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Detalles del Reclamo/Queja</label>
+<textarea class="bg-transparent border border-outline-variant/30 p-4 focus:border-primary transition-colors text-on-background placeholder:text-outline/50 resize-none" name="claim_details" placeholder="Describa los hechos ocurridos de la manera más detallada posible..." required="" rows="4"></textarea>
+</div>
+<div class="md:col-span-2 flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Pedido del Consumidor</label>
+<textarea class="bg-transparent border border-outline-variant/30 p-4 focus:border-primary transition-colors text-on-background placeholder:text-outline/50 resize-none" name="consumer_request" placeholder="¿Cuál es su solicitud concreta para resolver este inconveniente?" required="" rows="3"></textarea>
+</div>
+</div>
+</div>
+<!-- Submit Section -->
+<div class="pt-10 flex flex-col items-center">
+<p class="font-body-md text-on-surface-variant text-center max-w-lg mb-10 opacity-70">
+                        Al enviar este formulario, usted acepta que Dos Aguas (Cacao Editorial) trate sus datos personales para dar respuesta a su reclamación dentro del plazo legal.
+                    </p>
+<button class="group relative px-12 py-5 bg-primary text-on-primary font-label-caps text-label-caps tracking-[0.2em] hover:scale-[1.02] active:scale-95 transition-all duration-300" type="submit">
+<span class="relative z-10">ENVIAR RECLAMACIÓN</span>
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+<div class="mt-8 flex items-center gap-2 text-outline/50 font-label-caps text-[10px]">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock">lock</span>
+                        CONEXIÓN SEGURA SSL - ENVÍO ENCRIPTADO
+                    </div>
+</div>
+</form>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/10 w-full py-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-edge max-w-container-max mx-auto text-center md:text-left">
+<div class="md:col-span-4 flex flex-col gap-6">
+<a class="font-headline-sm text-headline-sm text-primary" href="/">CACAO EDITORIAL</a>
+<p class="font-body-md text-on-surface-variant max-w-xs mx-auto md:mx-0">
+                    Curaduría editorial del cacao fino de aroma. Una oda al origen y la maestría artesanal.
+                </p>
+</div>
+<div class="md:col-span-2 flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-on-surface">LEGAL</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a>
+</div>
+<div class="md:col-span-2 flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-on-surface">EXPLORE</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Collections</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sustainability</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Workshops</a>
+</div>
+<div class="md:col-span-4 flex flex-col gap-6">
+<span class="font-label-caps text-label-caps text-on-surface">SÍGUENOS</span>
+<div class="flex justify-center md:justify-start gap-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="nest_cam_floodlight">nest_cam_floodlight</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="photo_camera">photo_camera</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="mail">mail</span>
+</div>
+<div class="mt-4 font-body-md text-body-md text-secondary uppercase tracking-widest text-[10px]">
+                    © 2024 CACAO EDITORIAL. ALL RIGHTS RESERVED.
+                </div>
+</div>
+</div>
+</footer>
+<script>
+        // Minor logic
+        const isMinorCheckbox = document.getElementById('isMinorCheckbox');
+        const representativeSection = document.getElementById('representativeSection');
+
+        isMinorCheckbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                representativeSection.classList.remove('hidden');
+                representativeSection.classList.add('block');
+            } else {
+                representativeSection.classList.remove('block');
+                representativeSection.classList.add('hidden');
+            }
+        });
+
+        // Claim code generator simulation
+        const generateClaimCode = () => {
+            const date = new Date();
+            const year = date.getFullYear();
+            const random = Math.floor(1000 + Math.random() * 9000);
+            return `CACAO-${year}-${random}`;
+        }
+        document.getElementById('claimCodeDisplay').textContent = generateClaimCode();
+
+        // Form Submission Interaction
+        const form = document.getElementById('complaintForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const button = e.target.querySelector('button');
+            const originalText = button.innerHTML;
+            
+            button.disabled = true;
+            button.innerHTML = '<span class="material-symbols-outlined animate-spin" data-icon="progress_activity">progress_activity</span>';
+            
+            // Simulating API call
+            setTimeout(() => {
+                alert('Su reclamación ha sido registrada exitosamente. Recibirá una copia en su correo electrónico.');
+                button.innerHTML = 'ENVIADO';
+                button.classList.add('bg-green-600', 'text-white');
+                form.reset();
+                representativeSection.classList.add('hidden');
+            }, 1500);
+        });
+
+        // Parallax-ish entry for form sections
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('form > div').forEach(section => {
+            section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+</body></html>

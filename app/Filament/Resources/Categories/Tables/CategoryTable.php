@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Categories\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
@@ -17,6 +18,9 @@ class CategoryTable
             ->reorderable('order')
             ->defaultSort('order', 'asc')
             ->columns([
+                ImageColumn::make('photo_path')
+                    ->label('Foto')
+                    ->disk('public'),
                 TextColumn::make('name')
                     ->label('Nombre Categoría')
                     ->searchable()

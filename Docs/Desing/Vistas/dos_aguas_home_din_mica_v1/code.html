@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dos Aguas | Product-First Artisanal Chocolate</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "tertiary-container": "#37342d",
+                "secondary-container": "#832c0d",
+                "tertiary": "#ccc6bc",
+                "surface-container-highest": "#353535",
+                "secondary-fixed": "#ffdbd0",
+                "primary-fixed": "#ffdad7",
+                "on-tertiary-container": "#a29c93",
+                "on-secondary": "#5e1700",
+                "error": "#ffb4ab",
+                "tertiary-fixed": "#e8e2d8",
+                "primary": "#eabcb8",
+                "primary-container": "#4a2c2a",
+                "on-background": "#e5e2e1",
+                "on-error-container": "#ffdad6",
+                "background": "#131313",
+                "on-surface": "#e5e2e1",
+                "tertiary-fixed-dim": "#ccc6bc",
+                "surface-container-low": "#1c1b1b",
+                "surface": "#131313",
+                "on-error": "#690005",
+                "outline": "#9d8d8c",
+                "on-primary-container": "#bd928f",
+                "on-tertiary": "#333029",
+                "surface-container-high": "#2a2a2a",
+                "surface-bright": "#393939",
+                "inverse-primary": "#795553",
+                "inverse-on-surface": "#313030",
+                "surface-container-lowest": "#0e0e0e",
+                "on-secondary-container": "#ffa083",
+                "surface-container": "#20201f",
+                "on-surface-variant": "#d4c3c1",
+                "inverse-surface": "#e5e2e1",
+                "surface-tint": "#eabcb8",
+                "primary-fixed-dim": "#eabcb8",
+                "on-primary": "#462827",
+                "on-tertiary-fixed": "#1e1b15",
+                "on-primary-fixed": "#2e1413",
+                "on-secondary-fixed-variant": "#802a0b",
+                "outline-variant": "#504443",
+                "surface-variant": "#353535",
+                "on-tertiary-fixed-variant": "#4a463f",
+                "on-primary-fixed-variant": "#5f3e3c",
+                "error-container": "#93000a",
+                "on-secondary-fixed": "#3a0b00",
+                "surface-dim": "#131313",
+                "secondary-fixed-dim": "#ffb59e",
+                "secondary": "#ffb59e"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              "spacing": {
+                "gutter": "24px",
+                "section-gap": "120px",
+                "container-max": "1280px",
+                "unit": "8px",
+                "margin-edge": "40px"
+              },
+              "fontFamily": {
+                "headline-lg": ["Libre Caslon Text"],
+                "body-md": ["DM Sans"],
+                "headline-xl": ["Libre Caslon Text"],
+                "body-lg": ["DM Sans"],
+                "headline-sm": ["Libre Caslon Text"],
+                "headline-lg-mobile": ["Libre Caslon Text"],
+                "label-caps": ["DM Sans"],
+                "headline-md": ["Libre Caslon Text"]
+              },
+              "fontSize": {
+                "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.15em", "fontWeight": "700"}],
+                "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { background-color: #131313; color: #e5e2e1; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .slider-container { scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none; }
+        .slider-container::-webkit-scrollbar { display: none; }
+        .award-card { transition: transform 0.3s ease; }
+        .award-card:hover { transform: translateY(-4px); }
+        .sticky-nav-active { @apply bg-surface/95 backdrop-blur-md border-b border-outline-variant/10 py-3; }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden selection:bg-primary/30">
+<!-- Minimalist Sticky Header -->
+<header class="fixed top-0 w-full z-50 transition-all duration-300 py-6" id="main-header">
+<div class="flex justify-between items-center w-full px-margin-edge max-w-container-max mx-auto">
+<div class="flex-1 hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#shop">Shop</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#about">About</a>
+</div>
+<a class="flex justify-center flex-shrink-0" href="#">
+<img alt="Dos Aguas Logo" class="h-8 md:h-10 w-auto filter invert brightness-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW1aG2hmgZ0MZ_IxAioiyi8CEl3EeUgMSTMPjcv6CmuSItgaoEprEmeorjYeV-C7RLyqC8GXfCmF-0c9DiHqSMtpq1GpRRtmecVMTsnHcZ7tJrFGIz6o3OYLI2XrYxuEdyRLKvYD3kq4vyJgVY-nLNWgDgg-8YzzL6wQ4o29ZkD8Kinqm8dATdBt7_Iq088sKWRu6-LwiA8UIOMoP5MiVm1_LAe_X2pseSYXHqUdaDJBXy8dHjf6TLX8N62-2HFzY5zuRUFTlwN5E"/>
+</a>
+<div class="flex-1 flex items-center justify-end gap-6">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">search</span></button>
+<button class="hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-secondary text-on-secondary text-[10px] rounded-full w-4 h-4 flex items-center justify-center font-bold">0</span>
+</button>
+<button class="md:hidden"><span class="material-symbols-outlined">menu</span></button>
+</div>
+</div>
+</header>
+<!-- Hero Section: Dynamic Horizontal Slider -->
+<section class="relative h-screen min-h-[700px] w-full overflow-hidden bg-surface-container-lowest">
+<div class="slider-container flex h-full overflow-x-auto snap-x snap-mandatory" id="hero-slider">
+<!-- Slide 1: Naranja -->
+<div class="flex-none w-full h-full snap-start relative flex items-center">
+<div class="absolute inset-0 z-0">
+<img alt="Dos Aguas Naranja" class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo0TfU1QE9Z3g6KSWzthQP8n3tJ1hrZprdYQTxSGqYo3njjVn7K0EKfw6840qBScOEn0HTTKh7RfwgbYhc3uuB1HNOvk-fnigdd0OG_HVwRALCiB15nolipjeuIOpQpuzA8Oa07jpbRIk6olmFouGsmhofVUpJnMZSE93cBk2khFLYCe96pSEjPIgvEwvZkU-MBVjZWAVH1i8XVY8C0xUNcB_PtOfwrj4UHOsI5v-n_r88KQibk4B5bqfALWtf5Ff2UIXiqelLVb4"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent"></div>
+</div>
+<div class="relative z-10 w-full max-w-container-max mx-auto px-margin-edge">
+<div class="max-w-xl">
+<span class="font-label-caps text-label-caps text-secondary mb-4 block tracking-[0.3em]">FEATURED ORIGIN</span>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-6">Naranja 70%</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10">Citrus-forward profile with hand-peeled organic orange zest and heritage Piura cacao.</p>
+<a class="inline-block px-10 py-4 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest hover:bg-secondary hover:text-on-secondary transition-all" href="#">EXPLORE COLLECTION</a>
+</div>
+</div>
+</div>
+<!-- Slide 2: Muña -->
+<div class="flex-none w-full h-full snap-start relative flex items-center">
+<div class="absolute inset-0 z-0">
+<img alt="Dos Aguas Muña" class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq0lR2foQLeFO6xaWDpIcAAaaVVvZu20VMSzkcP2lLvgdDszeCrX25G4vAKstjPj7H4fq6wFAkSA2LMEy--Tkco2UV6USH96XUsrqzVP4GFdr0WXY8_4G_EApwGRbW_toWpQLkcp8t-omfVjNs5n83h3IERzAFtb6F6_Taik4iz0hoCDTPn1el_AUtCMtF_EvUyXSWAYhQDTg9m4Vd8GTr3x72I3edlu_AX-aBAsBT2wMyxAgtouqlzgvepLMQNdZNR7izO0sF2Ac"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent"></div>
+</div>
+<div class="relative z-10 w-full max-w-container-max mx-auto px-margin-edge">
+<div class="max-w-xl">
+<span class="font-label-caps text-label-caps text-secondary mb-4 block tracking-[0.3em]">BOTANICAL SERIES</span>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-6">Muña Herbal</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10">Andean mint infusion providing a cooling, aromatic finish to our dark estate blend.</p>
+<a class="inline-block px-10 py-4 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest hover:bg-secondary hover:text-on-secondary transition-all" href="#">EXPLORE COLLECTION</a>
+</div>
+</div>
+</div>
+<!-- Slide 3: Eucalipto -->
+<div class="flex-none w-full h-full snap-start relative flex items-center">
+<div class="absolute inset-0 z-0">
+<img alt="Dos Aguas Eucalipto" class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo0TfU1QE9Z3g6KSWzthQP8n3tJ1hrZprdYQTxSGqYo3njjVn7K0EKfw6840qBScOEn0HTTKh7RfwgbYhc3uuB1HNOvk-fnigdd0OG_HVwRALCiB15nolipjeuIOpQpuzA8Oa07jpbRIk6olmFouGsmhofVUpJnMZSE93cBk2khFLYCe96pSEjPIgvEwvZkU-MBVjZWAVH1i8XVY8C0xUNcB_PtOfwrj4UHOsI5v-n_r88KQibk4B5bqfALWtf5Ff2UIXiqelLVb4"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent"></div>
+</div>
+<div class="relative z-10 w-full max-w-container-max mx-auto px-margin-edge">
+<div class="max-w-xl">
+<span class="font-label-caps text-label-caps text-secondary mb-4 block tracking-[0.3em]">LIMITED EDITION</span>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-6">Eucalipto Dark</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10">An experimental batch featuring steam-distilled eucalyptus for a truly refreshing depth.</p>
+<a class="inline-block px-10 py-4 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest hover:bg-secondary hover:text-on-secondary transition-all" href="#">EXPLORE COLLECTION</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Slider Navigation -->
+<div class="absolute bottom-12 right-margin-edge z-20 flex gap-4">
+<button class="w-12 h-12 border border-outline/30 flex items-center justify-center hover:bg-white/10 transition-colors" onclick="scrollSlider(-1)">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 border border-outline/30 flex items-center justify-center hover:bg-white/10 transition-colors" onclick="scrollSlider(1)">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Featured Banner: High Impact -->
+<section class="w-full py-2">
+<div class="relative h-[600px] w-full overflow-hidden">
+<img alt="The Art of Chocolate" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq0lR2foQLeFO6xaWDpIcAAaaVVvZu20VMSzkcP2lLvgdDszeCrX25G4vAKstjPj7H4fq6wFAkSA2LMEy--Tkco2UV6USH96XUsrqzVP4GFdr0WXY8_4G_EApwGRbW_toWpQLkcp8t-omfVjNs5n83h3IERzAFtb6F6_Taik4iz0hoCDTPn1el_AUtCMtF_EvUyXSWAYhQDTg9m4Vd8GTr3x72I3edlu_AX-aBAsBT2wMyxAgtouqlzgvepLMQNdZNR7izO0sF2Ac"/>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+<div class="text-center px-4">
+<h2 class="font-headline-lg text-headline-lg text-white mb-4">Precision in Every Snap</h2>
+<div class="w-12 h-px bg-primary mx-auto"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sophisticated Gallery & Journey -->
+<section class="py-section-gap px-margin-edge max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-stretch">
+<div class="md:col-span-7 aspect-[4/3] overflow-hidden group">
+<img alt="Craftsmanship" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo0TfU1QE9Z3g6KSWzthQP8n3tJ1hrZprdYQTxSGqYo3njjVn7K0EKfw6840qBScOEn0HTTKh7RfwgbYhc3uuB1HNOvk-fnigdd0OG_HVwRALCiB15nolipjeuIOpQpuzA8Oa07jpbRIk6olmFouGsmhofVUpJnMZSE93cBk2khFLYCe96pSEjPIgvEwvZkU-MBVjZWAVH1i8XVY8C0xUNcB_PtOfwrj4UHOsI5v-n_r88KQibk4B5bqfALWtf5Ff2UIXiqelLVb4"/>
+</div>
+<div class="md:col-span-5 flex flex-col justify-center p-8 bg-surface-container">
+<span class="font-label-caps text-label-caps text-secondary mb-6 block">OUR PROCESS</span>
+<h3 class="font-headline-md text-headline-md mb-6">Slow-Stone Grinding</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">We take 72 hours to refine our cacao. This unhurried approach preserves the delicate floral notes that define the Piura bean.</p>
+</div>
+<div class="md:col-span-4 flex flex-col justify-center p-8 bg-surface-container-high order-last md:order-none">
+<span class="font-label-caps text-label-caps text-secondary mb-6 block">THE STUDIO</span>
+<h3 class="font-headline-sm text-headline-sm mb-6">Hand-Wrapped Heritage</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">Each bar is finished by hand in our coastal studio, ensuring perfection from temper to foil.</p>
+</div>
+<div class="md:col-span-8 aspect-[16/9] overflow-hidden group">
+<img alt="Brand Journey" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq0lR2foQLeFO6xaWDpIcAAaaVVvZu20VMSzkcP2lLvgdDszeCrX25G4vAKstjPj7H4fq6wFAkSA2LMEy--Tkco2UV6USH96XUsrqzVP4GFdr0WXY8_4G_EApwGRbW_toWpQLkcp8t-omfVjNs5n83h3IERzAFtb6F6_Taik4iz0hoCDTPn1el_AUtCMtF_EvUyXSWAYhQDTg9m4Vd8GTr3x72I3edlu_AX-aBAsBT2wMyxAgtouqlzgvepLMQNdZNR7izO0sF2Ac"/>
+</div>
+</div>
+</section>
+<!-- Short 'About Us' -->
+<section class="py-section-gap bg-surface-container-lowest border-y border-outline-variant/10" id="about">
+<div class="max-w-3xl mx-auto text-center px-margin-edge">
+<h2 class="font-headline-lg text-headline-lg mb-8">The Essence of Dos Aguas</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-12">
+            Founded on the banks of two rivers, our name honors the water that sustains the unique desert-grown cacao of Piura. We are family-run, bean-to-bar makers dedicated to the purist expression of Peruvian heirloom varieties. No fillers, no compromises—just the intoxicating clarity of single-origin excellence.
+        </p>
+<div class="flex justify-center gap-12">
+<div class="text-center">
+<span class="block font-headline-md text-primary mb-1">100%</span>
+<span class="font-label-caps text-[10px] tracking-widest text-on-surface-variant">TRACEABLE</span>
+</div>
+<div class="text-center">
+<span class="block font-headline-md text-primary mb-1">Estate</span>
+<span class="font-label-caps text-[10px] tracking-widest text-on-surface-variant">GROWN</span>
+</div>
+<div class="text-center">
+<span class="block font-headline-md text-primary mb-1">Hand</span>
+<span class="font-label-caps text-[10px] tracking-widest text-on-surface-variant">CRAFTED</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Awards & Recognitions -->
+<section class="py-section-gap px-margin-edge max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div>
+<span class="font-label-caps text-label-caps text-secondary mb-4 block">EXCELLENCE</span>
+<h2 class="font-headline-lg text-headline-lg">Global Recognitions</h2>
+</div>
+<p class="max-w-md text-on-surface-variant font-body-md">Honored by the International Chocolate Awards for our dedication to flavor profile and ethical sourcing.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+<!-- Award 1 -->
+<div class="award-card bg-surface-container border border-outline-variant/10 p-8 flex flex-col items-center text-center">
+<img alt="Medal" class="h-24 mb-8 grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLs2Kw34Drb7UhTVgBcmMJvFupctuzbdFOu2RI5L3F0qXMzznrEwy8wjPMfgfb-HOkX15KL7PmkFXZzDyT8kwj2Q-2saeeKnIDfBCDdHn1Mi73F7RIfaBuqnftB2vv5qsaAM_Hlz0lCIhuNHBnZjoaVZQVwBHfVqWfz-7_6Pit7bF5XLfnS9NqV3j2x3yrdoZ6-WcJ915aHMdR20wa-oQ55DZTenEvXTmqjapIrMAVHt6dhTigO7zZ-rxA"/>
+<h4 class="font-headline-sm text-headline-sm mb-2">Gold Medal</h4>
+<p class="font-label-caps text-label-caps text-primary mb-4">Naranja 70% Dark</p>
+<div class="h-px w-8 bg-outline/20 mb-4"></div>
+<p class="text-sm text-on-surface-variant">International Chocolate Awards<br/>Peru Edition • 2023</p>
+</div>
+<!-- Award 2 -->
+<div class="award-card bg-surface-container border border-outline-variant/10 p-8 flex flex-col items-center text-center">
+<img alt="Certificate" class="h-24 mb-8 grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLs2Kw34Drb7UhTVgBcmMJvFupctuzbdFOu2RI5L3F0qXMzznrEwy8wjPMfgfb-HOkX15KL7PmkFXZzDyT8kwj2Q-2saeeKnIDfBCDdHn1Mi73F7RIfaBuqnftB2vv5qsaAM_Hlz0lCIhuNHBnZjoaVZQVwBHfVqWfz-7_6Pit7bF5XLfnS9NqV3j2x3yrdoZ6-WcJ915aHMdR20wa-oQ55DZTenEvXTmqjapIrMAVHt6dhTigO7zZ-rxA"/>
+<h4 class="font-headline-sm text-headline-sm mb-2">Silver Medal</h4>
+<p class="font-label-caps text-label-caps text-primary mb-4">Piura Blanco Pure</p>
+<div class="h-px w-8 bg-outline/20 mb-4"></div>
+<p class="text-sm text-on-surface-variant">Academy of Chocolate<br/>United Kingdom • 2022</p>
+</div>
+<!-- Award 3 -->
+<div class="award-card bg-surface-container border border-outline-variant/10 p-8 flex flex-col items-center text-center">
+<img alt="Medal" class="h-24 mb-8 grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLs2Kw34Drb7UhTVgBcmMJvFupctuzbdFOu2RI5L3F0qXMzznrEwy8wjPMfgfb-HOkX15KL7PmkFXZzDyT8kwj2Q-2saeeKnIDfBCDdHn1Mi73F7RIfaBuqnftB2vv5qsaAM_Hlz0lCIhuNHBnZjoaVZQVwBHfVqWfz-7_6Pit7bF5XLfnS9NqV3j2x3yrdoZ6-WcJ915aHMdR20wa-oQ55DZTenEvXTmqjapIrMAVHt6dhTigO7zZ-rxA"/>
+<h4 class="font-headline-sm text-headline-sm mb-2">Bronze Medal</h4>
+<p class="font-label-caps text-label-caps text-primary mb-4">Muña Herbal</p>
+<div class="h-px w-8 bg-outline/20 mb-4"></div>
+<p class="text-sm text-on-surface-variant">Northwest Chocolate Festival<br/>Seattle, USA • 2023</p>
+</div>
+</div>
+</section>
+<!-- Shop Preview -->
+<section class="py-section-gap bg-surface-container-high" id="shop">
+<div class="max-w-container-max mx-auto px-margin-edge">
+<div class="flex justify-between items-end mb-16">
+<h2 class="font-headline-lg text-headline-lg">Curated Shop</h2>
+<a class="font-label-caps text-label-caps text-primary border-b border-primary/30 pb-1 hover:border-primary transition-all" href="#">VIEW STORE</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Product 1 -->
+<div class="group">
+<div class="aspect-[3/4] overflow-hidden bg-surface mb-6 relative">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo0TfU1QE9Z3g6KSWzthQP8n3tJ1hrZprdYQTxSGqYo3njjVn7K0EKfw6840qBScOEn0HTTKh7RfwgbYhc3uuB1HNOvk-fnigdd0OG_HVwRALCiB15nolipjeuIOpQpuzA8Oa07jpbRIk6olmFouGsmhofVUpJnMZSE93cBk2khFLYCe96pSEjPIgvEwvZkU-MBVjZWAVH1i8XVY8C0xUNcB_PtOfwrj4UHOsI5v-n_r88KQibk4B5bqfALWtf5Ff2UIXiqelLVb4"/>
+<button class="absolute bottom-4 left-4 right-4 bg-white text-black py-3 font-label-caps text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">QUICK ADD</button>
+</div>
+<h4 class="font-headline-sm text-[18px] mb-1">Classic Dark 70%</h4>
+<p class="text-on-surface-variant text-sm">$12.00</p>
+</div>
+<!-- Product 2 -->
+<div class="group">
+<div class="aspect-[3/4] overflow-hidden bg-surface mb-6 relative">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq0lR2foQLeFO6xaWDpIcAAaaVVvZu20VMSzkcP2lLvgdDszeCrX25G4vAKstjPj7H4fq6wFAkSA2LMEy--Tkco2UV6USH96XUsrqzVP4GFdr0WXY8_4G_EApwGRbW_toWpQLkcp8t-omfVjNs5n83h3IERzAFtb6F6_Taik4iz0hoCDTPn1el_AUtCMtF_EvUyXSWAYhQDTg9m4Vd8GTr3x72I3edlu_AX-aBAsBT2wMyxAgtouqlzgvepLMQNdZNR7izO0sF2Ac"/>
+<button class="absolute bottom-4 left-4 right-4 bg-white text-black py-3 font-label-caps text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">QUICK ADD</button>
+</div>
+<h4 class="font-headline-sm text-[18px] mb-1">Naranja Zest</h4>
+<p class="text-on-surface-variant text-sm">$14.00</p>
+</div>
+<!-- Product 3 -->
+<div class="group">
+<div class="aspect-[3/4] overflow-hidden bg-surface mb-6 relative">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo0TfU1QE9Z3g6KSWzthQP8n3tJ1hrZprdYQTxSGqYo3njjVn7K0EKfw6840qBScOEn0HTTKh7RfwgbYhc3uuB1HNOvk-fnigdd0OG_HVwRALCiB15nolipjeuIOpQpuzA8Oa07jpbRIk6olmFouGsmhofVUpJnMZSE93cBk2khFLYCe96pSEjPIgvEwvZkU-MBVjZWAVH1i8XVY8C0xUNcB_PtOfwrj4UHOsI5v-n_r88KQibk4B5bqfALWtf5Ff2UIXiqelLVb4"/>
+<button class="absolute bottom-4 left-4 right-4 bg-white text-black py-3 font-label-caps text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">QUICK ADD</button>
+</div>
+<h4 class="font-headline-sm text-[18px] mb-1">Muña Mint</h4>
+<p class="text-on-surface-variant text-sm">$14.00</p>
+</div>
+<!-- Product 4 -->
+<div class="group">
+<div class="aspect-[3/4] overflow-hidden bg-surface mb-6 relative">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq0lR2foQLeFO6xaWDpIcAAaaVVvZu20VMSzkcP2lLvgdDszeCrX25G4vAKstjPj7H4fq6wFAkSA2LMEy--Tkco2UV6USH96XUsrqzVP4GFdr0WXY8_4G_EApwGRbW_toWpQLkcp8t-omfVjNs5n83h3IERzAFtb6F6_Taik4iz0hoCDTPn1el_AUtCMtF_EvUyXSWAYhQDTg9m4Vd8GTr3x72I3edlu_AX-aBAsBT2wMyxAgtouqlzgvepLMQNdZNR7izO0sF2Ac"/>
+<button class="absolute bottom-4 left-4 right-4 bg-white text-black py-3 font-label-caps text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">QUICK ADD</button>
+</div>
+<h4 class="font-headline-sm text-[18px] mb-1">Estate Reserve</h4>
+<p class="text-on-surface-variant text-sm">$18.00</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Us -->
+<section class="py-section-gap px-margin-edge">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-24">
+<div>
+<span class="font-label-caps text-label-caps text-secondary mb-6 block">GET IN TOUCH</span>
+<h2 class="font-headline-lg text-headline-lg mb-8">Visit the Studio</h2>
+<div class="space-y-6 text-on-surface-variant">
+<p class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span>124 Heritage Lane, Piura Valley, Peru</span>
+</p>
+<p class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">alternate_email</span>
+<span>studio@dosaguas.com</span>
+</p>
+<p class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">call</span>
+<span>+51 73 555 0129</span>
+</p>
+</div>
+</div>
+<form class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="border-b border-outline-variant/30 focus-within:border-primary transition-all pb-2">
+<input class="bg-transparent border-none w-full px-0 focus:ring-0 placeholder:text-on-surface-variant/40 font-label-caps text-label-caps" placeholder="NAME" type="text"/>
+</div>
+<div class="border-b border-outline-variant/30 focus-within:border-primary transition-all pb-2">
+<input class="bg-transparent border-none w-full px-0 focus:ring-0 placeholder:text-on-surface-variant/40 font-label-caps text-label-caps" placeholder="EMAIL" type="email"/>
+</div>
+</div>
+<div class="border-b border-outline-variant/30 focus-within:border-primary transition-all pb-2">
+<textarea class="bg-transparent border-none w-full px-0 focus:ring-0 placeholder:text-on-surface-variant/40 font-label-caps text-label-caps" placeholder="MESSAGE" rows="4"></textarea>
+</div>
+<button class="bg-primary text-on-primary px-12 py-4 font-label-caps text-label-caps tracking-widest hover:brightness-110 transition-all">SEND INQUIRY</button>
+</form>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest py-20 border-t border-outline-variant/20">
+<div class="max-w-container-max mx-auto px-margin-edge">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<div class="col-span-1 md:col-span-1">
+<img alt="Logo" class="h-8 mb-8 filter invert brightness-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW1aG2hmgZ0MZ_IxAioiyi8CEl3EeUgMSTMPjcv6CmuSItgaoEprEmeorjYeV-C7RLyqC8GXfCmF-0c9DiHqSMtpq1GpRRtmecVMTsnHcZ7tJrFGIz6o3OYLI2XrYxuEdyRLKvYD3kq4vyJgVY-nLNWgDgg-8YzzL6wQ4o29ZkD8Kinqm8dATdBt7_Iq088sKWRu6-LwiA8UIOMoP5MiVm1_LAe_X2pseSYXHqUdaDJBXy8dHjf6TLX8N62-2HFzY5zuRUFTlwN5E"/>
+<p class="text-on-surface-variant text-sm leading-relaxed max-w-xs">
+                    Fine flavored heirloom chocolate from the heart of Peru to the global palate.
+                </p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps mb-8 text-on-surface">COLLECTIONS</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">The Purist</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Botanical</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Finite Labs</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps mb-8 text-on-surface">JOURNAL</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Origin Reports</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Maker's Notes</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Recipes</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps mb-8 text-on-surface">JOIN US</h4>
+<form class="flex border-b border-outline-variant/30 pb-2">
+<input class="bg-transparent border-none text-xs w-full focus:ring-0 px-0" placeholder="EMAIL ADDRESS" type="email"/>
+<button class="material-symbols-outlined text-primary">arrow_forward</button>
+</form>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-outline-variant/10 gap-6">
+<span class="text-[10px] font-label-caps text-on-surface-variant/40">© 2024 DOS AGUAS ARTISANAL CHOCOLATE.</span>
+<div class="flex gap-6 text-[10px] font-label-caps text-on-surface-variant/40">
+<a class="hover:text-on-surface" href="#">PRIVACY</a>
+<a class="hover:text-on-surface" href="#">TERMS</a>
+<a class="hover:text-on-surface" href="#">SHIPPING</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    // Header Scroll Effect
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('main-header');
+        if (window.scrollY > 100) {
+            header.classList.add('bg-surface/90', 'backdrop-blur-md', 'py-4', 'border-b', 'border-outline-variant/10');
+            header.classList.remove('py-6');
+        } else {
+            header.classList.remove('bg-surface/90', 'backdrop-blur-md', 'py-4', 'border-b', 'border-outline-variant/10');
+            header.classList.add('py-6');
+        }
+    });
+
+    // Slider Navigation
+    function scrollSlider(direction) {
+        const slider = document.getElementById('hero-slider');
+        const scrollAmount = slider.offsetWidth;
+        slider.scrollBy({
+            left: direction * scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+
+    // Micro-interactions
+    document.querySelectorAll('button, a').forEach(el => {
+        el.addEventListener('mousedown', () => el.classList.add('scale-95'));
+        el.addEventListener('mouseup', () => el.classList.remove('scale-95'));
+        el.addEventListener('mouseleave', () => el.classList.remove('scale-95'));
+    });
+</script>
+</body></html>

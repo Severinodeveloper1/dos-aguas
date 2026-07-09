@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dos Aguas | Cart Summary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Custom scrollbar for a premium feel */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #131313; }
+        ::-webkit-scrollbar-thumb { background: #504443; }
+        
+        .premium-border {
+            border-bottom: 1px solid rgba(157, 141, 140, 0.15);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#353535",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed": "#ffdbd0",
+                        "on-secondary-fixed": "#3a0b00",
+                        "outline": "#9d8d8c",
+                        "on-primary-container": "#bd928f",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-bright": "#393939",
+                        "on-surface-variant": "#d4c3c1",
+                        "tertiary-container": "#37342d",
+                        "on-primary": "#462827",
+                        "on-secondary-container": "#ffa083",
+                        "secondary": "#ffb59e",
+                        "on-tertiary-fixed": "#1e1b15",
+                        "on-secondary": "#5e1700",
+                        "on-primary-fixed": "#2e1413",
+                        "on-tertiary": "#333029",
+                        "surface-container": "#20201f",
+                        "on-surface": "#e5e2e1",
+                        "on-primary-fixed-variant": "#5f3e3c",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "primary": "#eabcb8",
+                        "primary-container": "#4a2c2a",
+                        "surface": "#131313",
+                        "primary-fixed": "#ffdad7",
+                        "surface-dim": "#131313",
+                        "secondary-fixed-dim": "#ffb59e",
+                        "surface-variant": "#353535",
+                        "on-tertiary-fixed-variant": "#4a463f",
+                        "inverse-primary": "#795553",
+                        "on-tertiary-container": "#a29c93",
+                        "outline-variant": "#504443",
+                        "background": "#131313",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#ccc6bc",
+                        "secondary-container": "#832c0d",
+                        "on-background": "#e5e2e1",
+                        "surface-tint": "#eabcb8",
+                        "tertiary": "#ccc6bc",
+                        "on-secondary-fixed-variant": "#802a0b",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#eabcb8",
+                        "tertiary-fixed": "#e8e2d8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "unit": "8px",
+                        "margin-edge": "40px",
+                        "container-max": "1280px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Libre Caslon Text"],
+                        "label-caps": ["DM Sans"],
+                        "headline-xl": ["Libre Caslon Text"],
+                        "body-md": ["DM Sans"],
+                        "body-lg": ["DM Sans"],
+                        "headline-sm": ["Libre Caslon Text"],
+                        "headline-md": ["Libre Caslon Text"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.15em", "fontWeight": "700"}],
+                        "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- Header / Progress Bar -->
+<header class="bg-surface sticky top-0 z-50 border-b border-outline-variant/20">
+<div class="flex justify-between items-center w-full px-margin-edge h-20 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md text-on-surface tracking-tighter">Dos Aguas</div>
+<nav class="hidden md:flex items-center gap-8">
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1">1. CART</span>
+<span class="w-8 h-[1px] bg-outline-variant/30"></span>
+<span class="font-label-caps text-label-caps text-on-surface-variant opacity-40">2. SHIPPING</span>
+<span class="w-8 h-[1px] bg-outline-variant/30"></span>
+<span class="font-label-caps text-label-caps text-on-surface-variant opacity-40">3. PAYMENT</span>
+</div>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface cursor-pointer">shopping_bag</span>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-edge py-16">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Left Column: Cart Table & Message -->
+<div class="lg:col-span-8">
+<h1 class="font-headline-lg text-headline-md md:text-headline-lg mb-12">Your Selection</h1>
+<div class="w-full">
+<!-- Table Header -->
+<div class="hidden md:grid grid-cols-12 pb-6 border-b border-outline-variant/20 mb-8">
+<div class="col-span-6 font-label-caps text-label-caps text-on-surface-variant">PRODUCT</div>
+<div class="col-span-2 text-center font-label-caps text-label-caps text-on-surface-variant">PRICE</div>
+<div class="col-span-2 text-center font-label-caps text-label-caps text-on-surface-variant">QUANTITY</div>
+<div class="col-span-2 text-right font-label-caps text-label-caps text-on-surface-variant">SUBTOTAL</div>
+</div>
+<!-- Cart Item 1 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center py-8 premium-border group">
+<div class="col-span-12 md:col-span-6 flex items-center gap-6">
+<div class="w-24 h-32 overflow-hidden bg-surface-container">
+<img alt="70% Cacao con Muña packaging" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7uU95vk_zFOI912nyMhhDJwwBrYhEVO0oCbcsQtVC_VS2guORMlTcwi0QEhVsdrJLjDEncvh4_Mi9EAnP0ocmDSFbYAksCaImPr91bbWaX0mchevKsLCHNz0celYKAUuOCM3SG7rcPFqvdJIOXDP0vd46Y1DggesgABgOn2PBXfISiHB4SyVzraPkX8AjTD11_4qyhDoqkXIpIBAjp_kTZ0C-XPr4lLJr-keMMQVf4a7Qjz8k25QBElBPFY4WpZxxekHQzq4TYUI"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-1">70% Cacao con Muña</h3>
+<p class="font-label-caps text-[10px] text-on-surface-variant/60 uppercase tracking-widest">Single Origin • Andean Mint</p>
+</div>
+</div>
+<div class="col-span-4 md:col-span-2 text-left md:text-center font-body-md">
+<span class="md:hidden font-label-caps text-[10px] block text-on-surface-variant mb-1">PRICE</span>
+                            $18.00
+                        </div>
+<div class="col-span-4 md:col-span-2 flex justify-center">
+<div class="flex items-center border border-outline-variant/30 h-10 px-2 gap-4">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+<span class="font-label-caps text-label-caps">1</span>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">add</span></button>
+</div>
+</div>
+<div class="col-span-4 md:col-span-2 text-right font-body-md text-primary">
+<span class="md:hidden font-label-caps text-[10px] block text-on-surface-variant mb-1">SUBTOTAL</span>
+                            $18.00
+                        </div>
+</div>
+<!-- Cart Item 2 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center py-8 premium-border group">
+<div class="col-span-12 md:col-span-6 flex items-center gap-6">
+<div class="w-24 h-32 overflow-hidden bg-surface-container">
+<img alt="Chuncho Especial 86% packaging" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpyB1GITpYzI7x-drCPLoCE-m2ZSXnDQVKFa3gMWeAiOONxHaR89OEetKz0ioq7UT8nP0BI52D6Cbn6oDpx8QSKku-IAZrWt0pW6oSGXM2aGt3_-FT4YT_fszWkP0qQ5iPVhBc5blLL9Qc74w-6kDFfG8h7LtWS-HMbzUaCwIpvKy1lOMdyMKBZoGS8iZvIHpMG3RVxHQBa_PFrBoXMhSLXvezz6r9_SRA65Y0X-DUoYl8_b6RreSy3uFBOWa0F5T7HpPxzZotOI0"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-1">Chuncho Especial 86%</h3>
+<p class="font-label-caps text-[10px] text-on-surface-variant/60 uppercase tracking-widest">Limited Harvest • High Intensity</p>
+</div>
+</div>
+<div class="col-span-4 md:col-span-2 text-left md:text-center font-body-md">
+<span class="md:hidden font-label-caps text-[10px] block text-on-surface-variant mb-1">PRICE</span>
+                            $15.00
+                        </div>
+<div class="col-span-4 md:col-span-2 flex justify-center">
+<div class="flex items-center border border-outline-variant/30 h-10 px-2 gap-4">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+<span class="font-label-caps text-label-caps">1</span>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">add</span></button>
+</div>
+</div>
+<div class="col-span-4 md:col-span-2 text-right font-body-md text-primary">
+<span class="md:hidden font-label-caps text-[10px] block text-on-surface-variant mb-1">SUBTOTAL</span>
+                            $15.00
+                        </div>
+</div>
+</div>
+<!-- Gift Message Section -->
+<div class="mt-16 max-w-lg">
+<label class="font-label-caps text-label-caps block mb-4">GIFT MESSAGE (OPTIONAL)</label>
+<div class="relative">
+<textarea class="w-full bg-transparent border-outline-variant/30 focus:border-primary focus:ring-0 min-h-[120px] p-4 text-on-surface placeholder:text-on-surface-variant/30 transition-all duration-300" placeholder="Write a message for your recipient..."></textarea>
+<div class="absolute bottom-4 right-4 flex items-center gap-2 opacity-30">
+<span class="material-symbols-outlined text-sm">featured_seasonal_and_gifts</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Summary Card -->
+<div class="lg:col-span-4">
+<div class="sticky top-32 bg-surface-container-low p-8 border border-outline-variant/10">
+<h2 class="font-headline-sm text-headline-sm mb-8">Summary</h2>
+<div class="space-y-4 pb-8 premium-border mb-8">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SUBTOTAL</span>
+<span class="font-body-md">$33.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SHIPPING</span>
+<span class="font-body-md italic text-on-surface-variant/60">Calculated at next step</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">TAXES</span>
+<span class="font-body-md">$0.00</span>
+</div>
+</div>
+<div class="flex justify-between items-center mb-12">
+<span class="font-headline-sm text-headline-sm">Total</span>
+<span class="font-headline-sm text-headline-sm text-primary">$33.00</span>
+</div>
+<button class="w-full bg-on-secondary-container text-surface-container-lowest font-label-caps text-label-caps py-5 tracking-[0.2em] transition-all duration-300 hover:bg-primary hover:tracking-[0.25em] active:scale-[0.98]">
+                        PROCEED TO CHECKOUT
+                    </button>
+<div class="mt-8 flex flex-col gap-4">
+<div class="flex items-center gap-3 opacity-50">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+<span class="font-label-caps text-[10px]">SECURE PAYMENT ENCRYPTED</span>
+</div>
+<div class="flex items-center gap-3 opacity-50">
+<span class="material-symbols-outlined text-sm">local_shipping</span>
+<span class="font-label-caps text-[10px]">CLIMATE NEUTRAL DELIVERY</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Atmospheric Divider -->
+<div class="flex items-center justify-center py-section-gap">
+<div class="h-[1px] w-24 bg-gradient-to-r from-transparent to-outline-variant/30"></div>
+<span class="material-symbols-outlined mx-4 text-outline-variant/40" style="font-variation-settings: 'FILL' 1;">diamond</span>
+<div class="h-[1px] w-24 bg-gradient-to-l from-transparent to-outline-variant/30"></div>
+</div>
+<!-- Cross-sell Section -->
+<section class="mb-section-gap">
+<h3 class="font-label-caps text-label-caps text-center mb-12 text-on-surface-variant/60">YOU MIGHT ALSO ENJOY</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Mini product card -->
+<div class="group cursor-pointer">
+<div class="aspect-[0.8] bg-surface-container overflow-hidden mb-4">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Dark chocolate bar with sea salt crystals in high contrast editorial lighting, minimalist dark background, professional culinary photography" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCdA9PorMqSXyBbaOL6FctfnLTU_1rLUKKivTftSe8_lPGgjSgDpJ7wz6q8fF5kWthi3jGhahVF-YPMxiZlLx-D_YkGUIv93PdSap15SvhxZ7Teyu_FJdi_FDLOOLD1sxxMgutI50hJH_O3JxFzQTnAq16Afi19Sj95ONYMp3WCgfqnHxPiLuU5KxCZXt32y54p4JnGGXEJ2nBloL5yW1z_QK8K9W7aWdCpMNwXTh0dGb_rp9DKrsojXE3ZzV8Zdl9X25LmCCUQSy0')"></div>
+</div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">MARAS SALT 70%</p>
+<p class="font-body-md text-primary">$15.00</p>
+</div>
+<!-- Mini product card 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[0.8] bg-surface-container overflow-hidden mb-4">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Artisanal chocolate truffles arranged on a slate surface, deep shadows, moody luxury aesthetic, warm terracotta highlights, fine dining presentation" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0LCEmV3e4iN9dDXZWfNkPI0wPcZEF-3ybgM0D0ecBPBIlHJdOJS15Flc2IOoOQquCTxmj0DDR2pX2iSF3nSE2ezd0SX_KhZHLPjimfBBECcwgen5WizWExJp_uljL66q-VfjX_QuoIbBQ8jZBldHkv6nbi1WyQrBeAdXZWLNioJezl3m1qrAjwzGMFJmxTRLJop5wG99hDxLSOhYW3z68pTjIOP4vA4y0nVxaU2yCDBmY3Sx2nD4rKkvnN46ZAWHD8Oab0qgexGk')"></div>
+</div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">COLLECTION BOX</p>
+<p class="font-body-md text-primary">$45.00</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-edge py-16 max-w-container-max mx-auto">
+<div class="font-headline-sm text-headline-sm text-on-surface mb-8 md:mb-0">Dos Aguas</div>
+<div class="flex flex-wrap justify-center gap-8 mb-8 md:mb-0">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Sustainability</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-60 text-center md:text-right">
+                © 2024 Dos Aguas Artisanal Cacao. Crafted in Peru.
+            </p>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for the quantity buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if(e.currentTarget.innerText.includes('add') || e.currentTarget.innerText.includes('remove')) {
+                    // Logic for quantity would go here in a real app
+                    const ripple = document.createElement('span');
+                    ripple.className = 'absolute animate-ping h-4 w-4 rounded-full bg-primary/20';
+                    e.currentTarget.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 500);
+                }
+            });
+        });
+
+        // Sticky header transition
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('bg-surface/90', 'backdrop-blur-md');
+            } else {
+                header.classList.remove('bg-surface/90', 'backdrop-blur-md');
+            }
+        });
+    </script>
+</body></html>

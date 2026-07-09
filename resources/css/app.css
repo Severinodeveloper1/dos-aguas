@@ -1,4 +1,6 @@
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Archivo+Narrow:wght@400;500;600;700&display=swap");
+
+@import "tailwindcss";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -6,6 +8,72 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Custom fonts */
+    --font-headline: "Libre Caslon Text", serif;
+    --font-body: "DM Sans", sans-serif;
+    --font-archivo: "Archivo Narrow", sans-serif;
+
+    /* Design system colors for Moody Luxury theme */
+    --color-background: #131313;
+    --color-surface: #131313;
+    --color-surface-dim: #131313;
+    --color-surface-bright: #393939;
+    --color-surface-container-lowest: #0e0e0e;
+    --color-surface-container-low: #1c1b1b;
+    --color-surface-container: #20201f;
+    --color-surface-container-high: #2a2a2a;
+    --color-surface-container-highest: #353535;
+    --color-on-surface: #e5e2e1;
+    --color-on-surface-variant: #d4c3c1;
+    --color-inverse-surface: #e5e2e1;
+    --color-inverse-on-surface: #313030;
+    --color-outline: #9d8d8c;
+    --color-outline-variant: #504443;
+    --color-surface-tint: #eabcb8;
+
+    --color-primary: #eabcb8;
+    --color-on-primary: #462827;
+    --color-primary-container: #4a2c2a;
+    --color-on-primary-container: #bd928f;
+    --color-inverse-primary: #795553;
+
+    --color-secondary: #ffb59e;
+    --color-on-secondary: #5e1700;
+    --color-secondary-container: #832c0d;
+    --color-on-secondary-container: #ffa083;
+
+    --color-tertiary: #ccc6bc;
+    --color-on-tertiary: #333029;
+    --color-tertiary-container: #37342d;
+    --color-on-tertiary-container: #a29c93;
+
+    --color-error: #ffb4ab;
+    --color-on-error: #690005;
+    --color-error-container: #93000a;
+    --color-on-error-container: #ffdad6;
+
+    /* Additional custom brands */
+    --color-cacao-deep: #4a2c2a;
+    --color-parchment-cream: #f3e6d3;
+    --color-terracotta-sun: #d98e3e;
+    --color-leaf-green: #748c43;
+    --color-coast-sand: #e3bc9a;
+
+    /* Custom Spacing Tokens */
+    --spacing-unit: 8px;
+    --spacing-section-gap: 120px;
+    --spacing-gutter: 24px;
+    --spacing-margin-edge: 40px;
+    --spacing-container-max: 1280px;
+}
+
+html {
+    font-size: 20px;
+}
+
+body {
+    background-color: #131313;
+    color: #e5e2e1;
+    -webkit-font-smoothing: antialiased;
+    font-family: "DM Sans", sans-serif;
 }

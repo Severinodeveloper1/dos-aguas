@@ -1,0 +1,208 @@
+@extends('layouts.app')
+
+@section('title', __('messages.nav.contact') . ' | Dos Aguas')
+
+@section('content')
+
+    <main class="max-w-container-max mx-auto px-margin-edge py-20 font-body"
+          x-data="{
+              name: '',
+              email: '',
+              phone: '',
+              subject: '',
+              message: '',
+              errors: {},
+              successMessage: '',
+              loading: false,
+
+              submitContact() {
+                  this.loading = true;
+                  this.errors = {};
+                  this.successMessage = '';
+
+                  fetch('{{ route('contact') }}', {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json',
+                          'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                      },
+                      body: JSON.stringify({
+                          name: this.name,
+                          email: this.email,
+                          phone: this.phone,
+                          subject: this.subject,
+                          message: this.message
+                      })
+                  })
+                  .then(res => {
+                      return res.json().then(data => ({ status: res.status, body: data }));
+                  })
+                  .then(res => {
+                      this.loading = false;
+                      if (res.status === 201) {
+                          this.successMessage = res.body.message;
+                          // Reset form
+                          this.name = '';
+                          this.email = '';
+                          this.phone = '';
+                          this.subject = '';
+                          this.message = '';
+                      } else if (res.status === 422) {
+                          this.errors = res.body.errors || {};
+                      } else {
+                          alert('Error al enviar el mensaje. Por favor intente más tarde.');
+                      }
+                  })
+                  .catch(err => {
+                      this.loading = false;
+                      alert('Error de red. Verifique su conexión.');
+                  });
+              }
+          }">
+        
+        <!-- Breadcrumbs -->
+        <nav class="mb-12 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-outline">
+            <a class="hover:text-primary transition-colors duration-300" href="{{ route('home') }}">Home</a>
+            <span class="text-[8px] opacity-40">/</span>
+            <span class="text-on-surface font-bold">{{ __('messages.nav.contact') }}</span>
+        </nav>
+
+        <div class="max-w-3xl mx-auto text-center space-y-8 mb-20">
+            <span class="font-label-caps text-xs text-primary tracking-[0.3em] uppercase block font-bold">
+                {{ app()->getLocale() == 'es' ? 'ESTAMOS CERCA DE TI' : 'GET IN TOUCH' }}
+            </span>
+            <h1 class="font-headline text-4xl md:text-5xl font-bold leading-tight">
+                {{ app()->getLocale() == 'es' ? 'Hablemos de Cacao' : 'Let\'s Talk Cacao' }}
+            </h1>
+            <div class="w-16 h-px bg-primary mx-auto"></div>
+        </div>
+
+        <!-- Contact Grid -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            
+            <!-- Left Form Column -->
+            <div class="lg:col-span-7 bg-[#161616] border border-outline-variant/10 p-8 md:p-12 space-y-8">
+                <h2 class="font-headline text-2xl font-bold uppercase tracking-wider">{{ __('messages.contact.title') }}</h2>
+                
+                <!-- Success Alert -->
+                <div x-show="successMessage" x-transition class="p-4 bg-leaf-green/10 border border-leaf-green/30 text-leaf-green text-xs font-bold font-body">
+                    <span x-text="successMessage"></span>
+                </div>
+
+                <form @submit.prevent="submitContact()" class="space-y-6 text-xs font-body">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Name -->
+                        <div class="flex flex-col gap-2">
+                            <label class="font-label-caps text-[9px] tracking-wider text-outline font-bold uppercase">{{ __('messages.contact.name') }} *</label>
+                            <input type="text" x-model="name" required
+                                   class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
+                            <template x-if="errors.name">
+                                <span class="text-error text-[10px]" x-text="errors.name[0]"></span>
+                            </template>
+                        </div>
+                        
+                        <!-- Email -->
+                        <div class="flex flex-col gap-2">
+                            <label class="font-label-caps text-[9px] tracking-wider text-outline font-bold uppercase">{{ __('messages.contact.email') }} *</label>
+                            <input type="email" x-model="email" required
+                                   class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
+                            <template x-if="errors.email">
+                                <span class="text-error text-[10px]" x-text="errors.email[0]"></span>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Phone -->
+                        <div class="flex flex-col gap-2">
+                            <label class="font-label-caps text-[9px] tracking-wider text-outline font-bold uppercase">{{ __('messages.contact.phone') }}</label>
+                            <input type="text" x-model="phone"
+                                   class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
+                            <template x-if="errors.phone">
+                                <span class="text-error text-[10px]" x-text="errors.phone[0]"></span>
+                            </template>
+                        </div>
+                        
+                        <!-- Subject -->
+                        <div class="flex flex-col gap-2">
+                            <label class="font-label-caps text-[9px] tracking-wider text-outline font-bold uppercase">{{ __('messages.contact.subject') }} *</label>
+                            <input type="text" x-model="subject" required
+                                   class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
+                            <template x-if="errors.subject">
+                                <span class="text-error text-[10px]" x-text="errors.subject[0]"></span>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-label-caps text-[9px] tracking-wider text-outline font-bold uppercase">{{ __('messages.contact.message') }} *</label>
+                        <textarea x-model="message" required rows="5"
+                                  class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs resize-none"></textarea>
+                        <template x-if="errors.message">
+                            <span class="text-error text-[10px]" x-text="errors.message[0]"></span>
+                        </template>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" :disabled="loading"
+                                class="bg-primary text-on-primary px-12 py-4 font-label-caps text-xs tracking-widest hover:bg-secondary hover:text-on-secondary disabled:bg-surface-container-high transition-all duration-300 font-bold flex items-center gap-2">
+                            <span x-show="loading" class="w-3.5 h-3.5 border-2 border-on-primary border-t-transparent rounded-full animate-spin"></span>
+                            <span x-text="loading ? '...' : '{{ __('messages.contact.send') }}'"></span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Right Info Column -->
+            <div class="lg:col-span-5 space-y-12 leading-relaxed text-xs">
+                
+                <div class="space-y-4">
+                    <h3 class="font-headline text-2xl font-bold">{{ __('messages.contact.hacienda') }}</h3>
+                    <p class="text-on-surface-variant font-body">
+                        {{ __('messages.contact.hacienda_desc') }}
+                    </p>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-xl">location_on</span>
+                        <div>
+                            <p class="font-label-caps text-[10px] text-primary font-bold uppercase">{{ __('messages.footer.address') }}</p>
+                            <p class="font-bold text-on-surface pt-1">{{ $company->address }}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-xl">call</span>
+                        <div>
+                            <p class="font-label-caps text-[10px] text-primary font-bold uppercase">{{ __('messages.footer.phone') }}</p>
+                            <p class="font-bold text-on-surface pt-1">{{ $company->phone }}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-xl">alternate_email</span>
+                        <div>
+                            <p class="font-label-caps text-[10px] text-primary font-bold uppercase">{{ __('messages.footer.email') }}</p>
+                            <p class="font-bold text-on-surface pt-1">{{ $company->email }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Maps Iframe from DB -->
+                @if($company->maps_iframe)
+                    <div class="w-full aspect-video border border-outline-variant/10 bg-[#161616]">
+                        {!! $company->maps_iframe !!}
+                    </div>
+                @endif
+
+            </div>
+
+        </section>
+
+    </main>
+
+@endsection

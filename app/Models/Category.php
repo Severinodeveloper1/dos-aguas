@@ -20,6 +20,7 @@ class Category extends Model implements Auditable
         'is_active',
         'meta_title',
         'meta_description',
+        'photo_path',
     ];
 
     protected $casts = [
@@ -32,4 +33,3 @@ class Category extends Model implements Auditable
         return $this->hasMany(Product::class);
     }
 }
-
