@@ -100,6 +100,8 @@ class ManageCompanyInfo extends Page implements HasForms
                                     ->acceptedFileTypes(['application/pdf'])
                                     ->disk('public')
                                     ->directory('company')
+                                    ->maxSize(102400)
+                                    ->helperText('Sube el brochure corporativo en formato PDF. Tamaño máximo: 100MB.')
                                     ->columnSpanFull(),
                             ])->columns(2),
 
@@ -122,7 +124,7 @@ class ManageCompanyInfo extends Page implements HasForms
                                     ->disk('public')
                                     ->directory('gallery')
                                     ->columnSpanFull()
-                                    ->helperText('Puedes subir múltiples imágenes para la galería pública de la Hacienda.'),
+                                    ->helperText('Puedes subir múltiples imágenes para la galería pública de la Hacienda. Tamaño máximo por imagen: 100MB.'),
                             ]),
                     ])
             ])

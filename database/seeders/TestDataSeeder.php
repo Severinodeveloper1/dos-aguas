@@ -330,5 +330,18 @@ class TestDataSeeder extends Seeder
                 'is_active' => true,
             ]
         );
+
+        // 10. Seed Awards
+        \App\Models\Award::firstOrCreate(
+            ['title' => 'Medalla de Oro - Ucayali 70%'],
+            [
+                'description' => 'Mejor barra de chocolate oscuro de origen en los International Chocolate Awards.',
+                'country' => 'Bélgica',
+                'date' => '2023-11-12',
+                'product_image' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuBo0TfU1QE9Z3g6KSWzthQP8n3tJ1hrZprdYQTxSGqYo3njjVn7K0EKfw6840qBScOEn0HTTKh7RfwgbYhc3uuB1HNOvk-fnigdd0OG_HVwRALCiB15nolipjeuIOpQpuzA8Oa07jpbRIk6olmFouGsmhofVUpJnMZSE93cBk2khFLYCe96pSEjPIgvEwvZkU-MBVjZWAVH1i8XVY8C0xUNcB_PtOfwrj4UHOsI5v-n_r88KQibk4B5bqfALWtf5Ff2UIXiqelLVb4',
+                'medal_image' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuCq0lR2foQLeFO6xaWDpIcAAaaVVvZu20VMSzkcP2lLvgdDszeCrX25G4vAKstjPj7H4fq6wFAkSA2LMEy--Tkco2UV6USH96XUsrqzVP4GFdr0WXY8_4G_EApwGRbW_toWpQLkcp8t-omfVjNs5n83h3IERzAFtb6F6_Taik4iz0hoCDTPn1el_AUtCMtF_EvUyXSWAYhQDTg9m4Vd8GTr3x72I3edlu_AX-aBAsBT2wMyxAgtouqlzgvepLMQNdZNR7izO0sF2Ac',
+                'certificate_image' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuCMjIjbQezVbdWabzkrGNdze2_zQ3umglIvC7b0TMaM1iSZ02hGTQBbifYtEpyexm1ZbshF9SFBd1rZcGqAPiBBdwLkNCtpAJIyyYuQDHPv-iPSe1kpEmcWO1di8i-RB6L1w0-3bgWo9CU8gzQ6pnSfeI3Ie8asUdcYvn5xRthpQy-bDcRNgpNRjj4MZ9msCnqG2GyGhTetslOby228jsTAJ3sV2lRFP_TOSPapFuhK8HQuhE4uoxk855njunPeTRkmJQLSjzgHf5Y',
+            ]
+        );
     }
 }

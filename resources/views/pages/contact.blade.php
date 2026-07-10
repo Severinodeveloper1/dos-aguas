@@ -2,7 +2,46 @@
 
 @section('title', __('messages.nav.contact') . ' | Dos Aguas')
 
+@section('styles')
+<style>
+    .map-container iframe {
+        width: 100% !important;
+        height: 100% !important;
+        border: 0 !important;
+    }
+</style>
+@endsection
+
 @section('content')
+
+    <!-- 1. Hero Parallax Header Section with Custom Background Image -->
+    <section class="relative h-[50vh] w-full overflow-hidden flex items-center justify-center bg-black">
+        
+        <!-- Background Image with Parallax fixed attachment -->
+        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" 
+             style="background-image: url('{{ asset('img/imagenes_constatenos.jpeg') }}'); background-attachment: fixed;"></div>
+        
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/60 z-0"></div>
+        
+        <!-- Breadcrumbs (absolute positioned at top left) -->
+        <nav class="absolute top-8 left-margin-edge z-10 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-outline-variant/60">
+            <a class="hover:text-primary transition-colors duration-300" href="{{ route('home') }}">Home</a>
+            <span class="text-[8px] opacity-40">/</span>
+            <span class="text-on-surface font-bold">{{ __('messages.nav.contact') }}</span>
+        </nav>
+
+        <!-- Centered Titles -->
+        <div class="relative z-10 text-center max-w-4xl mx-auto px-margin-edge space-y-4">
+            <span class="font-label-caps text-xs text-primary tracking-[0.3em] uppercase block font-bold">
+                {{ __('messages.contact.near') }}
+            </span>
+            <h1 class="font-headline text-4xl md:text-5xl font-bold uppercase tracking-wider text-on-surface">
+                {{ __('messages.contact.talk_cacao') }}
+            </h1>
+            <div class="w-16 h-px bg-primary mx-auto"></div>
+        </div>
+    </section>
 
     <main class="max-w-container-max mx-auto px-margin-edge py-20 font-body"
           x-data="{
@@ -59,26 +98,9 @@
                   });
               }
           }">
-        
-        <!-- Breadcrumbs -->
-        <nav class="mb-12 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-outline">
-            <a class="hover:text-primary transition-colors duration-300" href="{{ route('home') }}">Home</a>
-            <span class="text-[8px] opacity-40">/</span>
-            <span class="text-on-surface font-bold">{{ __('messages.nav.contact') }}</span>
-        </nav>
-
-        <div class="max-w-3xl mx-auto text-center space-y-8 mb-20">
-            <span class="font-label-caps text-xs text-primary tracking-[0.3em] uppercase block font-bold">
-                {{ app()->getLocale() == 'es' ? 'ESTAMOS CERCA DE TI' : 'GET IN TOUCH' }}
-            </span>
-            <h1 class="font-headline text-4xl md:text-5xl font-bold leading-tight">
-                {{ app()->getLocale() == 'es' ? 'Hablemos de Cacao' : 'Let\'s Talk Cacao' }}
-            </h1>
-            <div class="w-16 h-px bg-primary mx-auto"></div>
-        </div>
 
         <!-- Contact Grid -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mb-24">
             
             <!-- Left Form Column -->
             <div class="lg:col-span-7 bg-[#161616] border border-outline-variant/10 p-8 md:p-12 space-y-8">
@@ -192,13 +214,82 @@
                     </div>
                 </div>
 
-                <!-- Google Maps Iframe from DB -->
+            </div>
+
+        </section>
+
+        <!-- Map and Collection Centers Section (Vertical Flow) -->
+        <section class="mt-32 border-t border-outline-variant/10 pt-20 space-y-20">
+            
+            <!-- Map Location (Full width/centered) -->
+            <div class="max-w-4xl mx-auto space-y-6 text-center">
+                <div class="space-y-2">
+                    <span class="font-label-caps text-xs text-primary tracking-[0.2em] uppercase block font-bold">
+                        {{ __('messages.contact.map_location') }}
+                    </span>
+                    <h2 class="font-headline text-3xl font-bold uppercase tracking-wider text-center">
+                        {{ app()->getLocale() == 'en' ? 'Dos Aguas Estate' : (app()->getLocale() == 'de' ? 'Hacienda Dos Aguas' : 'Hacienda Dos Aguas') }}
+                    </h2>
+                </div>
+                
                 @if($company->maps_iframe)
-                    <div class="w-full aspect-video border border-outline-variant/10 bg-[#161616]">
+                    <div class="map-container w-full aspect-video border border-outline-variant/10 bg-[#161616] overflow-hidden">
                         {!! $company->maps_iframe !!}
                     </div>
+                @else
+                    <!-- Fallback map -->
+                    <div class="w-full aspect-video border border-outline-variant/10 bg-[#161616] flex items-center justify-center text-outline-variant/30">
+                        <span class="material-symbols-outlined text-4xl">map</span>
+                    </div>
                 @endif
+            </div>
 
+            <!-- Collection/Harvest Centers (Centros de Acopio - Centered below map) -->
+            <div class="space-y-12">
+                <div class="max-w-3xl mx-auto text-center space-y-4">
+                    <span class="font-label-caps text-xs text-primary tracking-[0.2em] uppercase block font-bold">
+                        {{ __('messages.contact.supply_network') }}
+                    </span>
+                    <h2 class="font-headline text-3xl font-bold uppercase tracking-wider text-center">
+                        {{ __('messages.contact.collection_centers') }}
+                    </h2>
+                    <p class="text-xs text-on-surface-variant font-body max-w-lg mx-auto text-center">
+                        {{ app()->getLocale() == 'en' 
+                            ? 'Our reception sites for native fine aroma cacao directly from local farmers.' 
+                            : (app()->getLocale() == 'de' 
+                                ? 'Unsere Annahmestellen für edlen nativen Aromakakao direkt von den Landwirten der Region.' 
+                                : 'Nuestras sedes de recepción de cacao nativo fino de aroma directamente de los agricultores de la zona.') }}
+                    </p>
+                </div>
+                
+                <!-- Centered grid/flex layout for cards -->
+                <div class="flex flex-wrap justify-center gap-8 max-w-5xl mx-auto font-body">
+                    <!-- Center 1 -->
+                    <div class="p-6 bg-[#161616] border border-outline-variant/10 space-y-4 w-full md:w-[calc(50%-1rem)] max-w-sm text-left">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary text-2xl">warehouse</span>
+                            <h4 class="font-headline text-base font-bold text-on-surface">Acopio Central Satipo</h4>
+                        </div>
+                        <div class="space-y-2 text-xs text-on-surface-variant">
+                            <p class="flex gap-2"><span class="font-semibold text-on-surface">{{ __('messages.footer.address') }}:</span> Jr. Francisco Irazola 450, Satipo, Junín</p>
+                            <p class="flex gap-2"><span class="font-semibold text-on-surface">{{ app()->getLocale() == 'en' ? 'Contact' : (app()->getLocale() == 'de' ? 'Ansprechpartner' : 'Contacto') }}:</span> Ing. Carlos Mendoza (+51 987 654 321)</p>
+                            <p class="flex gap-2"><span class="font-semibold text-on-surface">{{ app()->getLocale() == 'en' ? 'Hours' : (app()->getLocale() == 'de' ? 'Öffnungszeiten' : 'Horario') }}:</span> {{ app()->getLocale() == 'en' ? 'Mon - Sat' : (app()->getLocale() == 'de' ? 'Mo - Sa' : 'Lun - Sáb') }}: 7:00 AM - 5:00 PM</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Center 2 -->
+                    <div class="p-6 bg-[#161616] border border-outline-variant/10 space-y-4 w-full md:w-[calc(50%-1rem)] max-w-sm text-left">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary text-2xl">warehouse</span>
+                            <h4 class="font-headline text-base font-bold text-on-surface">Acopio Pichanaki</h4>
+                        </div>
+                        <div class="space-y-2 text-xs text-on-surface-variant">
+                            <p class="flex gap-2"><span class="font-semibold text-on-surface">{{ __('messages.footer.address') }}:</span> Av. Marginal Sur Km 1.5, Pichanaki, Junín</p>
+                            <p class="flex gap-2"><span class="font-semibold text-on-surface">{{ app()->getLocale() == 'en' ? 'Contact' : (app()->getLocale() == 'de' ? 'Ansprechpartner' : 'Contacto') }}:</span> Sra. Elena Torres (+51 987 111 222)</p>
+                            <p class="flex gap-2"><span class="font-semibold text-on-surface">{{ app()->getLocale() == 'en' ? 'Hours' : (app()->getLocale() == 'de' ? 'Öffnungszeiten' : 'Horario') }}:</span> {{ app()->getLocale() == 'en' ? 'Mon - Sat' : (app()->getLocale() == 'de' ? 'Mo - Sa' : 'Lun - Sáb') }}: 8:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </section>

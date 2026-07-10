@@ -27,6 +27,8 @@ class TimelineEventForm
                     ->default(null)
                     ->columnSpanFull(),
                 FileUpload::make('image_path')
+                    ->disk('public')
+                    ->directory('timeline_events')
                     ->image(),
                 TextInput::make('order')
                     ->required()

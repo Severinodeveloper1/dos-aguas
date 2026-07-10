@@ -54,8 +54,15 @@
                   .then(res => res.json())
                   .then(data => {
                       if(data.success) {
-                          const badge = document.querySelector('header a[href*=\"carrito\"] span');
-                          if (badge) badge.innerText = data.cartCount;
+                          const badge = document.getElementById('cart-badge-count');
+                          if (badge) {
+                              badge.innerText = data.cartCount;
+                              if (data.cartCount > 0) {
+                                  badge.classList.remove('hidden');
+                              } else {
+                                  badge.classList.add('hidden');
+                              }
+                          }
                       } else {
                           alert(data.message);
                       }
@@ -78,12 +85,13 @@
                   .then(res => res.json())
                   .then(data => {
                       if(data.success) {
-                          const badge = document.querySelector('header a[href*=\"carrito\"] span');
+                          const badge = document.getElementById('cart-badge-count');
                           if (badge) {
+                              badge.innerText = data.cartCount;
                               if (data.cartCount > 0) {
-                                  badge.innerText = data.cartCount;
+                                  badge.classList.remove('hidden');
                               } else {
-                                  badge.remove();
+                                  badge.classList.add('hidden');
                               }
                           }
                       }

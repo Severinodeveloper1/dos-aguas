@@ -146,10 +146,22 @@
                                                 <span class="material-symbols-outlined text-4xl">broken_image</span>
                                             </div>
                                         @endif
-                                        <a href="{{ route('product.detail', $product->slug) }}" 
-                                           class="absolute bottom-4 left-4 right-4 bg-primary text-on-primary text-center py-3 font-label-caps text-[9px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-secondary hover:text-on-secondary">
-                                            {{ __('messages.collections.view_details') }}
-                                        </a>
+                                        <!-- Hover Action Overlay -->
+                                        <div class="absolute inset-0 bg-[#131313]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                                            <a href="{{ route('product.detail', $product->slug) }}" 
+                                               class="w-11 h-11 bg-primary text-on-primary hover:bg-secondary hover:text-on-secondary transition-colors duration-300 flex items-center justify-center font-bold"
+                                               title="{{ __('messages.collections.view_details') }}">
+                                                <span class="material-symbols-outlined text-[20px]">visibility</span>
+                                            </a>
+                                            @if($firstVariant)
+                                                <button type="button" 
+                                                        onclick="addToCartFromGrid({{ $firstVariant->id }})"
+                                                        class="w-11 h-11 bg-secondary text-on-secondary hover:bg-primary hover:text-on-primary transition-colors duration-300 flex items-center justify-center font-bold"
+                                                        title="{{ __('messages.product.add_to_cart') }}">
+                                                    <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+                                                </button>
+                                            @endif
+                                        </div>
                                     </div>
                                     <h4 class="font-headline text-lg mb-1 hover:text-primary transition-colors duration-300">
                                         <a href="{{ route('product.detail', $product->slug) }}">{{ $product->name }}</a>

@@ -17,9 +17,9 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('country');
             $table->date('date');
-            $table->string('product_image')->nullable();
-            $table->string('medal_image')->nullable();
-            $table->string('certificate_image')->nullable();
+            $table->text('product_image')->nullable();
+            $table->text('medal_image')->nullable();
+            $table->text('certificate_image')->nullable();
             $table->timestamps();
         });
     }

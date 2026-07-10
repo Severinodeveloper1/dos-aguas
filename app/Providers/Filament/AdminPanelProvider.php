@@ -31,6 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('Dos Aguas')
             ->brandLogo(asset('img/LOGO_NEGATIVO_HORIZONTAL.png'))
             ->brandLogoHeight('4rem')
+            ->favicon(asset('img/ICON_ORIGINAL.png'))
             ->colors([
                 'primary' => Color::Blue,
             ])
