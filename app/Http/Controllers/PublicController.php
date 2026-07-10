@@ -180,6 +180,38 @@ class PublicController extends Controller
     }
 
     /**
+     * Display the blog listing page.
+     */
+    public function blog()
+    {
+        $posts = Post::where('is_active', true)
+            ->orderBy('published_at', 'desc')
+            ->with('author')
+            ->get();
+
+        return view('pages.blog', compact('posts'));
+    }
+
+    /**
+     * Display a single blog post detail page.
+     */
+    public function blogDetail($slug)
+    {
+        $post = Post::where('is_active', true)
+            ->where('slug', $slug)
+            ->with('author')
+            ->firstOrFail();
+
+        $relatedPosts = Post::where('is_active', true)
+            ->where('id', '!=', $post->id)
+            ->orderBy('published_at', 'desc')
+            ->take(3)
+            ->get();
+
+        return view('pages.blog-detail', compact('post', 'relatedPosts'));
+    }
+
+    /**
      * Display the legal policies page.
      */
     public function policies()

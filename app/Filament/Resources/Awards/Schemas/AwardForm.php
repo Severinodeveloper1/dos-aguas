@@ -46,21 +46,21 @@ class AwardForm
                             ->disk('public')
                             ->directory('awards/products')
                             ->image()
-                            ->maxSize(5120) // 5MB
+                            ->maxSize(51200) // 50MB
                             ->helperText('Foto del producto galardonado.'),
                         FileUpload::make('medal_image')
                             ->label('Imagen de la Medalla')
                             ->disk('public')
                             ->directory('awards/medals')
                             ->image()
-                            ->maxSize(5120) // 5MB
+                            ->maxSize(51200) // 50MB
                             ->helperText('Foto o diseño de la medalla obtenida.'),
                         FileUpload::make('certificate_image')
                             ->label('Imagen del Certificado')
                             ->disk('public')
                             ->directory('awards/certificates')
                             ->image()
-                            ->maxSize(5120) // 5MB
+                            ->maxSize(51200) // 50MB
                             ->helperText('Foto o PDF escaneado del diploma/certificado.'),
                     ])->columns(3),
             ])->columns(1);

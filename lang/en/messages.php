@@ -5,6 +5,7 @@ return [
         'origin' => 'Origin',
         'collections' => 'Collections',
         'story' => 'Our Story',
+        'blog' => 'Blog',
         'contact' => 'Contact',
         'claim_book' => 'Complaints Book',
         'search_placeholder' => 'Search essence...',

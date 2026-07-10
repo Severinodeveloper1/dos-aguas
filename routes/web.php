@@ -22,6 +22,9 @@ Route::get('/productos/{slug}', [PublicController::class, 'productDetail'])->nam
 Route::get('/nuestra-historia', [PublicController::class, 'about'])->name('about');
 Route::get('/politicas', [PublicController::class, 'policies'])->name('policies');
 
+Route::get('/blog', [PublicController::class, 'blog'])->name('blog');
+Route::get('/blog/{slug}', [PublicController::class, 'blogDetail'])->name('blog.detail');
+
 Route::get('/contacto', [PublicController::class, 'contact'])->name('contact');
 Route::post('/contacto', [PublicSubmissionController::class, 'submitContact'])
     ->middleware('throttle:3,1');

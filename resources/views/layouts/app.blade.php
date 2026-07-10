@@ -133,6 +133,10 @@
                     href="{{ route('about') }}">
                     {{ __('messages.nav.story') }}
                 </a>
+                <a class="text-on-surface-variant font-label-caps text-xs tracking-widest hover:text-primary transition-colors duration-300"
+                    href="{{ route('blog') }}">
+                    {{ __('messages.nav.blog') }}
+                </a>
             </nav>
 
             <!-- Brand Logo -->
@@ -221,6 +225,8 @@
                     href="{{ route('collections') }}">{{ __('messages.nav.collections') }}</a>
                 <a class="text-on-surface hover:text-primary transition-colors font-label-caps text-xs tracking-widest"
                     href="{{ route('about') }}">{{ __('messages.nav.story') }}</a>
+                <a class="text-on-surface hover:text-primary transition-colors font-label-caps text-xs tracking-widest"
+                    href="{{ route('blog') }}">{{ __('messages.nav.blog') }}</a>
                 <a class="text-on-surface hover:text-primary transition-colors font-label-caps text-xs tracking-widest"
                     href="{{ route('contact') }}">{{ __('messages.nav.contact') }}</a>
                 <a class="text-on-surface hover:text-primary transition-colors font-label-caps text-xs tracking-widest"

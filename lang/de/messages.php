@@ -5,6 +5,7 @@ return [
         'origin' => 'Herkunft',
         'collections' => 'Kollektionen',
         'story' => 'Unsere Geschichte',
+        'blog' => 'Blog',
         'contact' => 'Kontakt',
         'claim_book' => 'Beschwerdebuch',
         'search_placeholder' => 'Essenz suchen...',
