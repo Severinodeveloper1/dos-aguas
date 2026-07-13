@@ -92,6 +92,11 @@ return [
         'success_message' => 'Ihre Bestellung wurde erfolgreich bearbeitet. Eine Bestätigungs-E-Mail wurde an Sie gesendet.',
         'order_number' => 'Bestellnummer',
         'back_home' => 'ZURÜCK ZUR STARTSEITE',
+        'shipping_type' => 'Versandart',
+        'national' => 'Inlandsversand (Peru)',
+        'international' => 'Internationaler Versand (Ausland)',
+        'international_info' => 'Bei internationalen Sendungen werden die Versandkosten jetzt nicht berechnet; wir werden uns per E-Mail mit Ihnen in Verbindung setzen, um den Versand zu koordinieren und anzubieten.',
+        'national_cost_info' => 'Regulärer Versand in ganz Peru für S/ 15.00. KOSTENLOSER Versand ab einem Bestellwert von S/ 200.00!',
     ],
     'contact' => [
         'title' => 'Schreiben Sie uns',

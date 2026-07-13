@@ -1,23 +1,18 @@
-@php
-    $company = \App\Models\CompanyInfo::first();
-    $companyName = $company?->name ?: 'Dos Aguas';
-    $companyPhone = $company?->phone ?: '';
-    $companyEmail = $company?->email ?: '';
-@endphp
-<x-mail::message>
-# ¡Hola {{ $submission->name }}!
+<x-emails.layout subject="Recibimos tu mensaje">
 
-Hemos recibido tu mensaje de contacto en **{{ $companyName }}**. Nos alegra saber de ti y que compartas nuestra pasión por el cacao fino de aroma.
+    <span class="badge">Mensaje Recibido</span>
+    <h1 class="email-title">Hola, {{ $submission->name }}</h1>
+    <div class="divider"></div>
 
-Un miembro de nuestro equipo revisará tu mensaje y se pondrá en contacto contigo a la brevedad posible.
+    <p>
+        Hemos recibido tu mensaje y nos alegra saber de ti.<br>
+        Un miembro de nuestro equipo te responderá a la brevedad posible.
+    </p>
 
-### Resumen de tu mensaje:
-* **Asunto:** {{ $submission->subject }}
-* **Mensaje:**
-{{ $submission->message }}
+    <h2 class="section-title">Resumen de tu mensaje</h2>
+    <table class="info-table">
+        <tr><td>Asunto</td><td><strong>{{ $submission->subject }}</strong></td></tr>
+    </table>
+    <div class="content-block">{{ $submission->message }}</div>
 
-Si tienes alguna consulta urgente adicional, no dudes en responder a este correo electrónico o escribirnos a **{{ $companyEmail }}**@if($companyPhone) o llamarnos al **{{ $companyPhone }}**@endif.
-
-Atentamente,<br>
-El equipo de **{{ $companyName }}**
-</x-mail::message>
+</x-emails.layout>

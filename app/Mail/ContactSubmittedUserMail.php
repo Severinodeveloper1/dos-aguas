@@ -30,7 +30,7 @@ class ContactSubmittedUserMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.contact-user',
+            view: 'emails.contact-user',
         );
     }
 
@@ -39,3 +39,4 @@ class ContactSubmittedUserMail extends Mailable
         return [];
     }
 }
+

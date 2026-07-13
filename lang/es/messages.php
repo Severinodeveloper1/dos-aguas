@@ -92,6 +92,11 @@ return [
         'success_message' => 'Tu pedido ha sido procesado exitosamente. Se ha enviado un correo electrónico de confirmación.',
         'order_number' => 'Número de Pedido',
         'back_home' => 'VOLVER AL INICIO',
+        'shipping_type' => 'Tipo de Envío',
+        'national' => 'Envío Nacional (Perú)',
+        'international' => 'Envío Internacional (Extranjero)',
+        'international_info' => 'Para envíos internacionales, el costo de envío no se cobra ahora; nos contactaremos contigo por correo electrónico para coordinar y cotizar el envío.',
+        'national_cost_info' => 'Envío regular a todo el Perú por S/ 15.00. ¡Envío GRATIS por compras mayores a S/ 200.00!',
     ],
     'contact' => [
         'title' => 'Escríbenos',

@@ -92,6 +92,11 @@ return [
         'success_message' => 'Your order has been processed successfully. A confirmation email has been sent to you.',
         'order_number' => 'Order Number',
         'back_home' => 'BACK TO HOME',
+        'shipping_type' => 'Shipping Type',
+        'national' => 'National Shipping (Peru)',
+        'international' => 'International Shipping (Foreign)',
+        'international_info' => 'For international shipments, shipping cost is not charged now; we will contact you by email to coordinate and quote shipping.',
+        'national_cost_info' => 'Regular shipping all over Peru for S/ 15.00. FREE shipping on orders over S/ 200.00!',
     ],
     'contact' => [
         'title' => 'Write to Us',

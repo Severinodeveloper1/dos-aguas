@@ -30,7 +30,7 @@ class ContactSubmittedAdminMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.contact-admin',
+            view: 'emails.contact-admin',
         );
     }
 
@@ -39,3 +39,4 @@ class ContactSubmittedAdminMail extends Mailable
         return [];
     }
 }
+

@@ -4,7 +4,18 @@
 
 @section('content')
 
-    <main class="max-w-container-max mx-auto px-margin-edge py-20 font-body">
+    <main class="max-w-container-max mx-auto px-margin-edge py-20 font-body"
+          x-data="{
+              shippingType: '{{ old('shipping_type', $shippingInfo['shipping_type'] ?? 'national') }}',
+              subtotal: {{ $subtotal }},
+              get shippingCost() {
+                  if (this.shippingType === 'international') return 0;
+                  return this.subtotal >= 200 ? 0 : 15;
+              },
+              get total() {
+                  return this.subtotal + this.shippingCost;
+              }
+          }">
         
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             
@@ -18,6 +29,35 @@
                 <form action="{{ route('checkout.shipping.save') }}" method="POST" class="space-y-6 text-sm text-on-surface">
                     @csrf
                     
+                    <!-- Tipo de Envío (Nacional vs Extranjero) -->
+                    <div class="space-y-3">
+                        <label class="font-label-caps text-[10px] tracking-widest text-outline block uppercase font-bold">
+                            {{ __('messages.checkout.shipping_type') }} *
+                        </label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Envío Nacional -->
+                            <label class="border p-4 flex flex-col gap-1 cursor-pointer select-none transition-all duration-300 font-body text-xs rounded-sm"
+                                   :class="shippingType === 'national' ? 'border-primary bg-primary/5 text-primary' : 'border-outline-variant/20 text-on-surface-variant hover:border-primary'">
+                                <div class="flex items-center gap-2 font-bold">
+                                    <input type="radio" name="shipping_type" value="national" x-model="shippingType" class="text-primary focus:ring-0 checked:bg-primary" />
+                                    <span>{{ __('messages.checkout.national') }}</span>
+                                </div>
+                                <span class="text-[10px] text-outline mt-1.5 block leading-relaxed">{{ __('messages.checkout.national_cost_info') }}</span>
+                            </label>
+                            
+                            <!-- Envío Internacional -->
+                            <label class="border p-4 flex flex-col gap-1 cursor-pointer select-none transition-all duration-300 font-body text-xs rounded-sm"
+                                   :class="shippingType === 'international' ? 'border-primary bg-primary/5 text-primary' : 'border-outline-variant/20 text-on-surface-variant hover:border-primary'">
+                                <div class="flex items-center gap-2 font-bold">
+                                    <input type="radio" name="shipping_type" value="international" x-model="shippingType" class="text-primary focus:ring-0 checked:bg-primary" />
+                                    <span>{{ __('messages.checkout.international') }}</span>
+                                </div>
+                                <span class="text-[10px] text-outline mt-1.5 block leading-relaxed">{{ __('messages.checkout.international_info') }}</span>
+                            </label>
+                        </div>
+                        @error('shipping_type') <span class="text-red-500 font-semibold text-xs mt-1 block">{{ $message }}</span> @enderror
+                    </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- First Name -->
                         <div class="flex flex-col gap-2">
@@ -27,7 +67,7 @@
                             <input type="text" name="first_name" id="first_name" required
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs"
                                    value="{{ old('first_name', $shippingInfo['first_name'] ?? '') }}"/>
-                            @error('first_name') <span class="text-error text-xs">{{ $message }}</span> @enderror
+                            @error('first_name') <span class="text-red-500 font-semibold text-xs">{{ $message }}</span> @enderror
                         </div>
                         
                         <!-- Last Name -->
@@ -38,7 +78,7 @@
                             <input type="text" name="last_name" id="last_name" required
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs"
                                    value="{{ old('last_name', $shippingInfo['last_name'] ?? '') }}"/>
-                            @error('last_name') <span class="text-error text-xs">{{ $message }}</span> @enderror
+                            @error('last_name') <span class="text-red-500 font-semibold text-xs">{{ $message }}</span> @enderror
                         </div>
                     </div>
 
@@ -51,7 +91,7 @@
                             <input type="email" name="email" id="email" required
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs"
                                    value="{{ old('email', $shippingInfo['email'] ?? '') }}"/>
-                            @error('email') <span class="text-error text-xs">{{ $message }}</span> @enderror
+                            @error('email') <span class="text-red-500 font-semibold text-xs">{{ $message }}</span> @enderror
                         </div>
                         
                         <!-- Phone -->
@@ -62,7 +102,7 @@
                             <input type="text" name="phone" id="phone" required
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs"
                                    value="{{ old('phone', $shippingInfo['phone'] ?? '') }}"/>
-                            @error('phone') <span class="text-error text-xs">{{ $message }}</span> @enderror
+                            @error('phone') <span class="text-red-500 font-semibold text-xs">{{ $message }}</span> @enderror
                         </div>
                     </div>
 
@@ -75,7 +115,7 @@
                                class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs"
                                placeholder="{{ app()->getLocale() == 'es' ? 'Av. Javier Prado Este 1234, Dpto 301' : '123 Main Street, Suite 4B' }}"
                                value="{{ old('address', $shippingInfo['address'] ?? '') }}"/>
-                        @error('address') <span class="text-error text-xs">{{ $message }}</span> @enderror
+                        @error('address') <span class="text-red-500 font-semibold text-xs">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -88,7 +128,7 @@
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs"
                                    placeholder="{{ app()->getLocale() == 'es' ? 'Frente a parque Grau o portón negro' : 'Near City Park' }}"
                                    value="{{ old('reference', $shippingInfo['reference'] ?? '') }}"/>
-                            @error('reference') <span class="text-error text-xs">{{ $message }}</span> @enderror
+                            @error('reference') <span class="text-red-500 font-semibold text-xs">{{ $message }}</span> @enderror
                         </div>
                         
                         <!-- City -->
@@ -100,7 +140,7 @@
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs"
                                    placeholder="{{ app()->getLocale() == 'es' ? 'Lima, Miraflores' : 'Piura, Castilla' }}"
                                    value="{{ old('city', $shippingInfo['city'] ?? '') }}"/>
-                            @error('city') <span class="text-error text-xs">{{ $message }}</span> @enderror
+                            @error('city') <span class="text-red-500 font-semibold text-xs">{{ $message }}</span> @enderror
                         </div>
                     </div>
 
@@ -161,11 +201,23 @@
                     
                     <div class="flex justify-between text-on-surface-variant">
                         <span>{{ __('messages.cart.shipping') }}</span>
-                        @if($subtotal >= 150)
-                            <span class="text-leaf-green font-bold uppercase tracking-wider">{{ __('messages.cart.free_shipping') }}</span>
-                        @else
-                            <span class="font-bold text-on-surface">S/ 15.00</span>
-                        @endif
+                        
+                        <!-- Si es internacional -->
+                        <span x-show="shippingType === 'international'" class="text-primary font-bold uppercase tracking-wider text-[10px] text-right">
+                            {{ app()->getLocale() == 'es' ? 'Por cotizar por correo' : (app()->getLocale() == 'de' ? 'Wird per E-Mail berechnet' : 'To quote via email') }}
+                        </span>
+                        
+                        <!-- Si es nacional -->
+                        <div x-show="shippingType === 'national'">
+                            <span x-show="shippingCost === 0" class="text-leaf-green font-bold uppercase tracking-wider">{{ __('messages.cart.free_shipping') }}</span>
+                            <span x-show="shippingCost > 0" class="font-bold text-on-surface">S/ 15.00</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Total Estimado -->
+                    <div class="flex justify-between border-t border-outline-variant/10 pt-4 text-sm font-bold">
+                        <span class="uppercase tracking-wider">{{ __('messages.cart.total') }}</span>
+                        <span class="text-secondary text-base" x-text="'S/ ' + total.toFixed(2)"></span>
                     </div>
                 </div>
 

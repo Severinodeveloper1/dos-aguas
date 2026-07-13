@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderPlacedAdminMail;
+use App\Mail\OrderPlacedCustomerMail;
+use App\Models\CompanyInfo;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -72,6 +77,7 @@ class CheckoutController extends Controller
             'reference' => 'nullable|string|max:255',
             'city' => 'required|string|max:255',
             'notes' => 'nullable|string|max:1000',
+            'shipping_type' => 'required|string|in:national,international',
         ]);
 
         session()->put('checkout.shipping', $validated);
@@ -96,8 +102,16 @@ class CheckoutController extends Controller
 
         $shippingInfo = session()->get('checkout.shipping');
 
-        // Shipping cost: S/ 15 flat rate, or free if subtotal is >= S/ 150
-        $shippingCost = $subtotal >= 150 ? 0.00 : 15.00;
+        // Shipping cost logic:
+        // National: S/ 15 flat rate, or free if subtotal is >= S/ 200
+        // International: S/ 0.00 (cotizado por correo)
+        $shippingType = $shippingInfo['shipping_type'] ?? 'national';
+        $shippingCost = 0.00;
+        
+        if ($shippingType === 'national') {
+            $shippingCost = $subtotal >= 200 ? 0.00 : 15.00;
+        }
+
         $total = $subtotal + $shippingCost;
 
         return view('pages.checkout-payment', compact('cartItems', 'subtotal', 'shippingInfo', 'shippingCost', 'total'));
@@ -123,12 +137,19 @@ class CheckoutController extends Controller
         ]);
 
         $shipping = session()->get('checkout.shipping');
-        $shippingCost = $subtotal >= 150 ? 0.00 : 15.00;
+        
+        $shippingType = $shipping['shipping_type'] ?? 'national';
+        $shippingCost = 0.00;
+        
+        if ($shippingType === 'national') {
+            $shippingCost = $subtotal >= 200 ? 0.00 : 15.00;
+        }
+        
         $total = $subtotal + $shippingCost;
 
         // Perform transactional operation
         try {
-            $order = DB::transaction(function () use ($shipping, $cartItems, $subtotal, $shippingCost, $total, $request) {
+            $order = DB::transaction(function () use ($shipping, $shippingType, $cartItems, $subtotal, $shippingCost, $total, $request) {
                 $year = now()->year;
                 
                 // Atomic lock for next order number
@@ -161,7 +182,7 @@ class CheckoutController extends Controller
                     'total' => $total,
                     'payment_method' => $request->payment_method,
                     'payment_status' => 'pending',
-                    'shipping_address' => $shipping['address'] . ' (' . ($shipping['reference'] ?? 'Sin referencia') . '), ' . $shipping['city'],
+                    'shipping_address' => $shipping['address'] . ' (' . ($shipping['reference'] ?? 'Sin referencia') . '), ' . $shipping['city'] . ' [' . ($shippingType === 'national' ? 'Envío Nacional' : 'Envío Internacional') . ']',
                     'billing_address' => $shipping['address'] . ', ' . $shipping['city'],
                     'notes' => $shipping['notes'] ?? null,
                 ]);
@@ -190,6 +211,30 @@ class CheckoutController extends Controller
             // Clear session cart
             session()->forget('cart');
             session()->forget('checkout.shipping');
+
+            // ── Email Notifications ──────────────────────────────────────────
+            $order->load('items.variant.product');
+            $company    = CompanyInfo::first();
+            $adminEmail = $company?->contact_email_receiver ?: $company?->email;
+
+            // 1. Notify the store manager
+            if ($adminEmail) {
+                try {
+                    Mail::to($adminEmail)->send(new OrderPlacedAdminMail($order));
+                } catch (\Exception $mailEx) {
+                    Log::error('Error enviando email al manager: ' . $mailEx->getMessage());
+                }
+            }
+
+            // 2. Confirm to the customer
+            if ($order->customer_email) {
+                try {
+                    Mail::to($order->customer_email)->send(new OrderPlacedCustomerMail($order));
+                } catch (\Exception $mailEx) {
+                    Log::error('Error enviando confirmacion al cliente: ' . $mailEx->getMessage());
+                }
+            }
+            // ────────────────────────────────────────────────────────────────
 
             return redirect()->route('checkout.confirmation', ['orderNumber' => $order->order_number]);
 

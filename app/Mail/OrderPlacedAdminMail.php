@@ -2,35 +2,35 @@
 
 namespace App\Mail;
 
-use App\Models\Claim;
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ClaimSubmittedAdminMail extends Mailable
+class OrderPlacedAdminMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public Claim $claim;
+    public Order $order;
 
-    public function __construct(Claim $claim)
+    public function __construct(Order $order)
     {
-        $this->claim = $claim;
+        $this->order = $order;
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'ALERTA: Nuevo reclamo registrado ' . $this->claim->claim_code,
+            subject: '🛒 Nuevo Pedido #' . $this->order->order_number . ' - Dos Aguas',
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            view: 'emails.claim-admin',
+            view: 'emails.order-admin',
         );
     }
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', __('messages.nav.claim_book') . ' | Dos Aguas')
 
@@ -27,10 +27,98 @@
               loading: false,
 
               submitClaim() {
-                  this.loading = true;
                   this.errors = {};
                   this.successMessage = '';
                   this.claimCode = '';
+
+                  // Validaciones de Frontend
+                  let localErrors = {};
+
+                  // 1. Validar Tipo de Documento Principal
+                  const numRegex = /^\d+$/;
+                  if (!this.docNumber.trim()) {
+                      localErrors.document_number = ['El número de documento es obligatorio.'];
+                  } else {
+                      if (this.docType === 'DNI' && (this.docNumber.trim().length !== 8 || !numRegex.test(this.docNumber.trim()))) {
+                          localErrors.document_number = ['El DNI debe tener exactamente 8 dígitos numéricos.'];
+                      } else if (this.docType === 'RUC' && (this.docNumber.trim().length !== 11 || !numRegex.test(this.docNumber.trim()))) {
+                          localErrors.document_number = ['El RUC debe tener exactamente 11 dígitos numéricos.'];
+                      }
+                  }
+
+                  // 2. Validar Nombre Completo
+                  if (!this.fullName.trim()) {
+                      localErrors.full_name = ['El nombre completo es obligatorio.'];
+                  }
+
+                  // 3. Validar Email
+                  if (!this.email.trim()) {
+                      localErrors.email = ['El correo electrónico es obligatorio.'];
+                  } else {
+                      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                      if (!emailRegex.test(this.email)) {
+                          localErrors.email = ['El correo electrónico no es válido.'];
+                      }
+                  }
+
+                  // 4. Validar Teléfono
+                  if (!this.phone.trim()) {
+                      localErrors.phone = ['El teléfono es obligatorio.'];
+                  } else {
+                      const phoneRegex = /^[0-9\s\+\-\(\)]+$/;
+                      if (!phoneRegex.test(this.phone)) {
+                          localErrors.phone = ['El teléfono contiene caracteres no válidos.'];
+                      }
+                  }
+
+                  // 5. Validar Dirección
+                  if (!this.address.trim()) {
+                      localErrors.address = ['La dirección es obligatoria.'];
+                  }
+
+                  // 6. Validar datos del Representante si es menor de edad
+                  if (this.isMinor) {
+                      if (!this.repName.trim()) {
+                          localErrors.representative_name = ['El nombre del representante es obligatorio.'];
+                      }
+                      if (!this.repDocNumber.trim()) {
+                          localErrors.representative_document_number = ['El documento del representante es obligatorio.'];
+                      } else {
+                          if (this.repDocType === 'DNI' && (this.repDocNumber.trim().length !== 8 || !numRegex.test(this.repDocNumber.trim()))) {
+                              localErrors.representative_document_number = ['El DNI del representante debe tener exactamente 8 dígitos numéricos.'];
+                          } else if (this.repDocType === 'RUC' && (this.repDocNumber.trim().length !== 11 || !numRegex.test(this.repDocNumber.trim()))) {
+                              localErrors.representative_document_number = ['El RUC del representante debe tener exactamente 11 dígitos numéricos.'];
+                          }
+                      }
+                  }
+
+                  // 7. Validar Monto Reclamado
+                  if (this.claimedAmount && isNaN(this.claimedAmount)) {
+                      localErrors.claimed_amount = ['El monto debe ser un valor numérico válido.'];
+                  } else if (this.claimedAmount && parseFloat(this.claimedAmount) < 0) {
+                      localErrors.claimed_amount = ['El monto no puede ser negativo.'];
+                  }
+
+                  // 8. Validar Descripciones
+                  if (!this.description.trim()) {
+                      localErrors.product_service_description = ['La descripción del bien o servicio es obligatoria.'];
+                  }
+                  if (!this.details.trim()) {
+                      localErrors.claim_details = ['El detalle de la disconformidad es obligatorio.'];
+                  }
+                  if (!this.request.trim()) {
+                      localErrors.consumer_request = ['El pedido concreto es obligatorio.'];
+                  }
+
+                  // Si hay errores de Frontend, detener y mostrarlos
+                  if (Object.keys(localErrors).length > 0) {
+                      this.errors = localErrors;
+                      // Scroll hasta el primer elemento con error o alerta superior
+                      window.scrollTo({ top: 300, behavior: 'smooth' });
+                      return;
+                  }
+
+                  this.loading = true;
 
                   fetch('{{ route('claim-book') }}', {
                       method: 'POST',
@@ -79,6 +167,7 @@
                           this.request = '';
                       } else if (res.status === 422) {
                           this.errors = res.body.errors || {};
+                          window.scrollTo({ top: 300, behavior: 'smooth' });
                       } else {
                           alert('Error al registrar la reclamación. Por favor intente de nuevo.');
                       }
@@ -147,7 +236,7 @@
                             <input type="text" x-model="docNumber" required
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
                             <template x-if="errors.document_number">
-                                <span class="text-error text-[10px]" x-text="errors.document_number[0]"></span>
+                                <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.document_number[0]"></span>
                             </template>
                         </div>
                     </div>
@@ -158,7 +247,7 @@
                         <input type="text" x-model="fullName" required
                                class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
                         <template x-if="errors.full_name">
-                            <span class="text-error text-[10px]" x-text="errors.full_name[0]"></span>
+                            <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.full_name[0]"></span>
                         </template>
                     </div>
 
@@ -169,7 +258,7 @@
                             <input type="email" x-model="email" required
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
                             <template x-if="errors.email">
-                                <span class="text-error text-[10px]" x-text="errors.email[0]"></span>
+                                <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.email[0]"></span>
                             </template>
                         </div>
                         
@@ -179,7 +268,7 @@
                             <input type="text" x-model="phone" required
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
                             <template x-if="errors.phone">
-                                <span class="text-error text-[10px]" x-text="errors.phone[0]"></span>
+                                <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.phone[0]"></span>
                             </template>
                         </div>
                     </div>
@@ -190,7 +279,7 @@
                         <input type="text" x-model="address" required
                                class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
                         <template x-if="errors.address">
-                            <span class="text-error text-[10px]" x-text="errors.address[0]"></span>
+                            <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.address[0]"></span>
                         </template>
                     </div>
 
@@ -212,7 +301,7 @@
                             <input type="text" x-model="repName" :required="isMinor"
                                    class="bg-[#131313] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
                             <template x-if="errors.representative_name">
-                                <span class="text-error text-[10px]" x-text="errors.representative_name[0]"></span>
+                                <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.representative_name[0]"></span>
                             </template>
                         </div>
 
@@ -234,7 +323,7 @@
                                 <input type="text" x-model="repDocNumber" :required="isMinor"
                                        class="bg-[#131313] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
                                 <template x-if="errors.representative_document_number">
-                                    <span class="text-error text-[10px]" x-text="errors.representative_document_number[0]"></span>
+                                    <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.representative_document_number[0]"></span>
                                 </template>
                             </div>
                         </div>
@@ -271,7 +360,7 @@
                             <input type="number" step="0.01" x-model="claimedAmount"
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
                             <template x-if="errors.claimed_amount">
-                                <span class="text-error text-[10px]" x-text="errors.claimed_amount[0]"></span>
+                                <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.claimed_amount[0]"></span>
                             </template>
                         </div>
                     </div>
@@ -288,7 +377,7 @@
                         <textarea x-model="description" required rows="3"
                                   class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs resize-none"></textarea>
                         <template x-if="errors.product_service_description">
-                            <span class="text-error text-[10px]" x-text="errors.product_service_description[0]"></span>
+                            <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.product_service_description[0]"></span>
                         </template>
                     </div>
                 </div>
@@ -305,7 +394,7 @@
                         <textarea x-model="details" required rows="5"
                                   class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs resize-none"></textarea>
                         <template x-if="errors.claim_details">
-                            <span class="text-error text-[10px]" x-text="errors.claim_details[0]"></span>
+                            <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.claim_details[0]"></span>
                         </template>
                     </div>
 
@@ -315,7 +404,7 @@
                         <textarea x-model="request" required rows="4"
                                   class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs resize-none"></textarea>
                         <template x-if="errors.consumer_request">
-                            <span class="text-error text-[10px]" x-text="errors.consumer_request[0]"></span>
+                            <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.consumer_request[0]"></span>
                         </template>
                     </div>
                 </div>
@@ -335,3 +424,4 @@
     </main>
 
 @endsection
+

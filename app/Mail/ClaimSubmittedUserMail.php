@@ -30,7 +30,7 @@ class ClaimSubmittedUserMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.claim-user',
+            view: 'emails.claim-user',
         );
     }
 
@@ -39,3 +39,4 @@ class ClaimSubmittedUserMail extends Mailable
         return [];
     }
 }
+

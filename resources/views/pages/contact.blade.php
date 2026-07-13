@@ -55,9 +55,46 @@
               loading: false,
 
               submitContact() {
-                  this.loading = true;
                   this.errors = {};
                   this.successMessage = '';
+
+                  // Validaciones de Frontend
+                  let localErrors = {};
+                  
+                  if (!this.name.trim()) {
+                      localErrors.name = ['El nombre es obligatorio.'];
+                  }
+                  
+                  if (!this.email.trim()) {
+                      localErrors.email = ['El correo electrónico es obligatorio.'];
+                  } else {
+                      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                      if (!emailRegex.test(this.email)) {
+                          localErrors.email = ['El correo electrónico no es válido.'];
+                      }
+                  }
+
+                  if (this.phone.trim()) {
+                      const phoneRegex = /^[0-9\s\+\-\(\)]+$/;
+                      if (!phoneRegex.test(this.phone)) {
+                          localErrors.phone = ['El teléfono contiene caracteres no válidos.'];
+                      }
+                  }
+
+                  if (!this.subject.trim()) {
+                      localErrors.subject = ['El asunto es obligatorio.'];
+                  }
+
+                  if (!this.message.trim()) {
+                      localErrors.message = ['El mensaje es obligatorio.'];
+                  }
+
+                  if (Object.keys(localErrors).length > 0) {
+                      this.errors = localErrors;
+                      return;
+                  }
+
+                  this.loading = true;
 
                   fetch('{{ route('contact') }}', {
                       method: 'POST',
@@ -120,7 +157,7 @@
                             <input type="text" x-model="name" required
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
                             <template x-if="errors.name">
-                                <span class="text-error text-[10px]" x-text="errors.name[0]"></span>
+                                <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.name[0]"></span>
                             </template>
                         </div>
                         
@@ -130,7 +167,7 @@
                             <input type="email" x-model="email" required
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
                             <template x-if="errors.email">
-                                <span class="text-error text-[10px]" x-text="errors.email[0]"></span>
+                                <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.email[0]"></span>
                             </template>
                         </div>
                     </div>
@@ -142,7 +179,7 @@
                             <input type="text" x-model="phone"
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
                             <template x-if="errors.phone">
-                                <span class="text-error text-[10px]" x-text="errors.phone[0]"></span>
+                                <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.phone[0]"></span>
                             </template>
                         </div>
                         
@@ -152,7 +189,7 @@
                             <input type="text" x-model="subject" required
                                    class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
                             <template x-if="errors.subject">
-                                <span class="text-error text-[10px]" x-text="errors.subject[0]"></span>
+                                <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.subject[0]"></span>
                             </template>
                         </div>
                     </div>
@@ -163,7 +200,7 @@
                         <textarea x-model="message" required rows="5"
                                   class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs resize-none"></textarea>
                         <template x-if="errors.message">
-                            <span class="text-error text-[10px]" x-text="errors.message[0]"></span>
+                            <span class="text-red-500 font-semibold mt-1 text-[10px]" x-text="errors.message[0]"></span>
                         </template>
                     </div>
 

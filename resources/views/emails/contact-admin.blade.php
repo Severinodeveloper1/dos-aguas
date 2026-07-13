@@ -1,26 +1,23 @@
-@php
-    $company = \App\Models\CompanyInfo::first();
-    $companyName = $company?->name ?: 'Dos Aguas';
-@endphp
-<x-mail::message>
-# Alerta: Nuevo Mensaje de Contacto
+<x-emails.layout subject="Nuevo mensaje de contacto">
 
-Se ha recibido una nueva consulta desde el portal público de la web:
+    <span class="badge">Nuevo Contacto</span>
+    <h1 class="email-title">Mensaje de Contacto Recibido</h1>
+    <div class="divider"></div>
 
-* **Nombre completo:** {{ $submission->name }}
-* **Correo Electrónico:** {{ $submission->email }}
-* **Teléfono:** {{ $submission->phone ?? 'No especificado' }}
-* **Asunto:** {{ $submission->subject }}
+    <table class="info-table">
+        <tr><td>Nombre</td><td><strong>{{ $submission->name }}</strong></td></tr>
+        <tr><td>Email</td><td><a href="mailto:{{ $submission->email }}" style="color:#2e7d32; text-decoration:none; font-weight:bold;">{{ $submission->email }}</a></td></tr>
+        <tr><td>Teléfono</td><td>{{ $submission->phone ?? 'No especificado' }}</td></tr>
+        <tr><td>Asunto</td><td><strong>{{ $submission->subject }}</strong></td></tr>
+    </table>
 
-### Mensaje:
-{{ $submission->message }}
+    <h2 class="section-title">Mensaje</h2>
+    <div class="content-block">{{ $submission->message }}</div>
 
-Puedes gestionar este contacto y registrar notas de seguimiento desde el Panel de Administración.
+    <div class="divider"></div>
 
-<x-mail::button :url="url('/admin/contact-submissions')">
-Ver en Panel de Administración
-</x-mail::button>
+    <div class="btn-wrap">
+        <a href="{{ url('/admin/contact-submissions') }}" class="btn">Ver en Panel de Administración</a>
+    </div>
 
-Atentamente,<br>
-Sistema de Alertas **{{ $companyName }}**
-</x-mail::message>
+</x-emails.layout>

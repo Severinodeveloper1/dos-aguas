@@ -1,34 +1,32 @@
 @php
-    $company = \App\Models\CompanyInfo::first();
-    $companyName = $company?->name ?: 'Dos Aguas';
+    $tipoLabel = $claim->type === 'reclamacion' ? 'RECLAMACIÓN' : 'QUEJA';
 @endphp
-<x-mail::message>
-# Alerta: Nuevo Reclamo Registrado - {{ $claim->claim_code }}
+<x-emails.layout subject="Nuevo reclamo registrado">
 
-Se ha presentado una nueva disconformidad en el **Libro de Reclamaciones Virtual**:
+    <span class="badge" style="background:#ffebee; color:#c62828;">⚠ Alerta Legal</span>
+    <h1 class="email-title">Nuevo {{ $tipoLabel }} — {{ $claim->claim_code }}</h1>
+    <div class="divider"></div>
 
-* **Código de Reclamo:** {{ $claim->claim_code }}
-* **Cliente:** {{ $claim->full_name }} ({{ $claim->document_type }} - {{ $claim->document_number }})
-* **Tipo de disconformidad:** {{ strtoupper($claim->type === 'reclamacion' ? 'Reclamación' : 'Queja') }}
-* **Monto implicado:** {{ $claim->claimed_amount ? 'S/. ' . number_format($claim->claimed_amount, 2) : 'No especificado' }}
+    <h2 class="section-title">Datos del Consumidor</h2>
+    <table class="info-table">
+        <tr><td>Nombre</td><td><strong>{{ $claim->full_name }}</strong></td></tr>
+        <tr><td>Documento</td><td>{{ $claim->document_type }} — {{ $claim->document_number }}</td></tr>
+        <tr><td>Tipo</td><td><strong>{{ $tipoLabel }}</strong></td></tr>
+        <tr><td>Monto Implicado</td><td>{{ $claim->claimed_amount ? 'S/. ' . number_format($claim->claimed_amount, 2) : 'No especificado' }}</td></tr>
+    </table>
 
-### Detalle del Suceso:
-{{ $claim->claim_details }}
+    <h2 class="section-title">Detalle del Suceso</h2>
+    <div class="content-block">{{ $claim->claim_details }}</div>
 
-### Pedido del Consumidor:
-{{ $claim->consumer_request }}
+    <h2 class="section-title">Pedido del Consumidor</h2>
+    <div class="content-block">{{ $claim->consumer_request }}</div>
 
----
+    <div class="alert warning">
+        <p><strong>⏱ PLAZO LEGAL INDECOPI:</strong> Este caso debe ser respondido en un máximo de <strong>15 días hábiles</strong> según la Ley N° 29571 para evitar multas y procesos sancionatorios.</p>
+    </div>
 
-> [!WARNING]
-> **ATENCIÓN - PLAZO LEGAL:** Por mandato de la Ley N° 29571 (Indecopi), este caso debe ser respondido y resuelto formalmente en un plazo máximo de **quince (15) días hábiles** a fin de evitar multas y procesos sancionatorios.
+    <div class="btn-wrap">
+        <a href="{{ url('/admin/claims') }}" class="btn">Ver y Responder Reclamo</a>
+    </div>
 
-Puedes registrar la resolución oficial y enviar la respuesta al cliente desde el Panel de Administración.
-
-<x-mail::button :url="url('/admin/claims')">
-Ver y Responder Reclamo
-</x-mail::button>
-
-Atentamente,<br>
-Sistema de Cumplimiento Legal **{{ $companyName }}**
-</x-mail::message>
+</x-emails.layout>

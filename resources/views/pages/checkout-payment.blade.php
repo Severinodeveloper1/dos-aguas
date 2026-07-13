@@ -37,9 +37,20 @@
                                 <p class="italic text-[11px]">Ref: {{ $shippingInfo['reference'] }}</p>
                             @endif
                             <p>{{ $shippingInfo['city'] }}</p>
+                            <p class="text-primary font-bold mt-1 text-[10px]">
+                                {{ ($shippingInfo['shipping_type'] ?? 'national') === 'national' ? __('messages.checkout.national') : __('messages.checkout.international') }}
+                            </p>
                         </div>
                     </div>
                 </div>
+
+                @if(($shippingInfo['shipping_type'] ?? 'national') === 'international')
+                    <!-- Alerta de envío internacional -->
+                    <div class="p-4 bg-primary/10 border border-primary/30 text-primary text-xs font-body leading-relaxed">
+                        <strong>🌐 {{ __('messages.checkout.shipping_type') }}:</strong> 
+                        {{ __('messages.checkout.international_info') }}
+                    </div>
+                @endif
 
                 @if(session('error'))
                     <div class="p-4 bg-error/10 border border-error/30 text-error text-xs font-bold font-body">
@@ -176,10 +187,16 @@
                     
                     <div class="flex justify-between text-on-surface-variant">
                         <span>{{ __('messages.cart.shipping') }}</span>
-                        @if($shippingCost > 0)
-                            <span class="font-bold text-on-surface">S/ {{ number_format($shippingCost, 2) }}</span>
+                        @if(($shippingInfo['shipping_type'] ?? 'national') === 'international')
+                            <span class="text-primary font-bold uppercase tracking-wider text-[10px] text-right">
+                                {{ app()->getLocale() == 'es' ? 'Por cotizar por correo' : (app()->getLocale() == 'de' ? 'Wird per E-Mail berechnet' : 'To quote via email') }}
+                            </span>
                         @else
-                            <span class="text-leaf-green font-bold uppercase tracking-wider">{{ __('messages.cart.free_shipping') }}</span>
+                            @if($shippingCost > 0)
+                                <span class="font-bold text-on-surface">S/ {{ number_format($shippingCost, 2) }}</span>
+                            @else
+                                <span class="text-leaf-green font-bold uppercase tracking-wider">{{ __('messages.cart.free_shipping') }}</span>
+                            @endif
                         @endif
                     </div>
                     
