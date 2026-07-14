@@ -38,18 +38,18 @@ class BannerForm
                     ])->columns(2),
 
                 Section::make('Multimedia y Orden')
-                    ->description('Carga de imagen o video y visibilidad.')
+                    ->description('Carga de imagen o video y visibilidad para web y dispositivos móviles.')
                     ->components([
                         Select::make('media_type')
-                            ->label('Tipo de Multimedia')
+                            ->label('Tipo de Multimedia (Web/Escritorio)')
                             ->options([
                                 'image' => 'Imagen',
                                 'video' => 'Video',
-                            ])
+                             ])
                             ->required()
                             ->default('image'),
                         FileUpload::make('media_path')
-                            ->label('Archivo Multimedia (Video o Imagen)')
+                            ->label('Archivo Multimedia Web (Video o Imagen)')
                             ->disk('public')
                             ->directory('banners')
                             ->required()
@@ -62,7 +62,31 @@ class BannerForm
                                 'video/webm',
                                 'video/quicktime'
                             ])
-                            ->helperText('Sube una imagen o video HD. Tamaño máximo: 100MB.'),
+                            ->helperText('Sube una imagen o video HD para escritorio. Tamaño máximo: 100MB.'),
+                        
+                        Select::make('mobile_media_type')
+                            ->label('Tipo de Multimedia (Móvil)')
+                            ->options([
+                                'image' => 'Imagen',
+                                'video' => 'Video',
+                            ])
+                            ->required()
+                            ->default('image'),
+                        FileUpload::make('mobile_media_path')
+                            ->label('Archivo Multimedia Móvil (Opcional - Fallback a Web)')
+                            ->disk('public')
+                            ->directory('banners')
+                            ->maxSize(51200) // 50MB
+                            ->acceptedFileTypes([
+                                'image/jpeg',
+                                'image/png',
+                                'image/webp',
+                                'video/mp4',
+                                'video/webm',
+                                'video/quicktime'
+                            ])
+                            ->helperText('Sube una versión vertical o ligera para dispositivos móviles (Opcional). Tamaño máximo: 50MB.'),
+
                         TextInput::make('order')
                             ->label('Orden de Aparición')
                             ->numeric()

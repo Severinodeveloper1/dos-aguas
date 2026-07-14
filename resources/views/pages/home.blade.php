@@ -126,13 +126,29 @@
                     $hasText = !empty($banner->title) || !empty($banner->subtitle);
                     $hasButton = !empty($banner->button_text) && !empty($banner->button_url);
 
-                    // Determine if the media is a video
+                    // Determine Desktop Media
                     $mediaUrl = str_starts_with($banner->media_path, 'http')
                         ? $banner->media_path
                         : asset('storage/' . $banner->media_path);
                     $parsedPath = parse_url($mediaUrl, PHP_URL_PATH);
                     $extension = strtolower(pathinfo($parsedPath, PATHINFO_EXTENSION));
                     $isVideo = in_array($extension, ['mp4', 'webm', 'ogg', 'mov', 'avi']);
+
+                    // Determine Mobile Media
+                    $mobileMediaUrl = null;
+                    $isMobileVideo = false;
+                    if (!empty($banner->mobile_media_path)) {
+                        $mobileMediaUrl = str_starts_with($banner->mobile_media_path, 'http')
+                            ? $banner->mobile_media_path
+                            : asset('storage/' . $banner->mobile_media_path);
+                        $parsedMobilePath = parse_url($mobileMediaUrl, PHP_URL_PATH);
+                        $mobileExtension = strtolower(pathinfo($parsedMobilePath, PATHINFO_EXTENSION));
+                        $isMobileVideo = in_array($mobileExtension, ['mp4', 'webm', 'ogg', 'mov', 'avi']);
+                    } else {
+                        // Fallback to desktop media
+                        $mobileMediaUrl = $mediaUrl;
+                        $isMobileVideo = $isVideo;
+                    }
                 @endphp
                 <div x-show="activeSlide === {{ $idx }}" data-slide-index="{{ $idx }}"
                     x-transition:enter="transition opacity-100 ease-out duration-1000" x-transition:enter-start="opacity-0"
@@ -141,13 +157,27 @@
                     class="absolute inset-0 w-full h-full flex items-center" x-cloak>
 
                     <div class="absolute inset-0 z-0">
-                        @if ($isVideo)
-                            <video class="w-full h-full object-cover opacity-55" src="{{ $mediaUrl }}" autoplay muted
-                                playsinline @if ($bannerList->count() === 1) loop @endif></video>
-                        @else
-                            <img alt="{{ $banner->title ?? 'Banner' }}" class="w-full h-full object-cover opacity-55"
-                                src="{{ $mediaUrl }}" />
-                        @endif
+                        <!-- Desktop Media (Hidden on Mobile) -->
+                        <div class="hidden md:block w-full h-full">
+                            @if ($isVideo)
+                                <video class="w-full h-full object-cover opacity-55" src="{{ $mediaUrl }}" autoplay muted
+                                    playsinline @if ($bannerList->count() === 1) loop @endif></video>
+                            @else
+                                <img alt="{{ $banner->title ?? 'Banner' }}" class="w-full h-full object-cover opacity-55"
+                                    src="{{ $mediaUrl }}" />
+                            @endif
+                        </div>
+
+                        <!-- Mobile Media (Hidden on Desktop) -->
+                        <div class="block md:hidden w-full h-full">
+                            @if ($isMobileVideo)
+                                <video class="w-full h-full object-cover opacity-55" src="{{ $mobileMediaUrl }}" autoplay muted
+                                    playsinline @if ($bannerList->count() === 1) loop @endif></video>
+                            @else
+                                <img alt="{{ $banner->title ?? 'Banner' }}" class="w-full h-full object-cover opacity-55"
+                                    src="{{ $mobileMediaUrl }}" />
+                            @endif
+                        </div>
 
                         <!-- Shading Gradient overlay only if there is text -->
                         @if ($hasText)

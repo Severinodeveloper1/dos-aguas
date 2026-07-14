@@ -18,6 +18,8 @@ class Banner extends Model implements Auditable
         'button_url',
         'media_type',
         'media_path',
+        'mobile_media_type',
+        'mobile_media_path',
         'order',
         'is_active',
     ];
