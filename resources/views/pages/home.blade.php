@@ -212,7 +212,7 @@
         <div class="absolute inset-0 bg-black/40"></div>
         <div class="relative z-10 text-center px-4 max-w-2xl">
             <h2 class="font-headline text-2xl md:text-3xl italic text-on-surface mb-4">
-                "{{ app()->getLocale() == 'es' ? 'La esencia de dos ríos convertida en cacao artesanal.' : 'The essence of two rivers crafted into single-origin chocolate.' }}"
+                "{{ __('messages.home.parallax_quote') }}"
             </h2>
             <div class="w-16 h-px bg-primary mx-auto"></div>
         </div>
@@ -298,20 +298,29 @@
     <section class="py-section-gap px-margin-edge bg-surface-container-lowest border-y border-outline-variant/10">
         <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter items-stretch">
 
-            <div class="md:col-span-7 h-[400px] md:h-[500px] overflow-hidden group border border-outline-variant/5">
+            <div class="md:col-span-7 h-[600px] md:h-[650px] overflow-hidden group border border-outline-variant/5">
                 <img alt="Craftsmanship Process"
                     class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo0TfU1QE9Z3g6KSWzthQP8n3tJ1hrZprdYQTxSGqYo3njjVn7K0EKfw6840qBScOEn0HTTKh7RfwgbYhc3uuB1HNOvk-fnigdd0OG_HVwRALCiB15nolipjeuIOpQpuzA8Oa07jpbRIk6olmFouGsmhofVUpJnMZSE93cBk2khFLYCe96pSEjPIgvEwvZkU-MBVjZWAVH1i8XVY8C0xUNcB_PtOfwrj4UHOsI5v-n_r88KQibk4B5bqfALWtf5Ff2UIXiqelLVb4" />
+                    src="{{ asset('img/proceso.jpeg') }}" />
             </div>
 
             <div class="md:col-span-5 flex flex-col justify-center p-8 md:p-12 bg-surface-container">
                 <span
                     class="font-label-caps text-xs text-secondary mb-6 block tracking-widest font-bold">{{ app()->getLocale() == 'es' ? 'NUESTRO PROCESO' : 'OUR PROCESS' }}</span>
                 <h3 class="font-headline text-3xl mb-6 font-bold">
-                    {{ app()->getLocale() == 'es' ? 'Molienda Lenta en Piedra' : 'Slow-Stone Grinding' }}</h3>
+                    {{ app()->getLocale() == 'es' ? 'Del origen a la excelencia' : 'From origin to excellence' }}</h3>
                 <p class="font-body text-sm text-on-surface-variant leading-relaxed">
-                    {{ app()->getLocale() == 'es' ? 'Nos tomamos más de 72 horas para refinar nuestro cacao en molinos de piedra tradicionales. Este proceso paciente y a baja temperatura preserva los delicados aromas florales y frutales que definen al cacao nativo.' : 'We take over 72 hours to refine our cocoa in traditional stone mills. This patient, low-temperature process preserves the delicate floral and fruity aromas that define our native cocoa.' }}
+                    {{ app()->getLocale() == 'es'
+                        ? 'En Dos Aguas, cada producto nace de un proceso cuidadosamente controlado, desde la selección del cacao en nuestra hacienda de Curimaná, Ucayali,
+                                                                                                                                                                                                                                                                                        hasta su transformación en nuestra planta de Lima. Aplicamos altos estándares de calidad en cada etapa para preservar el origen, los aromas y la excelencia que distinguen a nuestros chocolates, derivados del cacao y frutas liofilizadas.'
+                        : 'At Dos Aguas, every product is born from a carefully controlled process, from the selection of the cacao at our farm in Curimaná, Ucayali, to its transformation at our plant in Lima. We apply high quality standards at every stage to preserve the origin, aromas,
+                                                                                                                                                                                                                                                                                        and excellence that distinguish our chocolates, cacao derivatives, and freeze-dried fruits.' }}
                 </p>
+                <a href="{{ route('origin') }}"
+                    class="inline-flex items-center gap-2 mt-8 px-6 py-3 border border-primary text-primary font-label-caps text-[10px] tracking-widest hover:bg-primary hover:text-on-primary transition-all duration-300 w-fit">
+                    {{ app()->getLocale() == 'es' ? 'CONOCER NUESTRO PROCESO' : (app()->getLocale() == 'de' ? 'UNSEREN PROZESS ENTDECKEN' : 'DISCOVER OUR PROCESS') }}
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
             </div>
 
         </div>
