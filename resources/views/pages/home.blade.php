@@ -100,7 +100,7 @@
                 this.$nextTick(() => {
                     const activeSlideEl = this.$el.querySelector('[data-slide-index=\'' + this.activeSlide + '\']');
                     if (!activeSlideEl) return;
-                    
+
                     const video = activeSlideEl.querySelector('video');
                     if (video) {
                         video.currentTime = 0;
@@ -125,15 +125,16 @@
                 @php
                     $hasText = !empty($banner->title) || !empty($banner->subtitle);
                     $hasButton = !empty($banner->button_text) && !empty($banner->button_url);
-                    
+
                     // Determine if the media is a video
-                    $mediaUrl = str_starts_with($banner->media_path, 'http') ? $banner->media_path : asset('storage/' . $banner->media_path);
+                    $mediaUrl = str_starts_with($banner->media_path, 'http')
+                        ? $banner->media_path
+                        : asset('storage/' . $banner->media_path);
                     $parsedPath = parse_url($mediaUrl, PHP_URL_PATH);
                     $extension = strtolower(pathinfo($parsedPath, PATHINFO_EXTENSION));
                     $isVideo = in_array($extension, ['mp4', 'webm', 'ogg', 'mov', 'avi']);
                 @endphp
-                <div x-show="activeSlide === {{ $idx }}"
-                    data-slide-index="{{ $idx }}"
+                <div x-show="activeSlide === {{ $idx }}" data-slide-index="{{ $idx }}"
                     x-transition:enter="transition opacity-100 ease-out duration-1000" x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100" x-transition:leave="transition opacity-0 ease-in duration-1000"
                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
@@ -141,12 +142,8 @@
 
                     <div class="absolute inset-0 z-0">
                         @if ($isVideo)
-                            <video class="w-full h-full object-cover opacity-55" 
-                                   src="{{ $mediaUrl }}" 
-                                   autoplay 
-                                   muted 
-                                   playsinline
-                                   @if($bannerList->count() === 1) loop @endif></video>
+                            <video class="w-full h-full object-cover opacity-55" src="{{ $mediaUrl }}" autoplay muted
+                                playsinline @if ($bannerList->count() === 1) loop @endif></video>
                         @else
                             <img alt="{{ $banner->title ?? 'Banner' }}" class="w-full h-full object-cover opacity-55"
                                 src="{{ $mediaUrl }}" />
@@ -402,6 +399,208 @@
             </div>
         </section>
     @endif
+
+    <!-- Corporate Brand Services Section (Desarrollo y Producción para Marcas) -->
+    <section
+        class="py-20 md:py-28 px-margin-edge bg-surface-container-lowest border-t border-outline-variant/10 overflow-hidden relative">
+        <!-- Accent decorative blur element for Liquid Glass feeling -->
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl pointer-events-none">
+        </div>
+        <div
+            class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/5 rounded-full filter blur-3xl pointer-events-none">
+        </div>
+
+        <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10"
+            x-data="{ activeTab: 'services' }">
+
+            <!-- Left Side: Copy and Interactive Tabs -->
+            <div class="lg:col-span-7 space-y-8">
+                <div class="space-y-4">
+                    <span class="font-label-caps text-xs text-primary tracking-[0.3em] uppercase block font-bold">
+                        {{ __('messages.services.subtitle') }}
+                    </span>
+                    <h2 class="font-headline text-3xl md:text-4xl font-bold uppercase tracking-wider text-on-surface">
+                        {{ __('messages.services.title') }}
+                    </h2>
+                    <div class="w-16 h-px bg-primary"></div>
+                    <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                        {{ __('messages.services.description') }}
+                    </p>
+                </div>
+
+                <!-- Tab Navigation Buttons -->
+                <div
+                    class="flex flex-wrap gap-2 border-b border-outline-variant/10 pb-1 text-[10px] md:text-xs font-label-caps font-bold">
+                    <button type="button" @click="activeTab = 'services'"
+                        class="px-5 py-3 border-b-2 transition-all duration-300 tracking-wider uppercase cursor-pointer"
+                        :class="activeTab === 'services' ? 'border-primary text-primary' :
+                            'border-transparent text-outline hover:text-on-surface'">
+                        {{ __('messages.services.services_title') }}
+                    </button>
+                    <button type="button" @click="activeTab = 'develop'"
+                        class="px-5 py-3 border-b-2 transition-all duration-300 tracking-wider uppercase cursor-pointer"
+                        :class="activeTab === 'develop' ? 'border-primary text-primary' :
+                            'border-transparent text-outline hover:text-on-surface'">
+                        {{ __('messages.services.can_develop_title') }}
+                    </button>
+                    <button type="button" @click="activeTab = 'why'"
+                        class="px-5 py-3 border-b-2 transition-all duration-300 tracking-wider uppercase cursor-pointer"
+                        :class="activeTab === 'why' ? 'border-primary text-primary' :
+                            'border-transparent text-outline hover:text-on-surface'">
+                        {{ __('messages.services.why_us_title') }}
+                    </button>
+                </div>
+
+                <!-- Tab Content Panels -->
+                <div class="relative min-h-[300px]">
+
+                    <!-- Panel 1: Services -->
+                    <div x-show="activeTab === 'services'" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translate-y-4"
+                        x-transition:enter-end="opacity-100 translate-y-0" class="space-y-4">
+                        <ul
+                            class="grid grid-cols-1 md:grid-cols-2 gap-4 font-body text-xs text-on-surface-variant leading-relaxed">
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-4 hover:border-primary/40 transition-colors duration-300 flex items-start gap-3">
+                                <span
+                                    class="material-symbols-outlined text-primary text-lg flex-shrink-0 mt-0.5">design_services</span>
+                                <span>{{ __('messages.services.item_dev') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-4 hover:border-primary/40 transition-colors duration-300 flex items-start gap-3">
+                                <span
+                                    class="material-symbols-outlined text-primary text-lg flex-shrink-0 mt-0.5">bookmark</span>
+                                <span>{{ __('messages.services.item_brand') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-4 hover:border-primary/40 transition-colors duration-300 flex items-start gap-3">
+                                <span
+                                    class="material-symbols-outlined text-primary text-lg flex-shrink-0 mt-0.5">precision_manufacturing</span>
+                                <span>{{ __('messages.services.item_maquila') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-4 hover:border-primary/40 transition-colors duration-300 flex items-start gap-3">
+                                <span
+                                    class="material-symbols-outlined text-primary text-lg flex-shrink-0 mt-0.5">deployed_code</span>
+                                <span>{{ __('messages.services.item_design') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-4 hover:border-primary/40 transition-colors duration-300 flex items-start gap-3 md:col-span-2">
+                                <span
+                                    class="material-symbols-outlined text-primary text-lg flex-shrink-0 mt-0.5">public</span>
+                                <span>{{ __('messages.services.item_local_intl') }}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Panel 2: What We Can Develop -->
+                    <div x-show="activeTab === 'develop'" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translate-y-4"
+                        x-transition:enter-end="opacity-100 translate-y-0" class="space-y-4" x-cloak>
+                        <ul class="grid grid-cols-2 md:grid-cols-3 gap-3 font-body text-xs text-on-surface-variant">
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-3 hover:border-primary/40 transition-colors duration-300 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                <span>{{ __('messages.services.dev_bars') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-3 hover:border-primary/40 transition-colors duration-300 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                <span>{{ __('messages.services.dev_cover') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-3 hover:border-primary/40 transition-colors duration-300 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                <span>{{ __('messages.services.dev_dragees') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-3 hover:border-primary/40 transition-colors duration-300 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                <span>{{ __('messages.services.dev_fruits') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-3 hover:border-primary/40 transition-colors duration-300 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                <span>{{ __('messages.services.dev_paste') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-3 hover:border-primary/40 transition-colors duration-300 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                <span>{{ __('messages.services.dev_butter') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-3 hover:border-primary/40 transition-colors duration-300 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                <span>{{ __('messages.services.dev_powder') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-3 hover:border-primary/40 transition-colors duration-300 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                <span>{{ __('messages.services.dev_nibs') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-3 hover:border-primary/40 transition-colors duration-300 flex items-center gap-2 col-span-2 md:col-span-3">
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                <span>{{ __('messages.services.dev_custom') }}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Panel 3: Why Choose Us -->
+                    <div x-show="activeTab === 'why'" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translate-y-4"
+                        x-transition:enter-end="opacity-100 translate-y-0" class="space-y-4" x-cloak>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 font-body text-xs text-on-surface-variant">
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-4 hover:border-primary/40 transition-colors duration-300 flex items-start gap-3">
+                                <span
+                                    class="material-symbols-outlined text-leaf-green text-lg flex-shrink-0 mt-0.5">check_circle</span>
+                                <span>{{ __('messages.services.why_origin') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-4 hover:border-primary/40 transition-colors duration-300 flex items-start gap-3">
+                                <span
+                                    class="material-symbols-outlined text-leaf-green text-lg flex-shrink-0 mt-0.5">check_circle</span>
+                                <span>{{ __('messages.services.why_tailored') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-4 hover:border-primary/40 transition-colors duration-300 flex items-start gap-3">
+                                <span
+                                    class="material-symbols-outlined text-leaf-green text-lg flex-shrink-0 mt-0.5">check_circle</span>
+                                <span>{{ __('messages.services.why_quality') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-4 hover:border-primary/40 transition-colors duration-300 flex items-start gap-3">
+                                <span
+                                    class="material-symbols-outlined text-leaf-green text-lg flex-shrink-0 mt-0.5">check_circle</span>
+                                <span>{{ __('messages.services.why_flexible') }}</span>
+                            </li>
+                            <li
+                                class="bg-[#161616]/40 border border-outline-variant/10 p-4 hover:border-primary/40 transition-colors duration-300 flex items-start gap-3 md:col-span-2">
+                                <span
+                                    class="material-symbols-outlined text-leaf-green text-lg flex-shrink-0 mt-0.5">check_circle</span>
+                                <span>{{ __('messages.services.why_support') }}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Right Side: Service Product Image with glass effect border -->
+            <div
+                class="lg:col-span-5 relative group overflow-hidden border border-outline-variant/15 p-2 bg-[#161616]/40 backdrop-blur-sm rounded-sm">
+                <div class="overflow-hidden aspect-[4/3] md:aspect-square relative">
+                    <img src="{{ asset('img/chocolate_production_service.jpg') }}"
+                        alt="Desarrollo y Producción para Marcas"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103" />
+                    <!-- Sub-border overlay matching Liquid Glass -->
+                    <div class="absolute inset-0 border border-white/5 pointer-events-none"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
     <!-- Moving Infinite Ribbon Loop Gallery Section -->
     @php
