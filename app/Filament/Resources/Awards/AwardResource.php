@@ -30,7 +30,7 @@ class AwardResource extends Resource
 
     protected static string|\UnitEnum|null $navigationGroup = 'Contenido Web';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Schema $schema): Schema
     {

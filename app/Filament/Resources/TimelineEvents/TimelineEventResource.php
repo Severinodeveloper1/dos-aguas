@@ -22,6 +22,12 @@ class TimelineEventResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
+    protected static ?string $navigationLabel = 'Línea de Tiempo';
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Contenido Web';
+
+    protected static ?int $navigationSort = 2;
+
     public static function form(Schema $schema): Schema
     {
         return TimelineEventForm::configure($schema);

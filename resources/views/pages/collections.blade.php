@@ -169,7 +169,7 @@
                                     
                                     @if($product->tasting_notes)
                                         <p class="text-xs text-on-surface-variant font-body line-clamp-2 mt-2 leading-relaxed italic">
-                                            "{{ $product->tasting_notes }}"
+                                            "{{ strip_tags($product->tasting_notes) }}"
                                         </p>
                                     @endif
                                 </div>
