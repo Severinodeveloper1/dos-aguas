@@ -7,11 +7,14 @@ use App\Mail\OrderPlacedCustomerMail;
 use App\Models\CompanyInfo;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\PaymentSetting;
 use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class CheckoutController extends Controller
 {
@@ -76,9 +79,14 @@ class CheckoutController extends Controller
             'address' => 'required|string|max:500',
             'reference' => 'nullable|string|max:255',
             'city' => 'required|string|max:255',
+            'country' => 'nullable|string|max:255',
             'notes' => 'nullable|string|max:1000',
             'shipping_type' => 'required|string|in:national,international',
         ]);
+
+        if ($validated['shipping_type'] === 'international' && empty($validated['country'])) {
+            return redirect()->back()->withErrors(['country' => 'El país de destino es obligatorio para envíos internacionales.'])->withInput();
+        }
 
         session()->put('checkout.shipping', $validated);
 
@@ -101,6 +109,7 @@ class CheckoutController extends Controller
         }
 
         $shippingInfo = session()->get('checkout.shipping');
+        $paymentSettings = PaymentSetting::first();
 
         // Shipping cost logic:
         // National: S/ 15 flat rate, or free if subtotal is >= S/ 200
@@ -114,7 +123,7 @@ class CheckoutController extends Controller
 
         $total = $subtotal + $shippingCost;
 
-        return view('pages.checkout-payment', compact('cartItems', 'subtotal', 'shippingInfo', 'shippingCost', 'total'));
+        return view('pages.checkout-payment', compact('cartItems', 'subtotal', 'shippingInfo', 'shippingCost', 'total', 'paymentSettings'));
     }
 
     /**
@@ -146,10 +155,37 @@ class CheckoutController extends Controller
         }
         
         $total = $subtotal + $shippingCost;
+        $customerFullName = trim($shipping['first_name'] . ' ' . $shipping['last_name']);
+
+        $paymentId = null;
+        $paymentStatus = 'pending';
+        $orderStatus = 'pending';
+
+        // Procesar cobro con Culqi si el usuario seleccionó tarjeta
+        if ($request->payment_method === 'card') {
+            $paymentSettings = PaymentSetting::first();
+
+            if ($paymentSettings && $paymentSettings->gateway_enabled && $paymentSettings->gateway_provider === 'culqi') {
+                $culquiResult = $this->processCulquiPayment($paymentSettings, [
+                    'amount' => $total,
+                    'email' => $shipping['email'],
+                    'name' => $customerFullName,
+                    'phone' => $shipping['phone'],
+                ]);
+
+                if (!$culquiResult['success']) {
+                    return redirect()->route('checkout.payment')->with('error', $culquiResult['error'] ?? 'Falló el procesamiento del pago con tarjeta.');
+                }
+
+                $paymentId = $culquiResult['charge_id'];
+                $paymentStatus = 'paid';
+                $orderStatus = 'preparing';
+            }
+        }
 
         // Perform transactional operation
         try {
-            $order = DB::transaction(function () use ($shipping, $shippingType, $cartItems, $subtotal, $shippingCost, $total, $request) {
+            $order = DB::transaction(function () use ($shipping, $shippingType, $cartItems, $subtotal, $shippingCost, $total, $request, $customerFullName, $paymentId, $paymentStatus, $orderStatus) {
                 $year = now()->year;
                 
                 // Atomic lock for next order number
@@ -168,22 +204,25 @@ class CheckoutController extends Controller
                 $sequence = str_pad($nextNum, 5, '0', STR_PAD_LEFT);
                 $orderNumber = "DA-{$year}-{$sequence}";
 
+                $countryStr = !empty($shipping['country']) ? ', País: ' . $shipping['country'] : '';
+
                 // Create Order record
                 $order = Order::create([
                     'order_number' => $orderNumber,
                     'user_id' => auth()->id(),
-                    'customer_name' => $shipping['first_name'] . ' ' . $shipping['last_name'],
+                    'customer_name' => $customerFullName,
                     'customer_email' => $shipping['email'],
                     'customer_phone' => $shipping['phone'],
-                    'status' => 'pending',
+                    'status' => $orderStatus,
                     'subtotal' => $subtotal,
                     'tax' => $subtotal * 0.18, // 18% IGV (included in price)
                     'shipping_cost' => $shippingCost,
                     'total' => $total,
                     'payment_method' => $request->payment_method,
-                    'payment_status' => 'pending',
-                    'shipping_address' => $shipping['address'] . ' (' . ($shipping['reference'] ?? 'Sin referencia') . '), ' . $shipping['city'] . ' [' . ($shippingType === 'national' ? 'Envío Nacional' : 'Envío Internacional') . ']',
-                    'billing_address' => $shipping['address'] . ', ' . $shipping['city'],
+                    'payment_status' => $paymentStatus,
+                    'payment_id' => $paymentId,
+                    'shipping_address' => $shipping['address'] . ' (' . ($shipping['reference'] ?? 'Sin referencia') . '), ' . $shipping['city'] . $countryStr . ' [' . ($shippingType === 'national' ? 'Envío Nacional' : 'Envío Internacional') . ']',
+                    'billing_address' => $shipping['address'] . ', ' . $shipping['city'] . $countryStr,
                     'notes' => $shipping['notes'] ?? null,
                 ]);
 
@@ -240,6 +279,78 @@ class CheckoutController extends Controller
 
         } catch (\Exception $e) {
             return redirect()->route('checkout.payment')->with('error', 'Error al procesar el pedido: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Process payment with Culqi API v2
+     */
+    protected function processCulquiPayment(PaymentSetting $paymentSetting, array $paymentData)
+    {
+        try {
+            $secretKey = trim($paymentSetting->gateway_private_key ?? '');
+
+            if (empty($secretKey)) {
+                return [
+                    'success' => false,
+                    'error' => 'La pasarela de pago Culqi no está configurada correctamente en el servidor. Falta la llave privada.',
+                ];
+            }
+
+            $fullName = $paymentData['name'] ?? 'Cliente Dos Aguas';
+            $parts = explode(' ', trim($fullName));
+            $firstName = $parts[0] ?? 'Cliente';
+            $lastName = count($parts) > 1 ? implode(' ', array_slice($parts, 1)) : $firstName;
+
+            $culquiToken = request('culqui_token');
+
+            if (empty($culquiToken)) {
+                return [
+                    'success' => false,
+                    'error' => 'No se recibió el token de seguridad de la tarjeta. Por favor intente nuevamente.',
+                ];
+            }
+
+            // Petición HTTP POST a Culqi API v2 charges
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $secretKey,
+                'Content-Type' => 'application/json',
+            ])->post('https://api.culqi.com/v2/charges', [
+                'amount' => (int) round($paymentData['amount'] * 100),
+                'currency_code' => 'PEN',
+                'email' => $paymentData['email'],
+                'source_id' => $culquiToken,
+                'antifraud_details' => [
+                    'first_name' => $firstName,
+                    'last_name' => $lastName,
+                    'phone_number' => $paymentData['phone'] ?? '999999999',
+                ],
+                'metadata' => [
+                    'cliente' => $fullName,
+                    'telefono' => $paymentData['phone'] ?? '',
+                ]
+            ]);
+
+            $result = $response->json();
+
+            if ($response->successful() && isset($result['object']) && $result['object'] === 'charge') {
+                return [
+                    'success' => true,
+                    'charge_id' => $result['id'],
+                ];
+            }
+
+            $errorMessage = $result['user_message'] ?? ($result['description'] ?? 'Error desconocido al procesar la transacción en Culqi.');
+            return [
+                'success' => false,
+                'error' => $errorMessage,
+            ];
+
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'error' => 'Error de comunicación con Culqi: ' . $e->getMessage(),
+            ];
         }
     }
 

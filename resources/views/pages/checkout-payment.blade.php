@@ -2,6 +2,11 @@
 
 @section('title', __('messages.checkout.payment_title') . ' | Dos Aguas')
 
+@section('head')
+    <!-- Culqi Custom Checkout JS -->
+    <script src="https://js.culqi.com/checkout-js"></script>
+@endsection
+
 @section('content')
 
     <main class="max-w-container-max mx-auto px-margin-edge py-20 font-body"
@@ -36,7 +41,7 @@
                             @if($shippingInfo['reference'])
                                 <p class="italic text-[11px]">Ref: {{ $shippingInfo['reference'] }}</p>
                             @endif
-                            <p>{{ $shippingInfo['city'] }}</p>
+                            <p>{{ $shippingInfo['city'] }} {{ !empty($shippingInfo['country']) ? ' - ' . $shippingInfo['country'] : '' }}</p>
                             <p class="text-primary font-bold mt-1 text-[10px]">
                                 {{ ($shippingInfo['shipping_type'] ?? 'national') === 'national' ? __('messages.checkout.national') : __('messages.checkout.international') }}
                             </p>
@@ -53,13 +58,14 @@
                 @endif
 
                 @if(session('error'))
-                    <div class="p-4 bg-error/10 border border-error/30 text-error text-xs font-bold font-body">
-                        {{ session('error') }}
+                    <div class="p-4 bg-error/10 border border-error/30 text-error text-xs font-bold font-body flex items-center gap-2">
+                        <span class="material-symbols-outlined text-error text-base">error</span>
+                        <span>{{ session('error') }}</span>
                     </div>
                 @endif
 
                 <!-- Payment form -->
-                <form action="{{ route('checkout.process') }}" method="POST" class="space-y-8" @submit="processing = true">
+                <form action="{{ route('checkout.process') }}" method="POST" id="checkout-payment-form" class="space-y-8">
                     @csrf
                     
                     <!-- Method choices -->
@@ -77,12 +83,12 @@
                                 {{ __('messages.checkout.bank_transfer') }}
                             </label>
                             
-                            <!-- Card payment button -->
+                            <!-- Card payment button (Culqi) -->
                             <label class="border p-4 flex items-center gap-3 cursor-pointer select-none transition-all duration-300 font-body text-xs font-bold"
                                    :class="method === 'card' ? 'border-primary bg-primary/5 text-primary' : 'border-outline-variant/20 text-on-surface-variant hover:border-primary'">
                                 <input type="radio" name="payment_method" value="card" class="hidden" @click="method = 'card'" />
                                 <span class="material-symbols-outlined text-lg">credit_card</span>
-                                {{ app()->getLocale() == 'es' ? 'Tarjeta de Crédito / Débito' : 'Credit / Debit Card' }}
+                                {{ app()->getLocale() == 'es' ? 'Tarjeta / Yape (Culqi Seguro)' : 'Credit / Debit Card (Culqi)' }}
                             </label>
                         </div>
                     </div>
@@ -98,42 +104,40 @@
                             <p>
                                 {{ app()->getLocale() == 'es' ? 'Por favor realiza la transferencia a nuestra cuenta bancaria y envía el comprobante a nuestro canal de WhatsApp para procesar tu pedido de inmediato.' : 'Please perform the transfer to our bank account and send the receipt to our WhatsApp support channel to process your order immediately.' }}
                             </p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-outline-variant/10 pt-4 text-[11px]">
-                                <div>
-                                    <p class="font-bold text-on-surface">Banco de Crédito del Perú (BCP)</p>
-                                    <p>Cuenta Corriente: <span class="font-bold text-on-surface">191-9876543-0-12</span></p>
-                                    <p>CCI: <span class="font-bold text-on-surface">002-191009876543012050</span></p>
+
+                            @if($paymentSettings && $paymentSettings->bank_transfer_details)
+                                <div class="border-t border-outline-variant/10 pt-4 text-[11px] text-on-surface space-y-2">
+                                    {!! $paymentSettings->bank_transfer_details !!}
                                 </div>
-                                <div>
-                                    <p class="font-bold text-on-surface">Beneficiario: Dos Aguas S.A.C.</p>
-                                    <p>RUC: 20123456789</p>
+                            @else
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-outline-variant/10 pt-4 text-[11px]">
+                                    <div>
+                                        <p class="font-bold text-on-surface">Banco de Crédito del Perú (BCP)</p>
+                                        <p>Cuenta Corriente: <span class="font-bold text-on-surface">191-9876543-0-12</span></p>
+                                        <p>CCI: <span class="font-bold text-on-surface">002-191009876543012050</span></p>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-on-surface">Beneficiario: Dos Aguas S.A.C.</p>
+                                        <p>RUC: 20123456789</p>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                         
-                        <!-- Simulated Card Details -->
+                        <!-- Culqi Card Details Info Panel -->
                         <div x-show="method === 'card'" x-transition class="space-y-4 text-xs font-body">
-                            <p class="font-bold text-on-surface uppercase tracking-wider text-[10px] text-primary">
-                                {{ app()->getLocale() == 'es' ? 'Ingresa los datos de tu tarjeta' : 'Enter your card details' }}
+                            <p class="font-bold text-on-surface uppercase tracking-wider text-[10px] text-primary flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-sm">lock</span>
+                                {{ app()->getLocale() == 'es' ? 'Pasarela de Pago Segura Culqi' : 'Culqi Secure Payment Gateway' }}
                             </p>
                             
-                            <div class="space-y-4">
-                                <div class="flex flex-col gap-2">
-                                    <label class="text-[9px] font-label-caps text-outline font-bold">Número de Tarjeta</label>
-                                    <input type="text" placeholder="4111 2222 3333 4444" 
-                                           class="bg-[#131313] border border-outline-variant/30 text-on-surface py-2.5 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs" />
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="flex flex-col gap-2">
-                                        <label class="text-[9px] font-label-caps text-outline font-bold">Fecha de Expiración</label>
-                                        <input type="text" placeholder="MM / YY" 
-                                               class="bg-[#131313] border border-outline-variant/30 text-on-surface py-2.5 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs text-center" />
-                                    </div>
-                                    <div class="flex flex-col gap-2">
-                                        <label class="text-[9px] font-label-caps text-outline font-bold">CVV</label>
-                                        <input type="text" placeholder="123" 
-                                               class="bg-[#131313] border border-outline-variant/30 text-on-surface py-2.5 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs text-center" />
-                                    </div>
+                            <div class="p-4 bg-[#131313] border border-outline-variant/20 rounded-sm space-y-2 leading-relaxed text-on-surface-variant text-[11px]">
+                                <p>
+                                    {{ app()->getLocale() == 'es' ? 'Al hacer clic en "Procesar Pedido con Tarjeta", se desplegará la ventana segura de Culqi para ingresar tus datos de tarjeta de crédito/débito o pagar mediante Yape.' : 'When clicking "Process Order", the secure Culqi popup will open for entering your credit/debit card or paying via Yape.' }}
+                                </p>
+                                <div class="flex items-center gap-3 pt-2 text-xs font-bold text-on-surface">
+                                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-primary">verified_user</span> 256-bit Encryption</span>
+                                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-primary">shield</span> PCI-DSS Compliant</span>
                                 </div>
                             </div>
                         </div>
@@ -142,10 +146,10 @@
 
                     <!-- Submit action -->
                     <div class="pt-4">
-                        <button type="submit" :disabled="processing"
+                        <button type="submit" id="submit-order-btn" :disabled="processing"
                                 class="w-full bg-primary text-on-primary py-4 font-label-caps text-xs tracking-widest hover:bg-secondary hover:text-on-secondary transition-all duration-300 font-bold flex items-center justify-center gap-2">
                             <span x-show="processing" class="w-4 h-4 border-2 border-on-primary border-t-transparent rounded-full animate-spin"></span>
-                            <span x-text="processing ? '...' : '{{ __('messages.checkout.place_order') }}'"></span>
+                            <span x-text="processing ? 'Procesando...' : '{{ __('messages.checkout.place_order') }}'"></span>
                         </button>
                     </div>
 
@@ -214,6 +218,116 @@
 
         </div>
 
-    </main>
+       @section('scripts')
+    <script src="https://js.culqi.com/checkout-js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('checkout-payment-form');
+            if (!form) return;
+
+            var culquiPublicKey = '{{ $paymentSettings?->gateway_public_key ?? "" }}';
+            var culquiEnabled = {{ ($paymentSettings?->gateway_enabled && $paymentSettings?->gateway_provider === "culqi") ? "true" : "false" }};
+            var totalAmountCents = Math.round({{ $total }} * 100);
+
+            function ensureCulqiLoaded(callback) {
+                if (typeof CulqiCheckout !== 'undefined' || typeof Culqi !== 'undefined') {
+                    callback();
+                    return;
+                }
+
+                var existingScript = document.querySelector('script[src="https://js.culqi.com/checkout-js"]');
+                if (existingScript) {
+                    existingScript.addEventListener('load', callback);
+                    return;
+                }
+
+                var script = document.createElement('script');
+                script.src = 'https://js.culqi.com/checkout-js';
+                script.onload = callback;
+                script.onerror = function() {
+                    alert('No se pudo conectar con la pasarela de Culqi. Verifica tu conexión a internet o intenta más tarde.');
+                };
+                document.head.appendChild(script);
+            }
+
+            form.addEventListener('submit', function(e) {
+                var selectedMethod = form.querySelector('input[name="payment_method"]:checked')?.value || 'transfer';
+
+                if (selectedMethod === 'card' && culquiEnabled && culquiPublicKey) {
+                    if (document.getElementById('culqui_token')?.value) {
+                        return true;
+                    }
+
+                    e.preventDefault();
+
+                    ensureCulqiLoaded(function() {
+                        const config = {
+                            settings: {
+                                title: 'DOS AGUAS',
+                                currency: 'PEN',
+                                amount: totalAmountCents,
+                            },
+                            client: {
+                                email: '{{ $shippingInfo["email"] ?? "" }}'
+                            },
+                            options: {
+                                lang: 'auto',
+                                installments: true,
+                                paymentMethods: {
+                                    tarjeta: true,
+                                    yape: true
+                                }
+                            },
+                            appearance: {
+                                theme: 'default'
+                            }
+                        };
+
+                        var CulqiInstance = null;
+                        if (typeof CulqiCheckout !== 'undefined') {
+                            CulqiInstance = new CulqiCheckout(culquiPublicKey, config);
+                        } else if (typeof Culqi !== 'undefined') {
+                            Culqi.publicKey = culquiPublicKey;
+                            Culqi.settings(config.settings);
+                            Culqi.options(config.options);
+                            Culqi.appearance(config.appearance);
+                            CulqiInstance = Culqi;
+                        }
+
+                        if (!CulqiInstance) {
+                            alert('La pasarela de Culqi no se cargó correctamente. Por favor recargue la página.');
+                            return;
+                        }
+
+                        CulqiInstance.culqi = function() {
+                            if (CulqiInstance.token) {
+                                var token = CulqiInstance.token.id;
+                                var tokenInput = document.getElementById('culqui_token');
+                                if (!tokenInput) {
+                                    tokenInput = document.createElement('input');
+                                    tokenInput.type = 'hidden';
+                                    tokenInput.name = 'culqui_token';
+                                    tokenInput.id = 'culqui_token';
+                                    form.appendChild(tokenInput);
+                                }
+                                tokenInput.value = token;
+                                CulqiInstance.close();
+                                form.submit();
+                            } else if (CulqiInstance.error) {
+                                CulqiInstance.close();
+                                alert('Error de pago: ' + CulqiInstance.error.user_message);
+                            }
+                        };
+
+                        window.culqi = CulqiInstance.culqi;
+
+                        CulqiInstance.open();
+                    });
+                }
+            });
+        });
+    </script>
+    @endsection
 
 @endsection
+

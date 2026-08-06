@@ -26,6 +26,7 @@ class Order extends Model implements Auditable
         'total',
         'payment_method',
         'payment_status',
+        'payment_id',
         'shipping_address',
         'billing_address',
         'notes',

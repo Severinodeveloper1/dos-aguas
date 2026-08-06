@@ -183,81 +183,25 @@
                         {{ __('messages.checkout.order_summary') }}
                     </h3>
 
-                    <!-- Selector de Tipo de Envío -->
-                    <div class="space-y-3 pb-3 border-b border-outline-variant/10">
-                        <label class="font-label-caps text-[9px] tracking-wider text-outline block uppercase font-bold">
-                            {{ __('messages.checkout.shipping_type') }}
-                        </label>
-                        <div class="flex flex-col gap-2">
-                            <label class="flex items-center gap-2 cursor-pointer select-none">
-                                <input type="radio" value="national" x-model="shippingType"
-                                    class="text-primary focus:ring-0 checked:bg-primary w-3.5 h-3.5" />
-                                <span class="text-xs text-on-surface">{{ __('messages.checkout.national') }}</span>
-                            </label>
-                            <label class="flex items-center gap-2 cursor-pointer select-none">
-                                <input type="radio" value="international" x-model="shippingType"
-                                    class="text-primary focus:ring-0 checked:bg-primary w-3.5 h-3.5" />
-                                <span class="text-xs text-on-surface">{{ __('messages.checkout.international') }}</span>
-                            </label>
-                        </div>
-                    </div>
-
                     <div class="space-y-4 text-xs font-body">
                         <div class="flex justify-between text-on-surface-variant">
                             <span>{{ __('messages.cart.subtotal') }}</span>
                             <span class="font-bold text-on-surface" x-text="'S/ ' + subtotal.toFixed(2)"></span>
                         </div>
 
-                        <div class="flex justify-between text-on-surface-variant">
-                            <span>{{ __('messages.cart.shipping') }}</span>
-                            <!-- Si es internacional -->
-                            <template x-if="shippingType === 'international'">
-                                <span class="text-primary font-bold uppercase tracking-wider text-[10px] text-right">
-                                    {{ app()->getLocale() == 'es' ? 'Por cotizar por correo' : (app()->getLocale() == 'de' ? 'Wird per E-Mail berechnet' : 'To quote via email') }}
-                                </span>
-                            </template>
-                            <!-- Si es nacional -->
-                            <template x-if="shippingType === 'national'">
-                                <div>
-                                    <template x-if="shipping > 0">
-                                        <span class="font-bold text-on-surface" x-text="'S/ ' + shipping.toFixed(2)"></span>
-                                    </template>
-                                    <template x-if="shipping === 0">
-                                        <span
-                                            class="text-leaf-green font-bold uppercase tracking-wider">{{ __('messages.cart.free_shipping') }}</span>
-                                    </template>
-                                </div>
-                            </template>
-                        </div>
-
-                        <!-- Shipping Threshold Bar (Solo aplica para nacional) -->
-                        <div class="pt-2" x-show="shippingType === 'national'">
-                            <template x-if="subtotal < 200">
-                                <div class="space-y-2">
-                                    <div class="h-1 bg-outline-variant/20 w-full overflow-hidden">
-                                        <div class="h-full bg-primary"
-                                            :style="'width: ' + Math.min((subtotal / 200) * 100, 100) + '%'"></div>
-                                    </div>
-                                    <p class="text-[10px] text-outline italic">
-                                        {{ app()->getLocale() == 'es' ? 'Falta ' : 'Spend ' }}
-                                        <span class="font-bold text-primary"
-                                            x-text="'S/ ' + (200 - subtotal).toFixed(2)"></span>
-                                        {{ app()->getLocale() == 'es' ? 'más para envío gratuito.' : 'more for free shipping.' }}
-                                    </p>
-                                </div>
-                            </template>
-                        </div>
-
-                        <!-- Nota explicativa de envío internacional -->
-                        <div class="pt-2" x-show="shippingType === 'international'">
-                            <p class="text-[10px] text-primary italic leading-relaxed">
-                                🌐 {{ __('messages.checkout.international_info') }}
+                        <div class="p-3 bg-[#1c1b1b] border border-outline-variant/10 rounded-sm text-[11px] text-on-surface-variant leading-relaxed space-y-1">
+                            <div class="flex items-center gap-1.5 font-bold text-primary">
+                                <span class="material-symbols-outlined text-sm">local_shipping</span>
+                                <span>{{ app()->getLocale() == 'es' ? 'Opciones de Envío' : 'Shipping Options' }}</span>
+                            </div>
+                            <p>
+                                {{ app()->getLocale() == 'es' ? 'Seleccionarás tu modalidad (Nacional o Internacional) y dirección en el siguiente paso.' : 'You will select your shipping method (National or International) and address in the next step.' }}
                             </p>
                         </div>
 
                         <div class="flex justify-between border-t border-outline-variant/10 pt-4 text-sm font-bold">
                             <span class="uppercase tracking-wider">{{ __('messages.cart.total') }}</span>
-                            <span class="text-secondary" x-text="'S/ ' + total.toFixed(2)"></span>
+                            <span class="text-secondary" x-text="'S/ ' + subtotal.toFixed(2)"></span>
                         </div>
                     </div>
 

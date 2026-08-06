@@ -144,6 +144,19 @@
                         </div>
                     </div>
 
+                    <!-- Country / País de Destino -->
+                    <div class="flex flex-col gap-2">
+                        <label for="country" class="font-label-caps text-[10px] tracking-wider text-outline font-bold uppercase">
+                            {{ app()->getLocale() == 'es' ? 'País de Destino' : 'Destination Country' }}
+                            <span x-show="shippingType === 'international'" class="text-primary font-bold">* ({{ app()->getLocale() == 'es' ? 'Requerido para envío internacional' : 'Required for international shipping' }})</span>
+                        </label>
+                        <input type="text" name="country" id="country" :required="shippingType === 'international'"
+                               class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs"
+                               placeholder="{{ app()->getLocale() == 'es' ? 'Perú (por defecto) o ingresar país (ej. Estados Unidos, España...)' : 'Peru (default) or Country name' }}"
+                               value="{{ old('country', $shippingInfo['country'] ?? '') }}"/>
+                        @error('country') <span class="text-red-500 font-semibold text-xs">{{ $message }}</span> @enderror
+                    </div>
+
                     <!-- Notes -->
                     <div class="flex flex-col gap-2">
                         <label for="notes" class="font-label-caps text-[10px] tracking-wider text-outline font-bold uppercase">

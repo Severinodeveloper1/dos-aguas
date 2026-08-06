@@ -78,6 +78,8 @@
         }
     </style>
     @yield('styles')
+    @yield('head')
+    @stack('head')
 </head>
 
 <body
@@ -536,6 +538,7 @@
     </script>
 
     @yield('scripts')
+    @stack('scripts')
 </body>
 
 </html>
