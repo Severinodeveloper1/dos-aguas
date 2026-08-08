@@ -167,9 +167,12 @@
                                         <a href="{{ route('product.detail', $product->slug) }}">{{ $product->name }}</a>
                                     </h4>
                                     
-                                    @if($product->tasting_notes)
+                                    @php
+                                        $productSummary = $product->clean_tasting_notes ?: $product->clean_description;
+                                    @endphp
+                                    @if($productSummary !== '')
                                         <p class="text-xs text-on-surface-variant font-body line-clamp-2 mt-2 leading-relaxed italic">
-                                            "{{ strip_tags($product->tasting_notes) }}"
+                                            "{{ $productSummary }}"
                                         </p>
                                     @endif
                                 </div>

@@ -42,5 +42,30 @@ class Product extends Model implements Auditable
     {
         return $this->hasMany(ProductVariant::class);
     }
+
+    public function hasTastingNotes(): bool
+    {
+        return trim(strip_tags(html_entity_decode(str_replace('&nbsp;', ' ', $this->tasting_notes ?? '')))) !== '';
+    }
+
+    public function getCleanTastingNotesAttribute(): string
+    {
+        return trim(strip_tags(html_entity_decode(str_replace('&nbsp;', ' ', $this->tasting_notes ?? ''))));
+    }
+
+    public function hasDescription(): bool
+    {
+        return trim(strip_tags(html_entity_decode(str_replace('&nbsp;', ' ', $this->description ?? '')))) !== '';
+    }
+
+    public function getCleanDescriptionAttribute(): string
+    {
+        return trim(strip_tags(html_entity_decode(str_replace('&nbsp;', ' ', $this->description ?? ''))));
+    }
+
+    public function hasNaturalBenefits(): bool
+    {
+        return trim(strip_tags(html_entity_decode(str_replace('&nbsp;', ' ', $this->natural_benefits ?? '')))) !== '';
+    }
 }
 

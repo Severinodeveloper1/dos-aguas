@@ -147,9 +147,11 @@
                     </div>
                 </div>
 
-                <div class="font-body text-sm text-on-surface-variant leading-relaxed">
-                    {!! $product->description !!}
-                </div>
+                @if ($product->hasDescription())
+                    <div class="font-body text-sm text-on-surface-variant leading-relaxed">
+                        {!! $product->description !!}
+                    </div>
+                @endif
 
                 <!-- Dynamic Variant Selector (Dropdown Select) -->
                 <div class="flex flex-col gap-2">
@@ -225,7 +227,7 @@
                 <div class="mt-8 space-y-4 border-t border-outline-variant/10 pt-8" x-data="{ activeTab: null }">
 
                     <!-- Tasting Notes -->
-                    @if ($product->tasting_notes)
+                    @if ($product->hasTastingNotes())
                         <div class="border-b border-outline-variant/10 pb-4">
                             <button @click="activeTab = activeTab === 'notes' ? null : 'notes'"
                                 class="w-full text-left font-label-caps text-xs tracking-wider text-on-surface flex justify-between items-center py-2 font-bold hover:text-primary transition-colors">
@@ -241,7 +243,7 @@
                     @endif
 
                     <!-- Natural Benefits -->
-                    @if ($product->natural_benefits)
+                    @if ($product->hasNaturalBenefits())
                         <div class="border-b border-outline-variant/10 pb-4">
                             <button @click="activeTab = activeTab === 'benefits' ? null : 'benefits'"
                                 class="w-full text-left font-label-caps text-xs tracking-wider text-on-surface flex justify-between items-center py-2 font-bold hover:text-primary transition-colors">
