@@ -25,6 +25,7 @@ class CompanyInfo extends Model implements Auditable
         'instagram_url',
         'tiktok_url',
         'youtube_url',
+        'hacienda_video_url',
         'about_history',
         'about_mission',
         'about_vision',
@@ -40,5 +41,30 @@ class CompanyInfo extends Model implements Auditable
     protected $casts = [
         'gallery_photos' => 'array',
     ];
+
+    public function getHaciendaYoutubeIdAttribute(): ?string
+    {
+        if (empty($this->hacienda_video_url)) {
+            return null;
+        }
+
+        $url = trim($this->hacienda_video_url);
+
+        if (preg_match('/^[a-zA-Z0-9_-]{11}$/', $url)) {
+            return $url;
+        }
+
+        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|live)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $url, $matches)) {
+            return $matches[1];
+        }
+
+        return null;
+    }
+
+    public function getHaciendaYoutubeEmbedUrlAttribute(): ?string
+    {
+        $id = $this->hacienda_youtube_id;
+        return $id ? "https://www.youtube-nocookie.com/embed/{$id}?rel=0" : null;
+    }
 }
 

@@ -362,11 +362,11 @@
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                 <div>
                     <span
-                        class="font-label-caps text-xs text-secondary mb-4 block tracking-widest font-bold">{{ app()->getLocale() == 'es' ? 'EXCELENCIA' : 'EXCELLENCE' }}</span>
+                        class="font-label-caps text-xs text-secondary mb-4 block tracking-widest font-bold">{{ app()->getLocale() == 'es' ? 'EXCELENCIA' : (app()->getLocale() == 'de' ? 'EXZELLENZ' : 'EXCELLENCE') }}</span>
                     <h2 class="font-headline text-3xl md:text-4xl font-bold">{{ __('messages.home.awards_title') }}</h2>
                 </div>
                 <p class="max-w-md text-on-surface-variant font-body text-sm leading-relaxed">
-                    {{ app()->getLocale() == 'es' ? 'Galardonados internacionalmente por nuestro firme compromiso con el comercio justo, la calidad del cacao y la pureza en taza.' : 'Internationally recognized for our solid commitment to fair trade, cacao quality, and flavor purity.' }}
+                    {{ app()->getLocale() == 'es' ? 'Galardonados internacionalmente por nuestro firme compromiso con el comercio justo, la calidad del cacao y la pureza en taza.' : (app()->getLocale() == 'de' ? 'International ausgezeichnet für unser starkes Engagement für fairen Handel, Kakaoveredelung und Reinheit.' : 'Internationally recognized for our solid commitment to fair trade, cacao quality, and flavor purity.') }}
                 </p>
             </div>
 
@@ -409,12 +409,12 @@
                             <!-- Text Details -->
                             <div class="space-y-2 mt-4">
                                 <h4 class="font-headline text-lg font-bold text-on-surface line-clamp-2">
-                                    {{ $award->title }}</h4>
+                                    {{ $award->display_title }}</h4>
                                 <p class="text-xs text-on-surface-variant leading-relaxed">
-                                    {{ $award->description }}</p>
+                                    {{ $award->display_description }}</p>
                                 <p
                                     class="font-label-caps text-[10px] text-primary tracking-widest font-bold uppercase mt-1">
-                                    {{ $award->country }} @if ($award->date)
+                                    {{ $award->display_country }} @if ($award->date)
                                         • {{ $award->date->format('Y') }}
                                     @endif
                                 </p>
@@ -427,7 +427,7 @@
                                         target="_blank" download
                                         class="inline-flex items-center gap-2 border border-primary/30 hover:border-primary px-6 py-2.5 text-[9px] font-label-caps tracking-widest text-primary hover:bg-primary hover:text-on-primary transition-all duration-300 font-bold uppercase">
                                         <span class="material-symbols-outlined text-xs">download</span>
-                                        {{ app()->getLocale() == 'es' ? 'Descargar Certificado' : 'Download Certificate' }}
+                                        {{ app()->getLocale() == 'es' ? 'Descargar Certificado' : (app()->getLocale() == 'de' ? 'Zertifikat Herunterladen' : 'Download Certificate') }}
                                     </a>
                                 </div>
                             @endif
@@ -435,6 +435,45 @@
 
                     </div>
                 @endforeach
+        </section>
+    @endif
+
+    <!-- Live Hacienda Video Showcase Section -->
+    @if (!empty($company) && $company->hacienda_youtube_embed_url)
+        <section class="py-20 md:py-24 px-margin-edge bg-surface-container-lowest border-t border-outline-variant/10 relative overflow-hidden">
+            <!-- Accent glow background effect -->
+            <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/10 rounded-full filter blur-[120px] pointer-events-none"></div>
+
+            <div class="max-w-container-max mx-auto relative z-10">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="font-label-caps text-xs text-primary tracking-[0.3em] uppercase block font-bold mb-3 flex items-center justify-center gap-2">
+                        <span class="relative flex h-2.5 w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+                        </span>
+                        {{ app()->getLocale() == 'es' ? 'NUESTRA HACIENDA EN VIVO' : (app()->getLocale() == 'de' ? 'UNSERE HACIENDA LIVE' : 'OUR ESTATE LIVE') }}
+                    </span>
+                    <h2 class="font-headline text-3xl md:text-4xl font-bold uppercase tracking-wider text-on-surface">
+                        {{ app()->getLocale() == 'es' ? 'Descubre la Experiencia Dos Aguas' : (app()->getLocale() == 'de' ? 'Entdecken Sie das Dos Aguas Erlebnis' : 'Discover the Dos Aguas Experience') }}
+                    </h2>
+                    <div class="w-16 h-0.5 bg-primary mx-auto mt-4 mb-4"></div>
+                    <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                        {{ app()->getLocale() == 'es' ? 'Recorre nuestros campos en Ucayali y conoce el origen artesanal donde transformamos el mejor cacao fino de aroma.' : (app()->getLocale() == 'de' ? 'Reisen Sie durch unsere Felder in Ucayali und erleben Sie den handwerklichen Ursprung unseres edlen Kakaos.' : 'Take a tour of our fields in Ucayali and discover the artisanal origin of our fine aroma cacao.') }}
+                    </p>
+                </div>
+
+                <!-- Video Container Wrapper with Glassmorphism Border -->
+                <div class="max-w-5xl mx-auto rounded-2xl overflow-hidden border border-outline-variant/20 shadow-2xl bg-[#141414] relative group">
+                    <div class="aspect-video w-full h-full relative">
+                        <iframe 
+                            src="{{ $company->hacienda_youtube_embed_url }}" 
+                            title="{{ $company->name ?? 'Dos Aguas' }} - Hacienda Video"
+                            class="w-full h-full border-0 rounded-2xl" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
             </div>
         </section>
     @endif

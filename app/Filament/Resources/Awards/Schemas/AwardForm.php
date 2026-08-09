@@ -7,6 +7,9 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 
 class AwardForm
@@ -15,28 +18,80 @@ class AwardForm
     {
         return $schema
             ->components([
-                Section::make('Detalles del Premio / Reconocimiento')
-                    ->description('Información básica sobre el premio o galardón obtenido.')
+                Tabs::make('Premio y Traducciones')
+                    ->tabs([
+                        Tab::make('Español (ES)')
+                            ->icon('heroicon-o-language')
+                            ->components([
+                                Grid::make(2)
+                                    ->components([
+                                        TextInput::make('title')
+                                            ->label('Título del Premio (Español)')
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->placeholder('Ej: Medalla de Oro - Chocolate Ucayali'),
+                                        TextInput::make('country')
+                                            ->label('País / Región (Español)')
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->placeholder('Ej: París, Francia'),
+                                    ]),
+                                Textarea::make('description')
+                                    ->label('Descripción (Español)')
+                                    ->maxLength(1000)
+                                    ->placeholder('Ej: Reconocimiento otorgado por su sabor excepcional y notas cítricas únicas.')
+                                    ->columnSpanFull(),
+                            ]),
+
+                        Tab::make('Inglés (EN)')
+                            ->icon('heroicon-o-language')
+                            ->components([
+                                Grid::make(2)
+                                    ->components([
+                                        TextInput::make('title_en')
+                                            ->label('Título del Premio (Inglés)')
+                                            ->maxLength(255)
+                                            ->placeholder('Ej: Gold Medal - Ucayali Chocolate'),
+                                        TextInput::make('country_en')
+                                            ->label('País / Región (Inglés)')
+                                            ->maxLength(255)
+                                            ->placeholder('Ej: Paris, France'),
+                                    ]),
+                                Textarea::make('description_en')
+                                    ->label('Descripción (Inglés)')
+                                    ->maxLength(1000)
+                                    ->placeholder('Ej: Recognition granted for its exceptional flavor and unique citrus notes.')
+                                    ->columnSpanFull(),
+                            ]),
+
+                        Tab::make('Alemán (DE)')
+                            ->icon('heroicon-o-language')
+                            ->components([
+                                Grid::make(2)
+                                    ->components([
+                                        TextInput::make('title_de')
+                                            ->label('Título del Premio (Alemán)')
+                                            ->maxLength(255)
+                                            ->placeholder('Ej: Goldmedaille - Ucayali Schokolade'),
+                                        TextInput::make('country_de')
+                                            ->label('País / Región (Alemán)')
+                                            ->maxLength(255)
+                                            ->placeholder('Ej: Paris, Frankreich'),
+                                    ]),
+                                Textarea::make('description_de')
+                                    ->label('Descripción (Alemán)')
+                                    ->maxLength(1000)
+                                    ->placeholder('Ej: Auszeichnung für außergewöhnlichen Geschmack und einzigartige Zitrusnoten.')
+                                    ->columnSpanFull(),
+                            ]),
+                    ])->columnSpanFull(),
+
+                Section::make('Detalles Generales')
                     ->components([
-                        TextInput::make('title')
-                            ->label('Título del Premio')
-                            ->required()
-                            ->maxLength(255)
-                            ->placeholder('Ej: Medalla de Oro - Chocolate Ucayali'),
-                        TextInput::make('country')
-                            ->label('País / Región')
-                            ->required()
-                            ->maxLength(255)
-                            ->placeholder('Ej: París, Francia'),
                         DatePicker::make('date')
                             ->label('Fecha de Otorgamiento')
                             ->required(),
-                        Textarea::make('description')
-                            ->label('Descripción')
-                            ->maxLength(1000)
-                            ->placeholder('Ej: Reconocimiento otorgado por su sabor excepcional y notas cítricas únicas.')
-                            ->columnSpanFull(),
-                    ])->columns(2),
+                    ]),
 
                 Section::make('Galería de Imágenes')
                     ->description('Fotografías asociadas al galardón (formato imagen).')

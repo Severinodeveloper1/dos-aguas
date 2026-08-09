@@ -67,6 +67,12 @@ class ManageCompanyInfo extends Page implements HasForms
                                 TextInput::make('address')
                                     ->label('Dirección Física')
                                     ->columnSpanFull(),
+                                TextInput::make('hacienda_video_url')
+                                    ->label('URL del Video de YouTube (Hacienda)')
+                                    ->url()
+                                    ->placeholder('Ej: https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+                                    ->columnSpanFull()
+                                    ->helperText('Ingresa el enlace del video de YouTube que muestra la experiencia o historia de la hacienda. Este video se reproducirá de forma destacada en vivo en la página de inicio debajo de la sección de Premios.'),
                             ])->columns(2),
 
                         Tab::make('Redes Sociales')
