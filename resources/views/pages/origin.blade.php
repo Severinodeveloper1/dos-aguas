@@ -89,10 +89,10 @@
                                 <span
                                     class="font-headline text-5xl md:text-7xl font-bold text-primary block leading-none">{{ $event->year }}</span>
                                 <h3 class="font-headline text-2xl md:text-3xl font-bold text-on-surface">
-                                    {{ app()->getLocale() == 'es' ? $event->title : $event->title_en ?? $event->title }}
+                                    {{ $event->display_title }}
                                 </h3>
                                 <p class="text-xs md:text-sm text-on-surface-variant leading-relaxed font-body">
-                                    {{ app()->getLocale() == 'es' ? $event->description : $event->description_en ?? $event->description }}
+                                    {{ $event->display_description }}
                                 </p>
                             </div>
                         </div>
@@ -366,7 +366,7 @@
                             <div class="aspect-[16/10] overflow-hidden bg-surface-container">
                                 @if ($post->image_path)
                                     <img src="{{ str_starts_with($post->image_path, 'http') ? $post->image_path : asset('storage/' . $post->image_path) }}"
-                                        alt="{{ $post->title }}"
+                                        alt="{{ $post->display_title }}"
                                         class="w-full h-full object-cover hover:scale-102 transition-transform duration-500" />
                                 @else
                                     <div class="w-full h-full flex items-center justify-center text-outline/20">
@@ -380,9 +380,9 @@
                                         {{ $post->published_at ? $post->published_at->format('d/m/Y') : '' }}
                                     </span>
                                     <h4 class="font-headline text-lg font-bold text-on-surface line-clamp-2">
-                                        {{ $post->title }}</h4>
+                                        {{ $post->display_title }}</h4>
                                     <p class="text-xs text-on-surface-variant leading-relaxed line-clamp-3">
-                                        {{ $post->excerpt }}</p>
+                                        {{ $post->display_excerpt }}</p>
                                 </div>
                             </div>
                         </article>

@@ -9,8 +9,8 @@
             @foreach ($cartItems as $item)
                 {
                     variantId: {{ $item['variant']->id }},
-                    name: '{{ addslashes($item['variant']->product->name) }}',
-                    variantName: '{{ addslashes($item['variant']->name) }}',
+                    name: '{{ addslashes($item['variant']->product->display_name) }}',
+                    variantName: '{{ addslashes($item['variant']->display_name) }}',
                     weight: {{ $item['variant']->weight }},
                     price: {{ $item['variant']->price }},
                     image: '{{ is_array($item['variant']->product->images) && count($item['variant']->product->images) > 0 ? (str_starts_with($item['variant']->product->images[0], 'http') ? $item['variant']->product->images[0] : asset('storage/' . $item['variant']->product->images[0])) : '' }}',

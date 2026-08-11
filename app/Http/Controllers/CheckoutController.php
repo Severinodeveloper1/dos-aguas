@@ -165,22 +165,24 @@ class CheckoutController extends Controller
         if ($request->payment_method === 'card') {
             $paymentSettings = PaymentSetting::first();
 
-            if ($paymentSettings && $paymentSettings->gateway_enabled && $paymentSettings->gateway_provider === 'culqi') {
-                $culquiResult = $this->processCulquiPayment($paymentSettings, [
-                    'amount' => $total,
-                    'email' => $shipping['email'],
-                    'name' => $customerFullName,
-                    'phone' => $shipping['phone'],
-                ]);
-
-                if (!$culquiResult['success']) {
-                    return redirect()->route('checkout.payment')->with('error', $culquiResult['error'] ?? 'Falló el procesamiento del pago con tarjeta.');
-                }
-
-                $paymentId = $culquiResult['charge_id'];
-                $paymentStatus = 'paid';
-                $orderStatus = 'preparing';
+            if (!$paymentSettings || !$paymentSettings->gateway_enabled || $paymentSettings->gateway_provider !== 'culqi') {
+                return redirect()->route('checkout.payment')->with('error', 'La pasarela de pago con tarjeta no está activa en este momento. Por favor elija transferencia bancaria.');
             }
+
+            $culquiResult = $this->processCulquiPayment($paymentSettings, [
+                'amount' => $total,
+                'email' => $shipping['email'],
+                'name' => $customerFullName,
+                'phone' => $shipping['phone'],
+            ]);
+
+            if (!$culquiResult['success']) {
+                return redirect()->route('checkout.payment')->with('error', $culquiResult['error'] ?? 'Falló el procesamiento del pago con tarjeta.');
+            }
+
+            $paymentId = $culquiResult['charge_id'];
+            $paymentStatus = 'paid';
+            $orderStatus = 'preparing';
         }
 
         // Perform transactional operation

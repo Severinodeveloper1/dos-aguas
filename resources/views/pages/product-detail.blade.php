@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $product->name . ' | Dos Aguas')
+@section('title', $product->display_name . ' | Dos Aguas')
 
 @section('styles')
     <style>
@@ -28,10 +28,10 @@
             <span class="text-[8px] opacity-40">/</span>
             @if ($product->category)
                 <a class="hover:text-primary transition-colors duration-300"
-                    href="{{ route('collections', ['category' => $product->category->slug]) }}">{{ $product->category->name }}</a>
+                    href="{{ route('collections', ['category' => $product->category->slug]) }}">{{ $product->category->display_name }}</a>
                 <span class="text-[8px] opacity-40">/</span>
             @endif
-            <span class="text-on-surface font-bold">{{ $product->name }}</span>
+            <span class="text-on-surface font-bold">{{ $product->display_name }}</span>
         </nav>
 
         <!-- Product Hero Grid -->
@@ -105,7 +105,7 @@
                 <div class="relative aspect-[4/5] bg-surface-container overflow-hidden border border-outline-variant/10">
                     <template x-if="selectedImage">
                         <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-102"
-                            :src="selectedImage" :alt="'{{ $product->name }}'" />
+                            :src="selectedImage" :alt="'{{ $product->display_name }}'" />
                     </template>
                     <template x-if="!selectedImage">
                         <div class="w-full h-full flex items-center justify-center text-outline/30">
@@ -137,9 +137,9 @@
                 <div class="space-y-4">
                     @if ($product->category)
                         <span
-                            class="font-label-caps text-xs text-secondary tracking-[0.2em] uppercase font-bold">{{ $product->category->name }}</span>
+                            class="font-label-caps text-xs text-secondary tracking-[0.2em] uppercase font-bold">{{ $product->category->display_name }}</span>
                     @endif
-                    <h1 class="font-headline text-3xl md:text-4xl font-bold leading-tight">{{ $product->name }}</h1>
+                    <h1 class="font-headline text-3xl md:text-4xl font-bold leading-tight">{{ $product->display_name }}</h1>
 
                     <div class="flex items-baseline gap-4 pt-2">
                         <p class="font-headline text-2xl text-primary font-bold">S/ <span x-text="selectedPrice"></span></p>
@@ -149,7 +149,7 @@
 
                 @if ($product->hasDescription())
                     <div class="font-body text-sm text-on-surface-variant leading-relaxed">
-                        {!! $product->description !!}
+                        {!! $product->display_description !!}
                     </div>
                 @endif
 
@@ -164,7 +164,7 @@
                         class="bg-[#1c1b1b] border border-outline-variant/30 text-on-surface py-3.5 px-4 focus:ring-0 focus:outline-none focus:border-primary text-xs font-bold font-body cursor-pointer w-full max-w-md">
                         @foreach ($product->variants as $v)
                             <option value="{{ $v->id }}">
-                                {{ $v->name }} ({{ number_format($v->weight, 0) }}g) - S/
+                                {{ $v->display_name }} ({{ number_format($v->weight, 0) }}g) - S/
                                 {{ number_format($v->price, 2) }}
                             </option>
                         @endforeach
@@ -237,7 +237,7 @@
                             </button>
                             <div x-show="activeTab === 'notes'" x-collapse x-cloak
                                 class="mt-3 text-xs text-on-surface-variant font-body leading-relaxed pl-2 italic">
-                                {!! $product->tasting_notes !!}
+                                {!! $product->display_tasting_notes !!}
                             </div>
                         </div>
                     @endif
@@ -253,13 +253,13 @@
                             </button>
                             <div x-show="activeTab === 'benefits'" x-collapse x-cloak
                                 class="mt-3 text-xs text-on-surface-variant font-body leading-relaxed pl-2">
-                                {!! $product->natural_benefits !!}
+                                {!! $product->display_natural_benefits !!}
                             </div>
                         </div>
                     @endif
 
                     <!-- Nutritional Values -->
-                    @if (is_array($product->nutritional_values) && count($product->nutritional_values) > 0)
+                    @if (is_array($product->display_nutritional_values) && count($product->display_nutritional_values) > 0)
                         <div class="border-b border-outline-variant/10 pb-4">
                             <button @click="activeTab = activeTab === 'nutri' ? null : 'nutri'"
                                 class="w-full text-left font-label-caps text-xs tracking-wider text-on-surface flex justify-between items-center py-2 font-bold hover:text-primary transition-colors">
@@ -271,7 +271,7 @@
                                 class="mt-3 text-xs text-on-surface-variant font-body pl-2">
                                 <table class="w-full border-collapse">
                                     <tbody>
-                                        @foreach ($product->nutritional_values as $item)
+                                        @foreach ($product->display_nutritional_values as $item)
                                             <tr class="border-b border-outline-variant/5">
                                                 <td
                                                     class="py-2 text-outline uppercase font-bold text-[10px] tracking-wider">
@@ -311,7 +311,7 @@
                                     @if ($relImage)
                                         <img class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
                                             src="{{ str_starts_with($relImage, 'http') ? $relImage : asset('storage/' . $relImage) }}"
-                                            alt="{{ $rel->name }}" />
+                                            alt="{{ $rel->display_name }}" />
                                     @else
                                         <div class="w-full h-full flex items-center justify-center text-outline/30">
                                             <span class="material-symbols-outlined text-2xl">broken_image</span>
@@ -321,7 +321,7 @@
                                         class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></a>
                                 </div>
                                 <h4 class="font-headline text-base mb-1 font-bold">
-                                    <a href="{{ route('product.detail', $rel->slug) }}">{{ $rel->name }}</a>
+                                    <a href="{{ route('product.detail', $rel->slug) }}">{{ $rel->display_name }}</a>
                                 </h4>
                             </div>
                             <div

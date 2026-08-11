@@ -1,4 +1,4 @@
-﻿@extends('layouts.app')
+@extends('layouts.app')
 
 @section('title', __("messages.nav.blog") . ' | Dos Aguas')
 
@@ -55,7 +55,7 @@
                class="post-card group relative block w-full aspect-[16/7] overflow-hidden bg-surface-container border border-outline-variant/10 mb-14 reveal">
                 @if ($featured->image_path)
                     <img src="{{ str_starts_with($featured->image_path, 'http') ? $featured->image_path : asset('storage/' . $featured->image_path) }}"
-                         alt="{{ $featured->title }}"
+                         alt="{{ $featured->display_title }}"
                          class="post-card-img absolute inset-0 w-full h-full object-cover opacity-60" />
                 @else
                     <div class="absolute inset-0 bg-surface-container-highest"></div>
@@ -69,11 +69,11 @@
                         @endif
                     </span>
                     <h2 class="font-headline text-3xl md:text-5xl font-bold text-on-surface leading-tight max-w-3xl mb-4 group-hover:text-primary transition-colors duration-300">
-                        {{ $featured->title }}
+                        {{ $featured->display_title }}
                     </h2>
-                    @if ($featured->excerpt)
+                    @if ($featured->display_excerpt)
                         <p class="text-on-surface-variant font-body text-sm leading-relaxed max-w-2xl line-clamp-2">
-                            {{ $featured->excerpt }}
+                            {{ $featured->display_excerpt }}
                         </p>
                     @endif
                     <span class="mt-6 inline-flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary uppercase font-bold group-hover:gap-4 transition-all duration-300">
@@ -98,7 +98,7 @@
                             {{-- Cover Image --}}
                             <div class="relative h-56 overflow-hidden bg-surface-container-highest flex-shrink-0">
                                 @if ($imgUrl)
-                                    <img src="{{ $imgUrl }}" alt="{{ $post->title }}"
+                                    <img src="{{ $imgUrl }}" alt="{{ $post->display_title }}"
                                          class="post-card-img w-full h-full object-cover opacity-70" />
                                 @else
                                     <div class="w-full h-full flex items-center justify-center">
@@ -117,11 +117,11 @@
                             {{-- Content --}}
                             <div class="p-7 flex flex-col flex-1 gap-4">
                                 <h3 class="font-headline text-lg font-bold text-on-surface leading-snug group-hover:text-primary transition-colors duration-300 line-clamp-2">
-                                    {{ $post->title }}
+                                    {{ $post->display_title }}
                                 </h3>
-                                @if ($post->excerpt)
+                                @if ($post->display_excerpt)
                                     <p class="text-on-surface-variant font-body text-xs leading-relaxed line-clamp-3 flex-1">
-                                        {{ $post->excerpt }}
+                                        {{ $post->display_excerpt }}
                                     </p>
                                 @endif
                                 <div class="flex items-center justify-between mt-2 pt-4 border-t border-outline-variant/10">

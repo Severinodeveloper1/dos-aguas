@@ -69,7 +69,7 @@
                             @foreach($categories as $cat)
                                 <a href="{{ route('collections', array_merge(request()->only(['search', 'intensity', 'sort']), ['category' => $cat->slug])) }}" 
                                    class="text-left py-1 transition-all duration-300 {{ request('category') === $cat->slug ? 'text-primary font-bold border-l-2 border-primary pl-3' : 'text-on-surface-variant hover:text-primary pl-0' }}">
-                                    {{ $cat->name }}
+                                    {{ $cat->display_name }}
                                 </a>
                             @endforeach
                         </div>
@@ -164,7 +164,7 @@
                                         </div>
                                     </div>
                                     <h4 class="font-headline text-lg mb-1 hover:text-primary transition-colors duration-300">
-                                        <a href="{{ route('product.detail', $product->slug) }}">{{ $product->name }}</a>
+                                        <a href="{{ route('product.detail', $product->slug) }}">{{ $product->display_name }}</a>
                                     </h4>
                                     
                                     @php

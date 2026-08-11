@@ -197,8 +197,8 @@
                                 @endif
                             </div>
                             <div class="flex-grow min-w-0 text-xs">
-                                <h4 class="font-headline font-bold truncate text-on-surface">{{ $item['variant']->product->name }}</h4>
-                                <p class="text-[10px] text-outline mt-0.5">{{ $item['variant']->name }} ({{ $item['variant']->weight }}g) x {{ $item['quantity'] }}</p>
+                                <h4 class="font-headline font-bold truncate text-on-surface">{{ $item['variant']->product->display_name }}</h4>
+                                <p class="text-[10px] text-outline mt-0.5">{{ $item['variant']->display_name }} ({{ $item['variant']->weight }}g) x {{ $item['quantity'] }}</p>
                             </div>
                             <span class="text-xs font-bold text-secondary font-body">S/ {{ number_format($item['total'], 2) }}</span>
                         </div>

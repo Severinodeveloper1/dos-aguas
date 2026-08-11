@@ -203,8 +203,8 @@
                             </div>
                             <div class="flex-grow min-w-0">
                                 <h4 class="font-headline font-bold truncate text-on-surface">
-                                    {{ $item['variant']->product->name }}</h4>
-                                <p class="text-[10px] text-outline mt-0.5">{{ $item['variant']->name }}
+                                    {{ $item['variant']->product->display_name }}</h4>
+                                <p class="text-[10px] text-outline mt-0.5">{{ $item['variant']->display_name }}
                                     ({{ $item['variant']->weight }}g)
                                     x {{ $item['quantity'] }}</p>
                             </div>
@@ -249,6 +249,8 @@
             </div>
 
         </div>
+
+    </main>
 
     @section('scripts')
         <script src="https://js.culqi.com/checkout-js"></script>

@@ -73,11 +73,19 @@ class TestDataSeeder extends Seeder
             ['slug' => 'esencia-pura'],
             [
                 'name' => 'Esencia Pura',
+                'name_en' => 'Pure Essence',
+                'name_de' => 'Reine Essenz',
                 'description' => 'Chocolates oscuros elaborados con porcentajes de cacao orgánico fino de aroma (70% y 100%).',
+                'description_en' => 'Dark chocolates made with fine aroma organic cacao percentages (70% and 100%).',
+                'description_de' => 'Dunkle Schokoladen aus feinem Bio-Edelkakao (70% und 100%).',
                 'order' => 1,
                 'is_active' => true,
                 'meta_title' => 'Chocolates Esencia Pura | Dos Aguas',
+                'meta_title_en' => 'Pure Essence Chocolates | Dos Aguas',
+                'meta_title_de' => 'Reine Essenz Schokoladen | Dos Aguas',
                 'meta_description' => 'Disfruta de nuestros chocolates de 70% y 100% cacao fino de aroma.',
+                'meta_description_en' => 'Enjoy our 70% and 100% fine aroma cacao chocolates.',
+                'meta_description_de' => 'Genießen Sie unsere 70% und 100% Edelkakao-Schokoladen.',
             ]
         );
 
@@ -85,11 +93,19 @@ class TestDataSeeder extends Seeder
             ['slug' => 'infusiones-amazonicas'],
             [
                 'name' => 'Infusiones Amazónicas',
+                'name_en' => 'Amazonian Infusions',
+                'name_de' => 'Amazonische Aufgüsse',
                 'description' => 'Infusiones naturales de cascarilla de cacao combinadas con hierbas aromáticas de la selva y andes.',
+                'description_en' => 'Natural cacao husk infusions combined with aromatic herbs from the jungle and Andes.',
+                'description_de' => 'Natürliche Kakaoschalen-Aufgüsse kombiniert mit Kräutern aus Dschungel und Anden.',
                 'order' => 2,
                 'is_active' => true,
                 'meta_title' => 'Infusiones Amazónicas de Cacao | Dos Aguas',
+                'meta_title_en' => 'Amazonian Cacao Infusions | Dos Aguas',
+                'meta_title_de' => 'Amazonische Kakao-Aufgüsse | Dos Aguas',
                 'meta_description' => 'Infusiones saludables hechas con cascarilla de cacao y hierbas naturales.',
+                'meta_description_en' => 'Healthy infusions made with cocoa husk and natural herbs.',
+                'meta_description_de' => 'Gesunde Aufgüsse aus Kakaoschalen und natürlichen Kräutern.',
             ]
         );
 
@@ -100,9 +116,17 @@ class TestDataSeeder extends Seeder
             [
                 'category_id' => $cat1->id,
                 'name' => 'Chocolate Ucayali 70% Cacao',
+                'name_en' => 'Ucayali 70% Cacao Chocolate',
+                'name_de' => 'Ucayali 70% Kakao Schokolade',
                 'description' => '<p>Barra de chocolate premium elaborada con cacao seleccionado del cruce de los ríos Aguaytía y San Alejandro en Ucayali. Sabor intenso con notas frutales y un toque cítrico.</p>',
+                'description_en' => '<p>Premium chocolate bar crafted with selected cacao from the confluence of the Aguaytía and San Alejandro rivers in Ucayali. Intense flavor with fruity notes and a citrus touch.</p>',
+                'description_de' => '<p>Premium-Schokoladentafel aus feinstem Kakao von der Mündung der Flüsse Aguaytía und San Alejandro in Ucayali. Intensiver Geschmack mit fruchtigen Noten und einer Zitrusnote.</p>',
                 'tasting_notes' => '<p>Notas cítricas pronunciadas de Hierba Luisa y frutos amarillos con un final prolongado a cacao tostado.</p>',
+                'tasting_notes_en' => '<p>Pronounced citrus notes of Lemon Verbena and yellow fruits with a prolonged roasted cocoa finish.</p>',
+                'tasting_notes_de' => '<p>Ausgeprägte Zitrusnoten von Zitronenstrauch und gelben Früchten mit einem langanhaltenden Kakao-Abgang.</p>',
                 'natural_benefits' => '<p>Rico en antioxidantes naturales, ayuda a mejorar el estado de ánimo y estimula la salud cardiovascular.</p>',
+                'natural_benefits_en' => '<p>Rich in natural antioxidants, helps improve mood and stimulates cardiovascular health.</p>',
+                'natural_benefits_de' => '<p>Reich an natürlichen Antioxidantien, hilft die Stimmung zu verbessern und fördert die Herzkreislauf-Gesundheit.</p>',
                 'nutritional_values' => [
                     ['label' => 'Calorías', 'value' => '145 kcal'],
                     ['label' => 'Grasa Total', 'value' => '9g (12%)'],
@@ -110,10 +134,28 @@ class TestDataSeeder extends Seeder
                     ['label' => 'Azúcares', 'value' => '5g'],
                     ['label' => 'Proteínas', 'value' => '2g'],
                 ],
+                'nutritional_values_en' => [
+                    ['label' => 'Calories', 'value' => '145 kcal'],
+                    ['label' => 'Total Fat', 'value' => '9g (12%)'],
+                    ['label' => 'Carbohydrates', 'value' => '12g (4%)'],
+                    ['label' => 'Sugars', 'value' => '5g'],
+                    ['label' => 'Protein', 'value' => '2g'],
+                ],
+                'nutritional_values_de' => [
+                    ['label' => 'Kalorien', 'value' => '145 kcal'],
+                    ['label' => 'Gesamtfett', 'value' => '9g (12%)'],
+                    ['label' => 'Kohlenhydrate', 'value' => '12g (4%)'],
+                    ['label' => 'Zucker', 'value' => '5g'],
+                    ['label' => 'Eiweiß', 'value' => '2g'],
+                ],
                 'images' => [],
                 'is_active' => true,
                 'meta_title' => 'Chocolate de Ucayali 70% Cacao Fino | Dos Aguas',
+                'meta_title_en' => 'Ucayali 70% Fine Cacao Chocolate | Dos Aguas',
+                'meta_title_de' => 'Ucayali 70% Edelkakao Schokolade | Dos Aguas',
                 'meta_description' => 'Exquisito chocolate peruano de origen con 70% de cacao seleccionado de la cuenca de Ucayali.',
+                'meta_description_en' => 'Exquisite Peruvian single-origin chocolate with 70% selected cocoa from Ucayali.',
+                'meta_description_de' => 'Exquisite peruanische Herkunftsschokolade mit 70% feinstem Kakao aus Ucayali.',
             ]
         );
 
@@ -123,6 +165,8 @@ class TestDataSeeder extends Seeder
             [
                 'product_id' => $prod1->id,
                 'name' => 'Barra Individual 100g',
+                'name_en' => 'Single Bar 100g',
+                'name_de' => 'Einzelne Tafel 100g',
                 'weight' => 100.00,
                 'price' => 12.00,
                 'stock' => 150,
@@ -135,6 +179,8 @@ class TestDataSeeder extends Seeder
             [
                 'product_id' => $prod1->id,
                 'name' => 'Presentación Mediana 250g',
+                'name_en' => 'Medium Pack 250g',
+                'name_de' => 'Mittlere Packung 250g',
                 'weight' => 250.00,
                 'price' => 28.00,
                 'stock' => 80,
@@ -147,6 +193,8 @@ class TestDataSeeder extends Seeder
             [
                 'product_id' => $prod1->id,
                 'name' => 'Bloque de Cobertura 1kg',
+                'name_en' => 'Cover Block 1kg',
+                'name_de' => 'Kuvertüre Block 1kg',
                 'weight' => 1000.00,
                 'price' => 95.00,
                 'stock' => 20,
@@ -159,6 +207,8 @@ class TestDataSeeder extends Seeder
             [
                 'product_id' => $prod1->id,
                 'name' => 'Caja de Cobertura Maquila 5kg',
+                'name_en' => 'Maquila Cover Box 5kg',
+                'name_de' => 'Kuvertüre Kiste 5kg',
                 'weight' => 5000.00,
                 'price' => 420.00,
                 'stock' => 10,
@@ -172,19 +222,43 @@ class TestDataSeeder extends Seeder
             [
                 'category_id' => $cat2->id,
                 'name' => 'Infusión Cacao & Hierba Luisa',
+                'name_en' => 'Cacao & Lemon Verbena Tea',
+                'name_de' => 'Kakao & Zitronenstrauch Aufguss',
                 'description' => '<p>Mezcla equilibrada de cascarilla de cacao orgánico tostado y hojas secas de hierba luisa silvestre, brindando una infusión refrescante y digestiva.</p>',
+                'description_en' => '<p>Balanced blend of roasted organic cocoa husk and wild lemon verbena leaves, offering a refreshing and digestive herbal tea.</p>',
+                'description_de' => '<p>Ausgewogene Mischung aus gerösteter Bio-Kakaoschale und wilden Zitronenstrauchblättern, die einen erfrischenden und verdauungsfördernden Tee ergibt.</p>',
                 'tasting_notes' => '<p>Aroma cítrico herbal con notas sutiles de chocolate y madera dulce.</p>',
+                'tasting_notes_en' => '<p>Herbal citrus aroma with subtle notes of chocolate and sweet wood.</p>',
+                'tasting_notes_de' => '<p>Kräuter-Zitrus-Aroma mit subtilen Noten von Schokolade und süßem Holz.</p>',
                 'natural_benefits' => '<p>Excelente digestivo natural, ayuda a relajar el sistema nervioso y alivia la congestión leve de vías respiratorias.</p>',
+                'natural_benefits_en' => '<p>Excellent natural digestive aid, helps relax the nervous system and relieves mild congestion.</p>',
+                'natural_benefits_de' => '<p>Hervorragendes natürliches Verdauungsmittel, hilft das Nervensystem zu entspannen und lindert leichte Beschwerden.</p>',
                 'nutritional_values' => [
                     ['label' => 'Calorías', 'value' => '0 kcal'],
                     ['label' => 'Grasa Total', 'value' => '0g'],
                     ['label' => 'Azúcares', 'value' => '0g'],
                     ['label' => 'Sodio', 'value' => '0mg'],
                 ],
+                'nutritional_values_en' => [
+                    ['label' => 'Calories', 'value' => '0 kcal'],
+                    ['label' => 'Total Fat', 'value' => '0g'],
+                    ['label' => 'Sugars', 'value' => '0g'],
+                    ['label' => 'Sodium', 'value' => '0mg'],
+                ],
+                'nutritional_values_de' => [
+                    ['label' => 'Kalorien', 'value' => '0 kcal'],
+                    ['label' => 'Gesamtfett', 'value' => '0g'],
+                    ['label' => 'Zucker', 'value' => '0g'],
+                    ['label' => 'Natrium', 'value' => '0mg'],
+                ],
                 'images' => [],
                 'is_active' => true,
                 'meta_title' => 'Infusión Cacao y Hierba Luisa Digestiva | Dos Aguas',
+                'meta_title_en' => 'Digestive Cacao & Lemon Verbena Tea | Dos Aguas',
+                'meta_title_de' => 'Verdauungsfördernder Kakao & Zitronenstrauch Tee | Dos Aguas',
                 'meta_description' => 'Combina las propiedades antioxidantes del cacao con la frescura digestiva de la hierba luisa.',
+                'meta_description_en' => 'Combines the antioxidant properties of cacao with the digestive freshness of lemon verbena.',
+                'meta_description_de' => 'Kombiniert die antioxidativen Eigenschaften von Kakao mit der Frische des Zitronenstrauchs.',
             ]
         );
 
@@ -194,6 +268,8 @@ class TestDataSeeder extends Seeder
             [
                 'product_id' => $prod2->id,
                 'name' => 'Caja de 20 Filtrantes',
+                'name_en' => 'Box of 20 Tea Bags',
+                'name_de' => 'Schachtel mit 20 Filterbeuteln',
                 'weight' => 40.00,
                 'price' => 16.00,
                 'stock' => 120,
@@ -268,8 +344,14 @@ class TestDataSeeder extends Seeder
         Banner::firstOrCreate(
             ['title' => 'Hacienda Dos Aguas'],
             [
+                'title_en' => 'Hacienda Dos Aguas',
+                'title_de' => 'Hacienda Dos Aguas',
                 'subtitle' => 'El cruce de los ríos Aguaytía y San Alejandro da vida al mejor chocolate artesanal.',
+                'subtitle_en' => 'The confluence of the Aguaytía and San Alejandro rivers gives life to the finest artisanal chocolate.',
+                'subtitle_de' => 'Die Mündung der Flüsse Aguaytía und San Alejandro erweckt die feinste handwerkliche Schokolade zum Leben.',
                 'button_text' => 'Conocer Historia',
+                'button_text_en' => 'Our Story',
+                'button_text_de' => 'Unsere Geschichte',
                 'button_url' => '/historia',
                 'media_type' => 'image',
                 'media_path' => 'banners/hacienda-banner.webp',
@@ -284,13 +366,23 @@ class TestDataSeeder extends Seeder
             [
                 'author_id' => $admin->id,
                 'title' => 'Biodiversidad en la Hacienda Dos Aguas: Añujes y Osos Perezosos',
+                'title_en' => 'Biodiversity at Hacienda Dos Aguas: Agoutis and Sloths',
+                'title_de' => 'Artenvielfalt auf der Hacienda Dos Aguas: Agutis und Faultiere',
                 'excerpt' => 'Descubre la increíble variedad de fauna y flora que convive en nuestra hacienda y enriquece las tierras de nuestro cacao.',
+                'excerpt_en' => 'Discover the incredible variety of fauna and flora that coexist in our hacienda and enrich our cocoa lands.',
+                'excerpt_de' => 'Entdecken Sie die fantastische Vielfalt an Fauna und Flora, die auf unserer Hacienda zusammenlebt und unseren Kakao bereichert.',
                 'content' => '<p>Nuestra hacienda familiar en la región de Ucayali no solo es el hogar de árboles de cacao vigorosos, sino también un santuario vivo de biodiversidad. Al recorrer los linderos sombreados, es común encontrarse con añujes recolectando frutos caídos y tímidos osos perezosos de tres dedos colgando de las copas de las cecropias.</p><p>Esta interacción ecológica es vital: la fauna local contribuye a la polinización y dispersión de semillas, manteniendo un suelo rico en materia orgánica que aporta notas minerales y frutales únicas a nuestras barras de chocolate Bean to Bar.</p>',
+                'content_en' => '<p>Our family hacienda in the Ucayali region is not only home to vigorous cocoa trees, but also a living sanctuary of biodiversity. Walking through the shaded borders, it is common to find agoutis gathering fallen fruits and timid three-toed sloths hanging from the Cecropia canopies.</p><p>This ecological interaction is vital: local wildlife contributes to pollination and seed dispersal, keeping soil rich in organic matter that brings unique mineral and fruity notes to our Bean to Bar chocolate bars.</p>',
+                'content_de' => '<p>Unsere Familien-Hacienda in der Region Ucayali ist nicht nur die Heimat kräftiger Kakaobäume, sondern auch ein lebendiges Schutzgebiet der Artenvielfalt. Beim Spaziergang durch die schattigen Ränder begegnet man häufig Agutis, die herabgefallene Früchte sammeln, und scheuen Dreizehen-Faultieren.</p><p>Diese ökologische Interaktion ist entscheidend: Die lokale Tierwelt trägt zur Bestäubung und Samenverbreitung bei und hält den Boden reich an organischer Substanz, die unseren Schokoladentafeln einzigartige mineralische und fruchtige Noten verleiht.</p>',
                 'image_path' => 'posts/biodiversidad.webp',
                 'published_at' => now(),
                 'is_active' => true,
                 'meta_title' => 'Biodiversidad y Vida Silvestre en Hacienda Dos Aguas',
+                'meta_title_en' => 'Biodiversity and Wildlife at Hacienda Dos Aguas',
+                'meta_title_de' => 'Artenvielfalt und Tierwelt auf der Hacienda Dos Aguas',
                 'meta_description' => 'Conoce cómo los añujes, osos perezosos y el ecosistema de Ucayali influyen en la calidad del cacao artesanal de Dos Aguas.',
+                'meta_description_en' => 'Learn how agoutis, sloths and the Ucayali ecosystem influence the quality of Dos Aguas artisanal cacao.',
+                'meta_description_de' => 'Erfahren Sie, wie Agutis, Faultiere und das Ökosystem von Ucayali die Qualität des Kakaos von Dos Aguas beeinflussen.',
             ]
         );
 
@@ -300,8 +392,10 @@ class TestDataSeeder extends Seeder
             [
                 'title' => 'Fundación de Hacienda',
                 'title_en' => 'Hacienda Founding',
+                'title_de' => 'Gründung der Hacienda',
                 'description' => 'Se adquieren los linderos en Ucayali flanqueados por los dos ríos, iniciando el cultivo agroecológico bajo sombra natural.',
                 'description_en' => 'Lands in Ucayali flanked by two rivers are acquired, starting agroecological cultivation under natural shade.',
+                'description_de' => 'Ländereien in Ucayali an zwei Flüssen werden erworben und der ökologische Anbau unter natürlichem Schatten beginnt.',
                 'order' => 1,
                 'is_active' => true,
             ]
@@ -312,8 +406,10 @@ class TestDataSeeder extends Seeder
             [
                 'title' => 'Primera Cosecha Selectiva',
                 'title_en' => 'First Selective Harvest',
+                'title_de' => 'Erste selektive Ernte',
                 'description' => 'Tras años de cuidado artesanal de la tierra, cosechamos la primera producción selecta de cacao fino de aroma.',
                 'description_en' => 'After years of artisanal care of the soil, we harvested the first select yield of fine aroma cacao.',
+                'description_de' => 'Nach Jahren handwerklicher Bodenpflege ernteten wir die erste selektive Ausbeute an feinstem Edelkakao.',
                 'order' => 2,
                 'is_active' => true,
             ]
@@ -324,8 +420,10 @@ class TestDataSeeder extends Seeder
             [
                 'title' => 'Reconocimiento Internacional',
                 'title_en' => 'International Recognition',
+                'title_de' => 'Internationale Anerkennung',
                 'description' => 'Nuestra barra Naranja 70% es galardonada con la Medalla de Oro en los International Chocolate Awards.',
                 'description_en' => 'Our Naranja 70% bar is awarded the Gold Medal at the International Chocolate Awards.',
+                'description_de' => 'Unsere Tafel Naranja 70% wird bei den International Chocolate Awards mit der Goldmedaille ausgezeichnet.',
                 'order' => 3,
                 'is_active' => true,
             ]

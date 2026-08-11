@@ -81,9 +81,9 @@
                     @foreach($order->items as $item)
                         <div class="flex justify-between items-center p-4">
                             <div>
-                                <h4 class="font-headline font-bold text-on-surface">{{ $item->variant->product->name }}</h4>
+                                <h4 class="font-headline font-bold text-on-surface">{{ $item->variant->product->display_name }}</h4>
                                 <span class="text-[10px] text-outline mt-0.5 block">
-                                    {{ $item->variant->name }} ({{ $item->variant->weight }}g) x {{ $item->quantity }}
+                                    {{ $item->variant->display_name }} ({{ $item->variant->weight }}g) x {{ $item->quantity }}
                                 </span>
                             </div>
                             <span class="font-bold text-on-surface font-body">S/ {{ number_format($item->total, 2) }}</span>

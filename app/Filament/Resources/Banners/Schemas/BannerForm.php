@@ -7,6 +7,9 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 
 class BannerForm
@@ -15,37 +18,85 @@ class BannerForm
     {
         return $schema
             ->components([
-                Section::make('Información del Banner')
-                    ->description('Detalles del texto superpuesto sobre el banner.')
-                    ->components([
-                        TextInput::make('title')
-                            ->label('Título Superpuesto')
-                            ->maxLength(255)
-                            ->placeholder('Ej: Cruce de los ríos Aguaytía y San Alejandro'),
-                        TextInput::make('subtitle')
-                            ->label('Subtítulo')
-                            ->maxLength(255)
-                            ->placeholder('Ej: Tradición, aroma y sabor amazónico'),
-                        TextInput::make('button_text')
-                            ->label('Texto del Botón (CTA)')
-                            ->maxLength(50)
-                            ->placeholder('Ej: Ver Catálogo'),
-                        TextInput::make('button_url')
-                            ->label('Enlace del Botón')
-                            ->maxLength(255)
-                            ->url()
-                            ->placeholder('Ej: https://dosaguas.com/catalogo'),
-                    ])->columns(2),
+                Tabs::make('Textos del Banner y Traducciones')
+                    ->tabs([
+                        Tab::make('Español (ES)')
+                            ->icon('heroicon-o-language')
+                            ->components([
+                                Grid::make(2)
+                                    ->components([
+                                        TextInput::make('title')
+                                            ->label('Título Superpuesto (Español)')
+                                            ->maxLength(255)
+                                            ->placeholder('Ej: Cruce de los ríos Aguaytía y San Alejandro'),
+                                        TextInput::make('subtitle')
+                                            ->label('Subtítulo (Español)')
+                                            ->maxLength(255)
+                                            ->placeholder('Ej: Tradición, aroma y sabor amazónico'),
+                                    ]),
+                                TextInput::make('button_text')
+                                    ->label('Texto del Botón CTA (Español)')
+                                    ->maxLength(50)
+                                    ->placeholder('Ej: Ver Catálogo'),
+                            ]),
 
-                Section::make('Multimedia y Orden')
+                        Tab::make('Inglés (EN)')
+                            ->icon('heroicon-o-language')
+                            ->components([
+                                Grid::make(2)
+                                    ->components([
+                                        TextInput::make('title_en')
+                                            ->label('Título Superpuesto (Inglés)')
+                                            ->maxLength(255)
+                                            ->placeholder('Ej: Crossing of the Aguaytía and San Alejandro Rivers'),
+                                        TextInput::make('subtitle_en')
+                                            ->label('Subtítulo (Inglés)')
+                                            ->maxLength(255)
+                                            ->placeholder('Ej: Amazonian tradition, aroma and flavor'),
+                                    ]),
+                                TextInput::make('button_text_en')
+                                    ->label('Texto del Botón CTA (Inglés)')
+                                    ->maxLength(50)
+                                    ->placeholder('Ej: View Catalog'),
+                            ]),
+
+                        Tab::make('Alemán (DE)')
+                            ->icon('heroicon-o-language')
+                            ->components([
+                                Grid::make(2)
+                                    ->components([
+                                        TextInput::make('title_de')
+                                            ->label('Título Superpuesto (Alemán)')
+                                            ->maxLength(255)
+                                            ->placeholder('Ej: Kreuzung der Flüsse Aguaytía und San Alejandro'),
+                                        TextInput::make('subtitle_de')
+                                            ->label('Subtítulo (Alemán)')
+                                            ->maxLength(255)
+                                            ->placeholder('Ej: Amazonische Tradition, Aroma und Geschmack'),
+                                    ]),
+                                TextInput::make('button_text_de')
+                                    ->label('Texto del Botón CTA (Alemán)')
+                                    ->maxLength(50)
+                                    ->placeholder('Ej: Katalog ansehen'),
+                            ]),
+                    ])->columnSpanFull(),
+
+                Section::make('Enlace y Multimedia')
                     ->description('Carga de imagen o video y visibilidad para web y dispositivos móviles.')
                     ->components([
+                        TextInput::make('button_url')
+                            ->label('Enlace del Botón (URL)')
+                            ->maxLength(255)
+                            ->url()
+                            ->placeholder('Ej: https://dosaguas.com/catalogo')
+                            ->columnSpanFull(),
+
                         Select::make('media_type')
                             ->label('Tipo de Multimedia (Web/Escritorio)')
                             ->options([
                                 'image' => 'Imagen',
                                 'video' => 'Video',
-                             ])
+                            ])
                             ->required()
                             ->default('image'),
                         FileUpload::make('media_path')

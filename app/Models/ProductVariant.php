@@ -15,6 +15,8 @@ class ProductVariant extends Model implements Auditable
     protected $fillable = [
         'product_id',
         'name',
+        'name_en',
+        'name_de',
         'weight',
         'price',
         'sku',
@@ -33,5 +35,16 @@ class ProductVariant extends Model implements Auditable
     {
         return $this->belongsTo(Product::class);
     }
-}
 
+    public function getDisplayNameAttribute(): string
+    {
+        $locale = app()->getLocale();
+        if ($locale === 'en' && !empty($this->name_en)) {
+            return $this->name_en;
+        }
+        if ($locale === 'de' && !empty($this->name_de)) {
+            return $this->name_de;
+        }
+        return $this->name ?? '';
+    }
+}

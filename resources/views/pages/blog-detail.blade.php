@@ -1,9 +1,9 @@
-﻿@extends('layouts.app')
+@extends('layouts.app')
 
-@section('title', $post->meta_title ?? $post->title . ' | Dos Aguas')
+@section('title', ($post->display_meta_title ?: $post->display_title) . ' | Dos Aguas')
 
-@if ($post->meta_description)
-@section('meta_description', $post->meta_description)
+@if ($post->display_meta_description)
+@section('meta_description', $post->display_meta_description)
 @endif
 
 @section('styles')
@@ -70,7 +70,7 @@
     <section class="relative h-[55vh] min-h-[360px] w-full overflow-hidden flex items-end bg-[#0a0a0a]">
         @if ($post->image_path)
             <img src="{{ str_starts_with($post->image_path, 'http') ? $post->image_path : asset('storage/' . $post->image_path) }}"
-                 alt="{{ $post->title }}"
+                 alt="{{ $post->display_title }}"
                  class="absolute inset-0 w-full h-full object-cover opacity-50" />
         @endif
         <div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent z-10"></div>
@@ -85,7 +85,7 @@
                     BLOG
                 </a>
                 <span class="text-[8px] opacity-40">/</span>
-                <span class="text-on-surface font-bold truncate max-w-xs">{{ Str::upper(Str::limit($post->title, 40)) }}</span>
+                <span class="text-on-surface font-bold truncate max-w-xs">{{ Str::upper(Str::limit($post->display_title, 40)) }}</span>
             </nav>
             {{-- Meta row --}}
             <div class="flex flex-wrap items-center gap-4">
@@ -102,11 +102,11 @@
             </div>
             {{-- Title --}}
             <h1 class="font-headline text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] max-w-4xl">
-                {{ $post->title }}
+                {{ $post->display_title }}
             </h1>
-            @if ($post->excerpt)
+            @if ($post->display_excerpt)
                 <p class="font-body text-on-surface-variant text-base leading-relaxed max-w-2xl">
-                    {{ $post->excerpt }}
+                    {{ $post->display_excerpt }}
                 </p>
             @endif
         </div>
@@ -126,7 +126,7 @@
 
             {{-- Rich text content --}}
             <div class="blog-content">
-                {!! $post->content !!}
+                {!! $post->display_content !!}
             </div>
 
             {{-- Bottom share / navigation --}}
@@ -202,7 +202,7 @@
                             {{-- Thumbnail --}}
                             <div class="relative w-24 h-24 flex-shrink-0 overflow-hidden bg-surface-container-highest">
                                 @if ($relImg)
-                                    <img src="{{ $relImg }}" alt="{{ $related->title }}"
+                                    <img src="{{ $relImg }}" alt="{{ $related->display_title }}"
                                          class="related-card-img w-full h-full object-cover opacity-70" />
                                 @else
                                     <div class="w-full h-full flex items-center justify-center">
@@ -218,7 +218,7 @@
                                     </span>
                                 @endif
                                 <h4 class="font-headline text-sm font-bold text-on-surface leading-snug line-clamp-2 group-hover:text-primary transition-colors duration-300">
-                                    {{ $related->title }}
+                                    {{ $related->display_title }}
                                 </h4>
                             </div>
                         </a>

@@ -123,8 +123,8 @@
         <div class="relative w-full h-full">
             @foreach ($bannerList as $idx => $banner)
                 @php
-                    $hasText = !empty($banner->title) || !empty($banner->subtitle);
-                    $hasButton = !empty($banner->button_text) && !empty($banner->button_url);
+                    $hasText = !empty($banner->display_title) || !empty($banner->display_subtitle);
+                    $hasButton = !empty($banner->display_button_text) && !empty($banner->button_url);
 
                     // Determine Desktop Media
                     $mediaUrl = str_starts_with($banner->media_path, 'http')
@@ -163,7 +163,7 @@
                                 <video class="w-full h-full object-cover opacity-55" src="{{ $mediaUrl }}" autoplay muted
                                     playsinline @if ($bannerList->count() === 1) loop @endif></video>
                             @else
-                                <img alt="{{ $banner->title ?? 'Banner' }}" class="w-full h-full object-cover opacity-55"
+                                <img alt="{{ $banner->display_title ?? 'Banner' }}" class="w-full h-full object-cover opacity-55"
                                     src="{{ $mediaUrl }}" />
                             @endif
                         </div>
@@ -174,7 +174,7 @@
                                 <video class="w-full h-full object-cover opacity-55" src="{{ $mobileMediaUrl }}" autoplay muted
                                     playsinline @if ($bannerList->count() === 1) loop @endif></video>
                             @else
-                                <img alt="{{ $banner->title ?? 'Banner' }}" class="w-full h-full object-cover opacity-55"
+                                <img alt="{{ $banner->display_title ?? 'Banner' }}" class="w-full h-full object-cover opacity-55"
                                     src="{{ $mobileMediaUrl }}" />
                             @endif
                         </div>
@@ -189,22 +189,22 @@
                     @if ($hasText || $hasButton)
                         <div class="relative z-10 w-full max-w-container-max mx-auto px-margin-edge">
                             <div class="max-w-xl space-y-6">
-                                @if (!empty($banner->subtitle))
+                                @if (!empty($banner->display_subtitle))
                                     <span
                                         class="font-label-caps text-xs text-secondary tracking-[0.3em] uppercase block font-bold">
-                                        {{ $banner->subtitle }}
+                                        {{ $banner->display_subtitle }}
                                     </span>
                                 @endif
-                                @if (!empty($banner->title))
+                                @if (!empty($banner->display_title))
                                     <h1 class="font-headline text-5xl md:text-7xl text-on-surface leading-[1.1] font-bold">
-                                        {{ $banner->title }}
+                                        {{ $banner->display_title }}
                                     </h1>
                                 @endif
                                 @if ($hasButton)
                                     <div class="pt-4">
                                         <a class="inline-block px-10 py-4 bg-primary text-on-primary font-label-caps text-xs tracking-widest hover:bg-secondary hover:text-on-secondary transition-all duration-300 font-bold"
                                             href="{{ $banner->button_url }}">
-                                            {{ $banner->button_text }}
+                                            {{ $banner->display_button_text }}
                                         </a>
                                     </div>
                                 @endif
@@ -304,7 +304,7 @@
                             </div>
                             <h4
                                 class="font-headline text-lg mb-1 hover:text-primary transition-colors duration-300 font-bold">
-                                <a href="{{ route('product.detail', $product->slug) }}">{{ $product->name }}</a>
+                                <a href="{{ route('product.detail', $product->slug) }}">{{ $product->display_name }}</a>
                             </h4>
                         </div>
                         <div>
