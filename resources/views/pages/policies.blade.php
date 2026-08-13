@@ -29,10 +29,10 @@
                 @foreach($policies as $policy)
                     <section class="space-y-6">
                         <h2 class="font-headline text-2xl font-bold border-b border-outline-variant/15 pb-3 text-on-surface">
-                            {{ $policy->title }}
+                            {{ $policy->display_title }}
                         </h2>
                         <div class="text-xs text-on-surface-variant font-body leading-relaxed space-y-4">
-                            {!! nl2br(e($policy->content)) !!}
+                            {!! $policy->display_content !!}
                         </div>
                     </section>
                 @endforeach

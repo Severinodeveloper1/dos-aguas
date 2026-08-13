@@ -441,5 +441,34 @@ class TestDataSeeder extends Seeder
                 'certificate_image' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuCMjIjbQezVbdWabzkrGNdze2_zQ3umglIvC7b0TMaM1iSZ02hGTQBbifYtEpyexm1ZbshF9SFBd1rZcGqAPiBBdwLkNCtpAJIyyYuQDHPv-iPSe1kpEmcWO1di8i-RB6L1w0-3bgWo9CU8gzQ6pnSfeI3Ie8asUdcYvn5xRthpQy-bDcRNgpNRjj4MZ9msCnqG2GyGhTetslOby228jsTAJ3sV2lRFP_TOSPapFuhK8HQuhE4uoxk855njunPeTRkmJQLSjzgHf5Y',
             ]
         );
+
+        // 11. Seed Policies (ES, EN, DE)
+        \App\Models\Policy::firstOrCreate(
+            ['slug' => 'politica-de-privacidad'],
+            [
+                'title' => 'Política de Privacidad y Protección de Datos',
+                'title_en' => 'Privacy Policy & Data Protection',
+                'title_de' => 'Datenschutz- und Datenverarbeitungsrichtlinie',
+                'content' => '<p>En Hacienda Dos Aguas nos comprometemos a proteger la privacidad de nuestros clientes. Los datos personales recolectados a través de nuestro sitio web se utilizan exclusivamente para procesar pedidos, coordinar el envío de chocolates finos y brindar una experiencia de compra personalizada.</p><p>Garantizamos que su información no será vendida ni compartida con terceros con fines publicitarios.</p>',
+                'content_en' => '<p>At Hacienda Dos Aguas we are committed to protecting our customers\' privacy. Personal data collected through our website is used exclusively to process orders, coordinate fine chocolate shipments, and offer a personalized shopping experience.</p><p>We guarantee your information will not be sold or shared with third parties for commercial purposes.</p>',
+                'content_de' => '<p>Bei Hacienda Dos Aguas verpflichten wir uns zum Schutz der Privatsphäre unserer Kunden. Die über unsere Website gesammelten personenbezogenen Daten werden ausschließlich zur Bearbeitung von Bestellungen, zur Koordinierung von Schokoladenlieferungen und zur Bereitstellung eines personalisierten Einkaufserlebnisses verwendet.</p><p>Wir garantieren, dass Ihre Daten nicht an Dritte verkauft oder weitergegeben werden.</p>',
+                'order' => 1,
+                'is_active' => true,
+            ]
+        );
+
+        \App\Models\Policy::firstOrCreate(
+            ['slug' => 'politica-de-envios-y-devoluciones'],
+            [
+                'title' => 'Política de Envíos y Devoluciones',
+                'title_en' => 'Shipping & Returns Policy',
+                'title_de' => 'Versand- und Rückgabebelehrung',
+                'content' => '<p>Realizamos envíos nacionales e internacionales cuidando el embalaje térmico para asegurar la frescura del chocolate. Si su pedido presenta algún inconveniente durante el traslado, por favor contáctenos dentro de las 48 horas posteriores a la recepción para coordinar el reemplazo o reembolso correspondiente.</p>',
+                'content_en' => '<p>We offer national and international shipping using thermal packaging to maintain chocolate freshness. If your order experiences any issues during transit, please contact us within 48 hours of receipt to arrange a replacement or refund.</p>',
+                'content_de' => '<p>Wir bieten nationalen und internationalen Versand in Thermoverpackung an, um die Frische der Schokolade zu gewährleisten. Sollte Ihre Bestellung beim Transport beschädigt werden, kontaktieren Sie uns bitte innerhalb von 48 Stunden nach Erhalt.</p>',
+                'order' => 2,
+                'is_active' => true,
+            ]
+        );
     }
 }
