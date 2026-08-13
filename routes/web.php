@@ -43,9 +43,9 @@ Route::prefix('carrito')->name('cart.')->group(function () {
 
 // Checkout Routes
 Route::prefix('checkout')->name('checkout.')->group(function () {
-    Route::get('/envio', [CheckoutController::class, 'shippingForm'])->name('shipping');
-    Route::post('/envio', [CheckoutController::class, 'saveShipping'])->name('shipping.save');
-    Route::get('/pago', [CheckoutController::class, 'paymentForm'])->name('payment');
+    Route::get('/', [CheckoutController::class, 'index'])->name('index');
+    Route::get('/envio', fn() => redirect()->route('checkout.index'))->name('shipping');
+    Route::get('/pago', fn() => redirect()->route('checkout.index'))->name('payment');
     Route::post('/procesar', [CheckoutController::class, 'processOrder'])->name('process');
     Route::get('/confirmacion/{orderNumber}', [CheckoutController::class, 'confirmation'])->name('confirmation');
 });

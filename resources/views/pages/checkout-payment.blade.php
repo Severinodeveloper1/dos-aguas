@@ -304,9 +304,13 @@
                                     title: 'DOS AGUAS',
                                     currency: 'PEN',
                                     amount: totalAmountCents,
+                                    description: 'Compra de Chocolates en Dos Aguas'
                                 },
                                 client: {
-                                    email: '{{ $shippingInfo['email'] ?? '' }}'
+                                    email: '{{ $shippingInfo['email'] ?? '' }}',
+                                    firstName: '{{ addslashes($shippingInfo['first_name'] ?? '') }}',
+                                    lastName: '{{ addslashes($shippingInfo['last_name'] ?? '') }}',
+                                    phone: '{{ $shippingInfo['phone'] ?? '' }}'
                                 },
                                 options: {
                                     lang: 'auto',

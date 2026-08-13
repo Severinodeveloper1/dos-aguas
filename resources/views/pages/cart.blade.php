@@ -206,7 +206,7 @@
                     </div>
 
                     <div class="pt-4">
-                        <a href="{{ route('checkout.shipping') }}"
+                        <a href="{{ route('checkout.index') }}"
                             class="w-full bg-primary text-on-primary py-4 font-label-caps text-xs tracking-widest hover:bg-secondary hover:text-on-secondary transition-all duration-300 flex items-center justify-center gap-2 font-bold">
                             {{ __('messages.cart.checkout') }}
                         </a>
