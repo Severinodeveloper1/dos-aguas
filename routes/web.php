@@ -33,6 +33,10 @@ Route::get('/libro-de-reclamaciones', [PublicController::class, 'claimBook'])->n
 Route::post('/libro-de-reclamaciones', [PublicSubmissionController::class, 'submitClaim'])
     ->middleware('throttle:5,1');
 
+Route::post('/newsletter/subscribe', [PublicSubmissionController::class, 'submitNewsletter'])
+    ->middleware('throttle:5,1')
+    ->name('newsletter.subscribe');
+
 // Cart Routes
 Route::prefix('carrito')->name('cart.')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index');

@@ -89,7 +89,7 @@ class CheckoutController extends Controller
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email:rfc|max:255',
             'phone' => 'required|string|max:50',
             'address' => 'required|string|max:500',
             'reference' => 'nullable|string|max:255',
@@ -99,6 +99,23 @@ class CheckoutController extends Controller
             'shipping_type' => 'required|string|in:national,international',
             'payment_method' => 'required|string|in:transfer,card',
         ]);
+
+        // Sanitization against XSS & control characters
+        $validated['first_name'] = trim(strip_tags(preg_replace('/[\x00-\x1F\x7F]/', '', $validated['first_name'])));
+        $validated['last_name'] = trim(strip_tags(preg_replace('/[\x00-\x1F\x7F]/', '', $validated['last_name'])));
+        $validated['email'] = strtolower(filter_var(trim($validated['email']), FILTER_SANITIZE_EMAIL));
+        $validated['phone'] = trim(strip_tags(preg_replace('/[\x00-\x1F\x7F]/', '', $validated['phone'])));
+        $validated['address'] = trim(strip_tags(preg_replace('/[\x00-\x1F\x7F]/', '', $validated['address'])));
+        $validated['city'] = trim(strip_tags(preg_replace('/[\x00-\x1F\x7F]/', '', $validated['city'])));
+        if (!empty($validated['reference'])) {
+            $validated['reference'] = trim(strip_tags(preg_replace('/[\x00-\x1F\x7F]/', '', $validated['reference'])));
+        }
+        if (!empty($validated['country'])) {
+            $validated['country'] = trim(strip_tags(preg_replace('/[\x00-\x1F\x7F]/', '', $validated['country'])));
+        }
+        if (!empty($validated['notes'])) {
+            $validated['notes'] = trim(strip_tags(preg_replace('/[\x00-\x1F\x7F]/', '', $validated['notes'])));
+        }
 
         if ($validated['shipping_type'] === 'international' && empty($validated['country'])) {
             return redirect()->back()->withErrors(['country' => 'El país de destino es obligatorio para envíos internacionales.'])->withInput();

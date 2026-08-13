@@ -470,5 +470,19 @@ class TestDataSeeder extends Seeder
                 'is_active' => true,
             ]
         );
+
+        \App\Models\Policy::firstOrCreate(
+            ['slug' => 'politica-de-cookies'],
+            [
+                'title' => 'Política de Uso de Cookies',
+                'title_en' => 'Cookie Usage Policy',
+                'title_de' => 'Cookie-Richtlinie',
+                'content' => '<p>Nuestro sitio web emplea cookies exclusivamente con fines técnicos esenciales: recordar los artículos añadidos al carrito de compras, mantener la seguridad de sus formularios mediante tokens CSRF y guardar su preferencia de idioma (Español, Inglés o Alemán). No utilizamos cookies publicitarias de terceros para rastreo o venta de información.</p>',
+                'content_en' => '<p>Our website uses cookies exclusively for essential technical purposes: remembering items added to your shopping cart, maintaining form security via CSRF tokens, and saving your language preference (Spanish, English, or German). We do not use third-party advertising cookies for tracking or data sales.</p>',
+                'content_de' => '<p>Unsere Website verwendet Cookies ausschließlich für notwendige technische Zwecke: Speichern von Artikeln im Warenkorb, Aufrechterhaltung der Formularsicherheit und Speichern Ihrer Sprachpräferenz. Wir verwenden keine Werbe-Cookies von Drittanbietern.</p>',
+                'order' => 3,
+                'is_active' => true,
+            ]
+        );
     }
 }

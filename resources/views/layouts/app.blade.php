@@ -270,10 +270,10 @@
     <!-- Footer -->
     <footer class="bg-surface-container-lowest border-t border-outline-variant/5 pt-16 pb-8">
         <div class="max-w-container-max mx-auto px-margin-edge">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b border-outline-variant/5">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-outline-variant/5">
 
                 <!-- Brand Summary & Claim Book link -->
-                <div class="md:col-span-4 space-y-6">
+                <div class="lg:col-span-3 space-y-6">
                     @if ($company->logo_path)
                         <img src="{{ str_starts_with($company->logo_path, 'http') ? $company->logo_path : asset('storage/' . $company->logo_path) }}"
                             alt="{{ $company->name }}"
@@ -284,7 +284,7 @@
                     <p class="text-xs text-on-surface-variant font-body max-w-sm leading-relaxed">
                         {{ app()->getLocale() == 'es' ? 'Chocolate artesanal elaborado desde el grano hasta la barra, rescatando los cacaos finos de aroma de las selvas del Perú.' : 'Bean-to-bar artisanal chocolate, rescuing the fine aroma cocoas of the Peruvian rainforests.' }}
                     </p>
-                    <div class="pt-4">
+                    <div class="pt-2">
                         <!-- Complaints Book Badge / Libro de Reclamaciones -->
                         <a href="{{ route('claim-book') }}"
                             class="inline-flex items-center gap-3 border border-outline-variant/20 hover:border-primary/50 px-4 py-2 hover:bg-[#1a1a1a] transition-all duration-300">
@@ -300,7 +300,7 @@
                 </div>
 
                 <!-- Contact coordinates -->
-                <div class="md:col-span-4 space-y-4">
+                <div class="lg:col-span-3 space-y-4">
                     <h4 class="font-label-caps text-xs tracking-[0.2em] text-primary font-bold uppercase">
                         {{ __('messages.contact.hacienda') }}</h4>
                     <ul class="space-y-3 text-xs text-on-surface-variant">
@@ -320,7 +320,7 @@
                 </div>
 
                 <!-- Navigation Quick Links -->
-                <div class="md:col-span-4 space-y-4">
+                <div class="lg:col-span-3 space-y-4">
                     <h4 class="font-label-caps text-xs tracking-[0.2em] text-primary font-bold uppercase">
                         {{ app()->getLocale() == 'es' ? 'ENLACES' : 'QUICK LINKS' }}</h4>
                     <div class="grid grid-cols-2 gap-3 text-xs">
@@ -387,6 +387,47 @@
                                 </svg>
                             </a>
                         @endif
+                    </div>
+                </div>
+
+                <!-- Newsletter Subscription Form -->
+                <div class="lg:col-span-3 space-y-4">
+                    <h4 class="font-label-caps text-xs tracking-[0.2em] text-primary font-bold uppercase">
+                        {{ app()->getLocale() == 'es' ? 'BOLETÍN Y NOVEDADES' : (app()->getLocale() == 'de' ? 'NEWSLETTER' : 'NEWSLETTER') }}
+                    </h4>
+                    <p class="text-xs text-on-surface-variant font-body leading-relaxed">
+                        {{ app()->getLocale() == 'es'
+                            ? 'Suscríbete para recibir noticias de nuestras cosechas y ofertas exclusivas.'
+                            : (app()->getLocale() == 'de'
+                                ? 'Abonnieren Sie exklusive Angebote und Neuigkeiten unserer Hacienda.'
+                                : 'Subscribe to receive news of our harvests and exclusive offers.') }}
+                    </p>
+                    <div x-data="{ email: '', status: '', message: '', loading: false }" class="space-y-2 pt-1">
+                        <form @submit.prevent="
+                            loading = true; status = ''; message = '';
+                            fetch('{{ route('newsletter.subscribe') }}', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                                body: JSON.stringify({ email: email })
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                loading = false;
+                                status = data.success ? 'success' : 'error';
+                                message = data.message;
+                                if (data.success) email = '';
+                            })
+                            .catch(err => { loading = false; status = 'error'; message = 'Error de conexión.'; });
+                        " class="flex flex-col gap-2">
+                            <input type="email" x-model="email" required placeholder="{{ app()->getLocale() == 'es' ? 'Tu correo electrónico...' : 'Your email address...' }}"
+                                class="bg-[#1c1b1b] border border-outline-variant/20 px-3 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary placeholder:text-outline/40 w-full" />
+                            <button type="submit" :disabled="loading"
+                                class="bg-primary text-on-primary font-label-caps text-[10px] tracking-widest font-bold py-2.5 px-4 uppercase hover:bg-secondary hover:text-on-secondary transition-all duration-300 flex items-center justify-center gap-2">
+                                <span x-show="!loading">{{ app()->getLocale() == 'es' ? 'SUSCRIBIRME' : (app()->getLocale() == 'de' ? 'ABONNIEREN' : 'SUBSCRIBE') }}</span>
+                                <span x-show="loading" class="w-3.5 h-3.5 border-2 border-on-primary border-t-transparent rounded-full animate-spin"></span>
+                            </button>
+                        </form>
+                        <p x-show="message" x-text="message" :class="status === 'success' ? 'text-leaf-green font-bold' : 'text-error'" class="text-[10px] pt-1 leading-relaxed"></p>
                     </div>
                 </div>
 
@@ -536,6 +577,8 @@
             }
         });
     </script>
+
+    @include('partials.cookie-banner')
 
     @yield('scripts')
     @stack('scripts')
