@@ -45,11 +45,11 @@
     <!-- Catalog Section -->
     <section class="max-w-container-max mx-auto px-margin-edge py-16">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            
+
             <!-- Filters Sidebar -->
             <aside class="lg:col-span-3">
                 <form id="filter-form" action="{{ route('collections') }}" method="GET" class="sticky top-28 space-y-10">
-                    
+
                     <!-- Preserving search if exists -->
                     @if(request('search'))
                         <input type="hidden" name="search" value="{{ request('search') }}" />
@@ -62,12 +62,12 @@
                             {{ __('messages.collections.categories') }}
                         </h3>
                         <div class="flex flex-col gap-3 text-sm font-body">
-                            <a href="{{ route('collections', request()->only(['search', 'intensity', 'sort'])) }}" 
+                            <a href="{{ route('collections', request()->only(['search', 'intensity', 'sort'])) }}"
                                class="text-left py-1 transition-all duration-300 {{ !request('category') ? 'text-primary font-bold border-l-2 border-primary pl-3' : 'text-on-surface-variant hover:text-primary pl-0' }}">
                                 {{ __('messages.collections.all') }}
                             </a>
                             @foreach($categories as $cat)
-                                <a href="{{ route('collections', array_merge(request()->only(['search', 'intensity', 'sort']), ['category' => $cat->slug])) }}" 
+                                <a href="{{ route('collections', array_merge(request()->only(['search', 'intensity', 'sort']), ['category' => $cat->slug])) }}"
                                    class="text-left py-1 transition-all duration-300 {{ request('category') === $cat->slug ? 'text-primary font-bold border-l-2 border-primary pl-3' : 'text-on-surface-variant hover:text-primary pl-0' }}">
                                     {{ $cat->display_name }}
                                 </a>
@@ -89,22 +89,22 @@
                                 $selectedIntensities = (array) request('intensity');
                             @endphp
                             <label class="flex items-center gap-3 cursor-pointer group">
-                                <input type="checkbox" name="intensity[]" value="low" onchange="this.form.submit()" 
+                                <input type="checkbox" name="intensity[]" value="low" onchange="this.form.submit()"
                                        class="w-4 h-4 rounded-none bg-transparent border-outline/30 text-primary focus:ring-0 checked:bg-primary checked:border-primary"
                                        {{ in_array('low', $selectedIntensities) ? 'checked' : '' }} />
-                                <span class="group-hover:text-primary transition-colors">40% - 55% ({{ app()->getLocale() == 'es' ? 'Suave' : 'Mild' }})</span>
+                                <span class="group-hover:text-primary transition-colors">40% - 60% ({{ app()->getLocale() == 'es' ? 'Suave' : 'Mild' }})</span>
                             </label>
                             <label class="flex items-center gap-3 cursor-pointer group">
-                                <input type="checkbox" name="intensity[]" value="medium" onchange="this.form.submit()" 
+                                <input type="checkbox" name="intensity[]" value="medium" onchange="this.form.submit()"
                                        class="w-4 h-4 rounded-none bg-transparent border-outline/30 text-primary focus:ring-0 checked:bg-primary checked:border-primary"
                                        {{ in_array('medium', $selectedIntensities) ? 'checked' : '' }} />
-                                <span class="group-hover:text-primary transition-colors">60% - 75% ({{ app()->getLocale() == 'es' ? 'Equilibrado' : 'Balanced' }})</span>
+                                <span class="group-hover:text-primary transition-colors">65% - 70% ({{ app()->getLocale() == 'es' ? 'Equilibrado' : 'Balanced' }})</span>
                             </label>
                             <label class="flex items-center gap-3 cursor-pointer group">
-                                <input type="checkbox" name="intensity[]" value="high" onchange="this.form.submit()" 
+                                <input type="checkbox" name="intensity[]" value="high" onchange="this.form.submit()"
                                        class="w-4 h-4 rounded-none bg-transparent border-outline/30 text-primary focus:ring-0 checked:bg-primary checked:border-primary"
                                        {{ in_array('high', $selectedIntensities) ? 'checked' : '' }} />
-                                <span class="group-hover:text-primary transition-colors">80% - 100% ({{ app()->getLocale() == 'es' ? 'Intenso' : 'Intense' }})</span>
+                                <span class="group-hover:text-primary transition-colors">75% - 100% ({{ app()->getLocale() == 'es' ? 'Intenso' : 'Intense' }})</span>
                             </label>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                             <span class="w-1.5 h-1.5 bg-primary rotate-45"></span>
                             {{ __('messages.collections.sort_by') }}
                         </h3>
-                        <select name="sort" onchange="this.form.submit()" 
+                        <select name="sort" onchange="this.form.submit()"
                                 class="w-full bg-[#1c1b1b] border border-outline-variant/30 text-xs px-3 py-2 font-body focus:ring-0 focus:outline-none focus:border-primary text-on-surface">
                             <option value="" {{ !request('sort') ? 'selected' : '' }}>{{ __('messages.collections.relevance') }}</option>
                             <option value="price_low" {{ request('sort') === 'price_low' ? 'selected' : '' }}>{{ __('messages.collections.price_low') }}</option>
@@ -139,7 +139,7 @@
                                 <div>
                                     <div class="aspect-[3/4] overflow-hidden bg-surface-container-lowest mb-6 relative">
                                         @if($firstImage)
-                                            <img alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                                            <img alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                                  src="{{ str_starts_with($firstImage, 'http') ? $firstImage : asset('storage/' . $firstImage) }}"/>
                                         @else
                                             <div class="w-full h-full flex items-center justify-center text-outline/30">
@@ -148,13 +148,13 @@
                                         @endif
                                         <!-- Hover Action Overlay -->
                                         <div class="absolute inset-0 bg-[#131313]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                                            <a href="{{ route('product.detail', $product->slug) }}" 
+                                            <a href="{{ route('product.detail', $product->slug) }}"
                                                class="w-11 h-11 bg-primary text-on-primary hover:bg-secondary hover:text-on-secondary transition-colors duration-300 flex items-center justify-center font-bold"
                                                title="{{ __('messages.collections.view_details') }}">
                                                 <span class="material-symbols-outlined text-[20px]">visibility</span>
                                             </a>
                                             @if($firstVariant)
-                                                <button type="button" 
+                                                <button type="button"
                                                         onclick="addToCartFromGrid({{ $firstVariant->id }})"
                                                         class="w-11 h-11 bg-secondary text-on-secondary hover:bg-primary hover:text-on-primary transition-colors duration-300 flex items-center justify-center font-bold"
                                                         title="{{ __('messages.product.add_to_cart') }}">
@@ -166,7 +166,7 @@
                                     <h4 class="font-headline text-lg mb-1 hover:text-primary transition-colors duration-300">
                                         <a href="{{ route('product.detail', $product->slug) }}">{{ $product->display_name }}</a>
                                     </h4>
-                                    
+
                                     @php
                                         $productSummary = $product->clean_tasting_notes ?: $product->clean_description;
                                     @endphp
@@ -182,7 +182,7 @@
                                     @else
                                         <span class="text-outline text-xs">{{ __('messages.product.out_of_stock') }}</span>
                                     @endif
-                                    
+
                                     <a href="{{ route('product.detail', $product->slug) }}" class="text-xs text-primary hover:text-secondary hover:underline transition-colors font-body flex items-center gap-1">
                                         {{ __('messages.collections.view_details') }}
                                         <span class="material-symbols-outlined text-xs">arrow_forward</span>

@@ -47,8 +47,8 @@ class PublicController extends Controller
             $search = $request->search;
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%")
-                  ->orWhere('tasting_notes', 'like', "%{$search}%");
+                    ->orWhere('description', 'like', "%{$search}%")
+                    ->orWhere('tasting_notes', 'like', "%{$search}%");
             });
         }
 
@@ -62,20 +62,20 @@ class PublicController extends Controller
                 foreach ($intensities as $intensity) {
                     if ($intensity === 'low') {
                         $q->orWhere('name', 'like', '%40%')
-                          ->orWhere('name', 'like', '%45%')
-                          ->orWhere('name', 'like', '%50%')
-                          ->orWhere('name', 'like', '%55%');
+                            ->orWhere('name', 'like', '%45%')
+                            ->orWhere('name', 'like', '%50%')
+                            ->orWhere('name', 'like', '%55%')
+                            ->orWhere('name', 'like', '%60%');
                     } elseif ($intensity === 'medium') {
-                        $q->orWhere('name', 'like', '%60%')
-                          ->orWhere('name', 'like', '%65%')
-                          ->orWhere('name', 'like', '%70%')
-                          ->orWhere('name', 'like', '%75%');
+                        $q->orWhere('name', 'like', '%65%')
+                            ->orWhere('name', 'like', '%70%');
                     } elseif ($intensity === 'high') {
-                        $q->orWhere('name', 'like', '%80%')
-                          ->orWhere('name', 'like', '%85%')
-                          ->orWhere('name', 'like', '%90%')
-                          ->orWhere('name', 'like', '%95%')
-                          ->orWhere('name', 'like', '%100%');
+                        $q->orWhere('name', 'like', '%75%')
+                            ->orWhere('name', 'like', '%80%')
+                            ->orWhere('name', 'like', '%85%')
+                            ->orWhere('name', 'like', '%90%')
+                            ->orWhere('name', 'like', '%95%')
+                            ->orWhere('name', 'like', '%100%');
                     }
                 }
             });
